@@ -41,3 +41,7 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
             Route::delete('{id}/hapus', 'hapusAkun')->name('delete');
         });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
