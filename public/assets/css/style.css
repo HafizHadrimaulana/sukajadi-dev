@@ -3468,12 +3468,52 @@ li.menu-item-has-children
 ----------------------------------------------------------------*/
 .cs-iconbox.cs-style1 {
   -webkit-box-shadow: 0px 10px 50px rgba(28, 37, 40, 0.07);
-          box-shadow: 0px 10px 50px rgba(28, 37, 40, 0.07);
+  box-shadow: 0px 10px 50px rgba(28, 37, 40, 0.07);
   border-radius: 10px;
   background-color: #fff;
   padding: 40px 30px 37px 30px;
   position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+
+  /* Efek transisi */
+  transition: all 0.3s ease;
 }
+
+/* Efek bayangan saat di-hover */
+.cs-iconbox.cs-style1:hover {
+  box-shadow: 0px 15px 60px rgba(28, 37, 40, 0.12);
+
+  /* Efek transform untuk memberikan kesan 'terangkat' saat di-hover */
+  transform: translateY(-5px);
+}
+
+/* Efek animasi berkelip saat di-hover */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.cs-iconbox.cs-style1:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  animation: blink 1.5s infinite;
+}
+
+
+.cs-iconbox.cs-style1:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 15px 60px rgba(28, 37, 40, 0.12);
+}
+
+
 
 .cs-iconbox.cs-style1 .cs-iconbox_icon {
   height: 70px;
@@ -3519,7 +3559,7 @@ li.menu-item-has-children
 }
 
 .cs-iconbox.cs-style1 .cs-iconbox_title {
-  font-size: 20px;
+  font-size: 23px;
   margin-bottom: 10px;
 }
 
