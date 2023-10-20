@@ -155,7 +155,7 @@
   <div class="cs-height_25 cs-height_lg_0"></div>
   <div class="cs-iconbox cs-style1">
     <div class="cs-iconbox_icon cs-center">
-      <img src="assets/img/icons/icon_box_1.svg" alt="Icon">
+      <img src="assets/img/icons/icon_box_2.svg" alt="Icon">
     </div>
     <div class="cs-iconbox_in">
       <h3 class="cs-iconbox_title">Layanan</h3>
@@ -168,7 +168,7 @@
   <div class="cs-height_25 cs-height_lg_0"></div>
   <div class="cs-iconbox cs-style1">
     <div class="cs-iconbox_icon cs-center">
-      <img src="assets/img/icons/icon_box_1.svg" alt="Icon">
+      <img src="assets/img/icons/icon_box_3.svg" alt="Icon">
     </div>
     <div class="cs-iconbox_in">
       <h3 class="cs-iconbox_title">27.013</h3>
@@ -181,7 +181,7 @@
   <div class="cs-height_25 cs-height_lg_0"></div>
   <div class="cs-iconbox cs-style1">
     <div class="cs-iconbox_icon cs-center">
-      <img src="assets/img/icons/icon_box_1.svg" alt="Icon">
+      <img src="assets/img/icons/icon_box_4.svg" alt="Icon">
     </div>
     <div class="cs-iconbox_in">
       <h3 class="cs-iconbox_title">78</h3>
@@ -194,7 +194,7 @@
   <div class="cs-height_25 cs-height_lg_0"></div>
   <div class="cs-iconbox cs-style1">
     <div class="cs-iconbox_icon cs-center">
-      <img src="assets/img/icons/icon_box_1.svg" alt="Icon">
+      <img src="assets/img/icons/icon_box_5.svg" alt="Icon">
     </div>
     <div class="cs-iconbox_in">
       <h3 class="cs-iconbox_title">Prestasi</h3>
@@ -207,7 +207,7 @@
   <div class="cs-height_25 cs-height_lg_0"></div>
   <div class="cs-iconbox cs-style1">
     <div class="cs-iconbox_icon cs-center">
-      <img src="assets/img/icons/icon_box_1.svg" alt="Icon">
+      <img src="assets/img/icons/icon_box_6.svg" alt="Icon">
     </div>
     <div class="cs-iconbox_in">
       <h3 class="cs-iconbox_title">4.878</h3>
@@ -220,7 +220,7 @@
   <div class="cs-height_25 cs-height_lg_0"></div>
   <div class="cs-iconbox cs-style1">
     <div class="cs-iconbox_icon cs-center">
-      <img src="assets/img/icons/icon_box_1.svg" alt="Icon">
+      <img src="assets/img/icons/icon_box_7.svg" alt="Icon">
     </div>
     <div class="cs-iconbox_in">
       <h3 class="cs-iconbox_title">1.192</h3>
@@ -233,7 +233,7 @@
   <div class="cs-height_25 cs-height_lg_0"></div>
   <div class="cs-iconbox cs-style1">
     <div class="cs-iconbox_icon cs-center">
-      <img src="assets/img/icons/icon_box_1.svg" alt="Icon">
+      <img src="assets/img/icons/icon_box_8.svg" alt="Icon">
     </div>
     <div class="cs-iconbox_in">
       <h3 class="cs-iconbox_title">816</h3>
@@ -786,11 +786,10 @@
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item">
             <div class="cs-footer_widget_text">
-              <img src="assets/img/logo_footer.svg" alt="Logo">
+              <img src="assets/img/sukajadi-logo.svg" alt="Logo">
               <p>
-                On the other hand, we denounce <br>
-                with righteous indignation and <br>
-                dislike men who are so
+               <br>kantor kecamatan sukajadi
+               <br>Jl. Sukamulya No.4 
               </p>
             </div>
             <div class="cs-height_30 cs-height_lg_30"></div>
@@ -840,7 +839,7 @@
     </div>
     <div class="cs-height_40 cs-height_lg_30"></div>
     <div class="cs-copyright text-center">
-      <div class="container">Copyright 2022. Created by Thememarch.</div>
+      <div class="container">Copyright 2023. Created by SI UNIKOM.</div>
     </div>
   </footer>
   <!-- End Footer -->
