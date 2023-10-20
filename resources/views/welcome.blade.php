@@ -10,7 +10,7 @@
   <!-- Favicon Icon -->
   <link rel="icon" href="assets/img/favicon.png">
   <!-- Site Title -->
-  <title>Sukajadi</title>
+  <title>{{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
@@ -21,7 +21,7 @@
 <body>
   <div class="cs-preloader cs-white_bg cs-center">
     <div class="cs-preloader_in">
-      <img src="assets/img/logo_mini.svg" alt="Logo">
+      <img src="assets/img/sukajadi-logo.svg" alt="Logo">
     </div>
   </div>
   <!-- Start Header Section -->
@@ -67,7 +67,7 @@
   <!-- Start Hero -->
   <div id="home">
     <div class="cs-height_80 cs-height_lg_80"></div>
-    <section class="cs-hero cs-style1 cs-bg" data-src="assets/img/hero_bg.svg">
+    <section class="cs-hero cs-style1 cs-bg" data-src="assets/img/wallpaper.svg">
       <div class="container">
         <div class="cs-hero_img">
           <div class="cs-hero_img_bg cs-bg" data-src="assets/img/hero_img_bg.png"></div>
