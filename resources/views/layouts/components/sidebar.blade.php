@@ -31,7 +31,7 @@ $navigation_links = json_decode(json_encode($links));
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="{{ asset('vendor/adminlte3/img/sukajadi.jpeg') }}" alt="sukajadi.jpeg" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">SUKAJADI</span>
+      <span class="brand-text font-weight-light">PORTAL</span>
     </a>
 
     <!-- Sidebar -->
