@@ -1,0 +1,55 @@
+/*--------------------------------------------------------------
+7. Footer
+----------------------------------------------------------------*/
+.cs-footer {
+  background-color: $primary;
+  color: #D9D9D9;
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+.cs-widget_title {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.cs-footer_widget_text {
+  img {
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
+  p {
+    margin: 0;
+  }
+}
+.cs-social_btns.cs-style1 {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -7px;
+  a {
+    margin: 7px;
+  }
+}
+.cs-copyright {
+  font-size: 14px;
+  line-height: 1.6em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 28px 0;
+}
+.cs-footer_item {
+  margin-bottom: 40px;
+}
+@media screen and (max-width: 1199px) {
+  .cs-footer_widget_text {
+    br {
+      display: none;
+    }
+  }
+}

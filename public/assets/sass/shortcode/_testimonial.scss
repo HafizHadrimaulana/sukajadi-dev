@@ -1,0 +1,60 @@
+/*--------------------------------------------------------------
+12. Testimonial
+----------------------------------------------------------------*/
+.cs-testimonial.cs-style1 {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 25px 30px 30px;
+  .cs-testimonial_meta {
+    display: flex;
+    align-items: center;
+  }
+  .cs-testimonial_text {
+    margin-bottom: 20px;
+  }
+  .cs-avatar {
+    margin-right: 20px;
+    flex: none;
+    position: relative;
+    img {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+    }
+  }
+  .cs-quote {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 1px solid $accent;
+    color: $accent;
+    background-color: #fff;
+    transition: all 0.3s ease;
+  }
+  .cs-testimonial_meta {
+    h3 {
+      font-size: 18px;
+      margin-bottom: 0px;
+    }
+    p {
+      margin: 0 0 5px;
+    }
+  }
+  &:hover {
+    .cs-quote {
+      background-color: $accent;
+      color: #fff;
+    }
+  }
+}
+@media screen and (max-width: 1199px) {
+.cs-testimonial.cs-style1 {
+  .cs-avatar img {
+    height: 80px;
+    width: 80px;
+  }
+}
+}
