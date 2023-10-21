@@ -15,6 +15,16 @@ class AkunController extends Controller
         return view('page.admin.akun.index');
     }
 
+    public function inputLaporan()
+    {
+        return view('page.admin.laporan.inputLaporan');
+    }
+
+    public function permasalahanLaporan()
+    {
+        return view('page.admin.laporan.permasalahan');
+    }
+
     public function dataTable(Request $request)
     {
         $totalFilteredRecord = $totalDataRecord = $draw_val = "";

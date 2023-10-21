@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
+
     public function kegiatan()
     {
         return view('kegiatan');
@@ -56,6 +57,14 @@ class HomeController extends Controller
     {
         return view('page.admin.profile');
     }
+
+    public function dataKegiatan()
+    {
+        return view('page.admin.dataKegiatan');
+    }
+
+
+    
 
     public function updateprofile(Request $request)
     {

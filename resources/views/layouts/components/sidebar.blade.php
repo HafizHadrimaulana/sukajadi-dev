@@ -2,12 +2,35 @@
 $links = [
     [
         "href" => route('home'),
-        "text" => "Dashboard",
+        "text" => "DASHBOARD",
         "icon" => "fas fa-home",
         "is_multi" => false
     ],
     [
-        "text" => "Kelola Akun",
+      "href" => route('dataKegiatan'),
+      "text" => "KEGIATAN",
+      "icon" => "fas fa-camera",
+      "is_multi" => false
+    ],
+    [
+        "text" => "LAPORAN",
+        "icon" => "fa fa-list-alt",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "Input",
+                "section_icon" => "fas fa-edit",
+                "section_href" => route('inputLaporan')
+            ],
+            [
+                "section_text" => "Permasalahan",
+                "section_icon" => "fas fa-edit",
+                "section_href" => route('permasalahan')
+            ]
+        ]
+    ],
+    [
+        "text" => "KELOLA AKUN",
         "icon" => "fas fa-users",
         "is_multi" => true,
         "href" => [
