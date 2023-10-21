@@ -66,13 +66,20 @@
 
   <!-- Start Hero -->
   <div id="home">
+
     <div class="cs-height_80 cs-height_lg_80"></div>
+    <center>
+<img src="https://sukajadi.bandung.go.id/portal/upload/logo.png" style="height: 8rem;" data-pagespeed-url-hash="858298967" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<img src="https://sukajadi.bandung.go.id/portal/upload/logo2.png" style="height: 8rem;" data-pagespeed-url-hash="1797676001" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+</center>
     <section class="cs-hero cs-style1 cs-bg" data-src="assets/img/wallpaper.svg">
+
       <div class="container">
         <div class="cs-hero_img">
           <div class="cs-hero_img_bg cs-bg" data-src="assets/img/hero_img_bg.png"></div>
           <img src="assets/img/hero_img.png" alt="Hero Image" class="wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.4s">
         </div>
+
         <div class="cs-hero_text">
           <div class="cs-hero_secondary_title">Selamat Datang
           </div>

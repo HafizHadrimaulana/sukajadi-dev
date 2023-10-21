@@ -27,14 +27,14 @@
 
     </head>
 
-    <body class="hold-transition
+    <body class="hold-transition cs-hero cs-style1 cs-bg 
     @if (Route::is('login') || Route::is('password.request') || Route::is('password.reset'))
     login-page
     @elseif (Route::is('register'))
     register-page
     @else
     login-page
-    @endif" style="background-image: url('assets/img/wallpaper.svg') ">
+    @endif" data-src="assets/img/wallpaper.svg ">
     <div class="cs-preloader cs-white_bg cs-center">
     <div class="cs-preloader_in">
       <img src="assets/img/sukajadi-logo.svg" alt="Logo">
