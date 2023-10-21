@@ -41,7 +41,17 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
             Route::delete('{id}/hapus', 'hapusAkun')->name('delete');
         });
 });
+ // Menambahkan rute untuk bagian Kegiatan
+ Route::get('/kegiatan', [HomeController::class, 'kegiatan'])->name('kegiatan');
 
+ // Menambahkan rute untuk bagian Vaksinasi
+ Route::get('/vaksinasi', [HomeController::class, 'vaksinasi'])->name('vaksinasi');
+
+ // Menambahkan rute untuk bagian Posyandu
+ Route::get('/posyandu', [HomeController::class, 'posyandu'])->name('posyandu');
+
+ // Menambahkan rute untuk bagian Rembug Warga
+ Route::get('/rembug-warga', [HomeController::class, 'rembugWarga'])->name('rembug-warga');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

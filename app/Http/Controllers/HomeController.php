@@ -10,6 +10,28 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
+    public function kegiatan()
+    {
+        return view('kegiatan');
+    }
+
+    // Method untuk halaman Vaksinasi
+    public function vaksinasi()
+    {
+        return view('vaksinasi');
+    }
+
+    // Method untuk halaman Posyandu
+    public function posyandu()
+    {
+        return view('posyandu');
+    }
+
+    // Method untuk halaman Rembug Warga
+    public function rembugWarga()
+    {
+        return view('rembug-warga');
+    }
     /**
      * Create a new controller instance.
      *
