@@ -34,7 +34,7 @@
     register-page
     @else
     login-page
-    @endif">
+    @endif" style="background-image: url('assets/img/wallpaper.svg') ">
     <div class="cs-preloader cs-white_bg cs-center">
     <div class="cs-preloader_in">
       <img src="assets/img/sukajadi-logo.svg" alt="Logo">
