@@ -13148,6 +13148,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 .main-sidebar {
   height: 100vh;
+  background-color: #0A0A0A;
   overflow-y: hidden;
   z-index: 1038;
 }
