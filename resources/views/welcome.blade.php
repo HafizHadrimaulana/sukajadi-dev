@@ -68,12 +68,19 @@
   <div id="home">
 
     <div class="cs-height_80 cs-height_lg_80"></div>
-    <center>
+  <center>
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo.png" style="height: 8rem;" data-pagespeed-url-hash="858298967" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo2.png" style="height: 8rem;" data-pagespeed-url-hash="1797676001" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 </center>
-    <section class="cs-hero cs-style1 cs-bg" data-src="assets/img/wallpaper.svg">
+<script>
+        var botmanWidget = {
+            aboutText:'Kecamatan Sukajadi',
+            introMessage :'Testing',
+        };
 
+    </script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+<section class="cs-hero cs-style1 cs-bg" data-src="assets/img/wallpaper.svg">
       <div class="container">
         <div class="cs-hero_img">
           <div class="cs-hero_img_bg cs-bg" data-src="assets/img/hero_img_bg.png"></div>

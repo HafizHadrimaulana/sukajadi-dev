@@ -4,6 +4,8 @@ use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BotManController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -67,3 +69,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
