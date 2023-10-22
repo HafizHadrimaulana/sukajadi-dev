@@ -75,7 +75,7 @@
 <script>
         var botmanWidget = {
             aboutText:'Kecamatan Sukajadi',
-            introMessage :'Testing',
+            introMessage :'Halo Saya Adalah BOT!, Apakah ada yang bisa saya bantu?',
         };
 
     </script>
