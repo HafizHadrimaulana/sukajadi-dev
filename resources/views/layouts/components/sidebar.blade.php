@@ -50,27 +50,18 @@ $links = [
 $navigation_links = json_decode(json_encode($links));
 @endphp
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-dark elevation-4 sidebar-mini-xs">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-mini-xs">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-    <span ><center><b class="logo-mini">P</b>.</center></span>
-      <span class="brand-text font-weight-light"><b></b></span>
+      <center><span class="logo-mini"><b>P</b><span class="brand-text font-weight-light"><b>ORTAL</b></span></span></center>
+      
  
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- SidebarSearch Form -->
-      <div class="form-inline mt-2">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+
+
 
       <!-- Sidebar Menu -->
     <nav class="mt-2">
