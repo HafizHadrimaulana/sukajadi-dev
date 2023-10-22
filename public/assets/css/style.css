@@ -3466,6 +3466,22 @@ li.menu-item-has-children
 /*--------------------------------------------------------------
 9. Iconbox
 ----------------------------------------------------------------*/
+
+/*
+chart-cointainer
+*/
+
+.chart-container {
+  width: 300px; /* Sesuaikan lebar kotak sesuai kebutuhan Anda */
+  height: 300px; /* Sesuaikan tinggi kotak sesuai kebutuhan Anda */
+  border: 1px solid #ccc; /* Contoh garis tepi untuk kotak */
+  padding: 10px; /* Contoh padding untuk memberi ruang di sekitar grafik */
+  background-color: #f0f0f0; /* Warna latar belakang kotak */
+}
+
+/*
+end chart-cointainer
+*/
 .cs-iconbox.cs-style1 {
   -webkit-box-shadow: 0px 10px 50px rgba(28, 37, 40, 0.07);
   box-shadow: 0px 10px 50px rgba(28, 37, 40, 0.07);
