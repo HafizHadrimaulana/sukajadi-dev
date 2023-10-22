@@ -36,7 +36,7 @@ Profil') @section('content')
                                 alt="User Imagess">
                             @else
                             <img
-                                src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"
+                                src="{{ asset('vendor/adminlte3/img/user2.png') }}"
                                 class="profile-user-img img-fluid img-circle"
                                 alt="User Imagess">
                             @endif
@@ -186,7 +186,7 @@ Profil') @section('content')
                                                                 <img
                                                                     class="elevation-3"
                                                                     id="prevImg"
-                                                                    src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"
+                                                                    src="{{ asset('vendor/adminlte3/img/user2.png') }}"
                                                                     width="80px"/>
                                                                 @endif
                                                             </div>

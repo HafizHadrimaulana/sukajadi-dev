@@ -50,11 +50,12 @@ $links = [
 $navigation_links = json_decode(json_encode($links));
 @endphp
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-dark elevation-4 sidebar-mini">
+  <aside class="main-sidebar sidebar-dark-dark elevation-4 sidebar-mini-xs">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="{{ asset('vendor/adminlte3/img/sukajadi.jpeg') }}" alt="sukajadi.jpeg" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><b>PORTAL</b></span>
+    <span ><center><b class="logo-mini">P</b>.</center></span>
+      <span class="brand-text font-weight-light"><b></b></span>
+ 
     </a>
 
     <!-- Sidebar -->

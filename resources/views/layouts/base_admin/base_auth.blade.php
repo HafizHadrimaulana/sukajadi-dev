@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 
     </head>
@@ -88,10 +90,10 @@
         <!-- AdminLTE App -->
           <script src="{{ asset('vendor/adminlte3/js/adminlte.min.js') }}"></script>
           <script src="assets/js/plugins/jquery-3.6.0.min.js"></script>
-  <script src="assets/js/plugins/jquery.slick.min.js"></script>
-  <script src="assets/js/plugins/jquery.counter.min.js"></script>
-  <script src="assets/js/plugins/wow.min.js"></script>
-  <script src="assets/js/main.js"></script>
+          <script src="assets/js/plugins/jquery.slick.min.js"></script>
+          <script src="assets/js/plugins/jquery.counter.min.js"></script>
+          <script src="assets/js/plugins/wow.min.js"></script>
+          <script src="assets/js/main.js"></script>
 
     </body>
 </html>

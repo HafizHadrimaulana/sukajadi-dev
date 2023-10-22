@@ -23,7 +23,7 @@
                     alt="User Imagess">
                 @else
                 <img
-                    src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"
+                    src="{{ asset('vendor/adminlte3/img/user2.png') }}"
                     class="user-image img-circle elevation-2"
                     alt="User Imagess">
                     @endif
@@ -39,7 +39,7 @@
                         alt="User Imagess">
                         @else
                         <img
-                            src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"
+                            src="{{ asset('vendor/adminlte3/img/user2.png') }}"
                             class="img-circle elevation-2"
                             alt="User Imagess">
                             @endif
