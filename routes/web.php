@@ -63,3 +63,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
  // Menambahkan rute untuk bagian Rembug Warga
  Route::get('/rembug-warga', [HomeController::class, 'rembugWarga'])->name('rembug-warga');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

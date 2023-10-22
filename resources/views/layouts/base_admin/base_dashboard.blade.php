@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ asset('vendor/adminlte3/plugins/fontawesome-free/css/all.min.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('vendor/adminlte3/css/adminlte.min.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         @yield('script_head')
     </head>
     <body class="hold-transition sidebar-mini">
@@ -42,7 +43,9 @@
         <script src="{{ asset('vendor/adminlte3/js/adminlte.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
         {{-- <script src="../../dist/js/demo.js"></script> --}}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
         @yield('script_footer')
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
