@@ -45,6 +45,7 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
 });
  // Menambahkan rute untuk bagian dataKegiatan
  Route::get('/dataKegiatan', [HomeController::class, 'dataKegiatan'])->name('dataKegiatan');
+ Route::get('/kalender', [AkunController::class, 'kalender'])->name('kalender');
 
   // Menambahkan rute untuk bagian Laporan
   Route::get('/inputLaporan', [AkunController::class, 'inputLaporan'])->name('inputLaporan');

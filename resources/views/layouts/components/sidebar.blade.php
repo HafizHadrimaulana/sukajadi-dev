@@ -30,6 +30,18 @@ $links = [
         ]
     ],
     [
+        "text" => "AGENDA",
+        "icon" => "fa fa-thumbtack",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "Kalender",
+                "section_icon" => "fa fa-calendar",
+                "section_href" => route('kalender')
+            ]
+        ]
+    ],
+    [
         "text" => "KELOLA AKUN",
         "icon" => "fas fa-users",
         "is_multi" => true,
@@ -50,7 +62,7 @@ $links = [
 $navigation_links = json_decode(json_encode($links));
 @endphp
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-mini-xs">
+  <aside class="main-sidebar sidebar-dark-secondary elevation-4 sidebar-mini-xs">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <center><span class="logo-mini"><b>P</b><span class="brand-text font-weight-light"><b>ORTAL</b></span></span></center>
