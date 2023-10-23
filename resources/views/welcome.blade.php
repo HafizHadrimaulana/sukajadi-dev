@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-Bd1wty3WALnARDD67cRwdo5p0PD60fphF7Q1F9tn8u6d9RE/0Qnm8U69l7c1Zn2Q" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -502,38 +504,37 @@
             <div class="cs-footer_widget_text">
               <img src="assets/img/sukajadi-logo.svg" alt="Logo">
               <p>
-               <br>kantor kecamatan sukajadi
-               <br>Jl. Sukamulya No.4 
+               <br>Jl. Sukamulya No. 4 Kota Bandung 40161
               </p>
             </div>
             <div class="cs-height_30 cs-height_lg_30"></div>
             <div class="cs-social_btns cs-style1">
-              <a href="#"><img src="assets/img/facebook.svg" alt="Facebook"></a>
-              <a href="#"><img src="assets/img/twitter.svg" alt="Twitter"></a>
-              <a href="#"><img src="assets/img/instagram.svg" alt="Instagram"></a>
+            
             </div>
           </div>
         </div><!-- .col -->
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item widget_nav_menu">
-            <h2 class="cs-widget_title">Available POS</h2>
+          
             <ul class="menu">
-              <li><a href="#">Food Delivery</a></li>
-              <li><a href="#">Furniture Store</a></li>
-              <li><a href="#">Coffee Shop</a></li>
-              <li><a href="#">Clothing Store</a></li>
-              <li><a href="#">eCommerce</a></li>
+            <h2 class="cs-widget_title">Sosial Media</h2>
+            <a href="https://www.facebook.com/people/kec_sukajadi/100068761213783/"><img src="assets/img/fb.png">&nbsp;&nbsp;Facebook</a>
+            <br><br>
+            <a href="https://twitter.com/Kec_Sukajadi"><img src="assets/img/x.png">&nbsp;&nbsp;X</a>
+            <br><br>
+            <a href="https://instagram.com/Kec_Sukajadi"><img src="assets/img/ig.png">&nbsp;&nbsp;Instagram</a>
+       
             </ul>
           </div>
         </div><!-- .col -->
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item widget_nav_menu">
-            <h2 class="cs-widget_title">Company</h2>
+            <h2 class="cs-widget_title">Kontak</h2>
             <ul class="menu">
-              <li><a href="#">Features</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Use</a></li>
+               <a href="https://wa.me/082118717109"><img src="assets/img/wa.png">&nbsp;&nbsp;0821-1871-7109</a>
+               <br><br>
+               <a href="#"><img src="assets/img/email.png">&nbsp;kecamatansukajadi04@gmail.com</a>
+              
             </ul>
           </div>
         </div><!-- .col -->
