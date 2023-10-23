@@ -5,12 +5,41 @@ namespace App\Http\Controllers;
 use BotMan\BotMan\BotMan;
 use Illuminate\Http\Request;
 use BotMan\BotMan\Messages\Conversations\Conversation;
+use BotMan\BotMan\Messages\Outgoing\Actions\Button;
+use BotMan\BotMan\Messages\Outgoing\Question;
 
 class BotManController extends Controller
 {
     public function handle()
     {
         $botman = app('botman');
+
+        $botman->hears('Mulai', function (BotMan $bot) {
+            $question = Question::create('Apa yang Anda ingin tanyakan?')
+                ->fallback('Tidak dapat memilih pertanyaan')
+                ->callbackId('ask_reason')
+                ->addButtons([
+                    Button::create('Siapa nama Anda?')->value('name'),
+                    Button::create('Apa kabar?')->value('status'),
+                    // ... tambah tombol lainnya
+                ]);
+
+            $bot->ask($question, function ($answer) {
+                if ($answer->isInteractiveMessageReply()) {
+                    $selectedValue = $answer->getValue();  // Mendapatkan nilai dari tombol yang dipilih
+
+                    switch ($selectedValue) {
+                        case 'name':
+                            $this->say('Saya adalah BotMan. Bagaimana saya bisa membantu Anda hari ini?');
+                            break;
+                        case 'status':
+                            $this->say('Saya adalah bot, saya selalu baik-baik saja! Bagaimana dengan Anda?');
+                            break;
+                        // ... tambah kasus lainnya
+                    }
+                }
+            });
+        });
 
         $botman->hears('Halo', function (BotMan $bot) {
             $bot->reply('Halo juga!');
@@ -75,6 +104,4 @@ class BantuanConversation extends Conversation
             }
         });
     }
-    
-    
 }

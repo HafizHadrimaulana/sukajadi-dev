@@ -73,15 +73,48 @@
   <center>
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo.png" style="height: 8rem;" data-pagespeed-url-hash="858298967" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo2.png" style="height: 8rem;" data-pagespeed-url-hash="1797676001" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-</center>
-<script>
+</center>>
+    <script>
         var botmanWidget = {
-            aboutText:'Kecamatan Sukajadi',
-            introMessage :'Halo Saya Adalah BOT!, Apakah ada yang bisa saya bantu?',
+            aboutText:'Kecamatan Sukajadi, 2023',
+            introMessage :'Halo, Saya adalah BOT! Apakah ada yang bisa saya bantu?',
         };
-
     </script>
-    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+    <script>
+window.addEventListener('load', function() {
+    // Pilih elemen target untuk diobservasi
+    var targetElement = document.body; // Ini perlu diubah ke document.body atau elemen div yang sesuai
+
+    // Opsi konfigurasi untuk observer
+    var config = {
+        childList: true,
+        subtree: true // mengobservasi perubahan pada elemen target dan semua keturunannya
+    };
+
+    // Callback function untuk eksekusi ketika mutasi terdeteksi
+    var callback = function(mutationsList, observer) {
+        for(var mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                var titleElement = document.querySelector('.botman-title'); // Gantilah ini sesuai dengan class atau id yang sesungguhnya
+                if (titleElement) {
+                    titleElement.textContent = 'Kecamatan Sukajadi';
+                    observer.disconnect(); // Hentikan observer setelah judul berhasil diubah
+                    return; // Keluar dari loop dan fungsi
+                }
+            }
+        }
+    };
+
+    // Buat instance observer dengan callback function
+    var observer = new MutationObserver(callback);
+
+    // Mulai observasi
+    observer.observe(targetElement, config);
+});
+
+   </script>
+
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0.0/build/js/widget.min.js'></script>
 <section class="cs-hero cs-style1 cs-bg" data-src="assets/img/wallpaper.svg">
       <div class="container">
         <div class="cs-hero_img">
