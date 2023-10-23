@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('Portal Sukajadi', 'Portal Sukajadi'),
+    'name' => env('Portal', 'Portal'),
 
     /*
     |--------------------------------------------------------------------------

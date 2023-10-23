@@ -1,93 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="assets/img/sukajadi-logo.svg">
+        <title>@yield('judul') | {{ config('app.name') }}</title>
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-Bd1wty3WALnARDD67cRwdo5p0PD60fphF7Q1F9tn8u6d9RE/0Qnm8U69l7c1Zn2Q" crossorigin="anonymous">
+  
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="assets/img/favicon.png">
-    <title>{{ config('app.name', 'Portal Sukajadi') }}</title>
+    </head>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <body class="hold-transition cs-hero cs-style1 cs-bg 
+    @if (Route::is('login') || Route::is('password.request') || Route::is('password.reset'))
+    login-page
+    @elseif (Route::is('register'))
+    register-page
+    @else
+    login-page
+    @endif" data-src="assets/img/wallpaper.svg ">
+    <div class="cs-preloader cs-white_bg cs-center">
+        <div class="cs-preloader_in">
+          <img src="assets/img/sukajadi-logo.svg" alt="Logo">
+        </div>
+      </div>
+      <!-- Start Header Section -->
+      <header class="cs-site_header cs-style1 cs-sticky-header cs-primary_color cs-white_bg">
+        <div class="cs-main_header">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Portal Sukajadi') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                <div class="cs-main_header_in">
+                    <div class="cs-main_header_left">
+                        <a class="cs-site_branding cs-accent_color" href="welcome.blade.php">
+                        <a href="#home" class="navbar-brand">
+                           <span class="custom-text"><b>PORTAL</b>| Kecamatan</span>
+                        </a>
+                        </a>
+                    </div>
+                    <div class="cs-main_header_center">
+                        <div class="cs-nav">
+                            <ul class="cs-nav_list">
+                                <li><a href="/" class="cs-smoth_scroll">Beranda</a></li>
+                                <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll">Kegiatan</a></li>
+                                <li><a href="{{ route('data') }}" class="cs-smoth_scroll">Data</a></li>
+                                <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll">Posyandu</a></li>
+                                <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll">Rembug Warga</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Masukkan kode yang baru Anda berikan di sini -->
+                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                       @if (!Auth::check())
+                       <a href="{{ route('login') }}" class="login-button text-sm login-text">
+                        <span class="arrow"><b>➔</b></span><b>Login</b>
+                      </a>
+                      @endif
+                       </div>
+                    <!-- Akhir kode yang baru Anda berikan -->
                 </div>
             </div>
-        </nav>
+        </div>
+    </header>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-    <script src="assets/js/plugins/jquery-3.6.0.min.js"></script>
-  <script src="assets/js/plugins/jquery.slick.min.js"></script>
-  <script src="assets/js/plugins/jquery.counter.min.js"></script>
-  <script src="assets/js/plugins/wow.min.js"></script>
-  <script src="assets/js/main.js"></script>
-</body>
+
+        @yield('content')
+
+        <!-- jQuery -->
+        <script src="{{ asset('vendor/adminlte3/plugins/jquery/jquery.min.js') }}"></script>
+        <!-- Bootstrap 4 -->
+        <script src="{{ asset('vendor/adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <!-- AdminLTE App -->
+          <script src="{{ asset('vendor/adminlte3/js/adminlte.min.js') }}"></script>
+          <script src="assets/js/plugins/jquery-3.6.0.min.js"></script>
+          <script src="assets/js/plugins/jquery.slick.min.js"></script>
+          <script src="assets/js/plugins/jquery.counter.min.js"></script>
+          <script src="assets/js/plugins/wow.min.js"></script>
+          <script src="assets/js/main.js"></script>
+
+    </body>
 </html>

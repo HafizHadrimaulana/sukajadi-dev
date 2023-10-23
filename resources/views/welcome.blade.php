@@ -6,11 +6,11 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="ThemeMarch">
   <!-- Favicon Icon -->
-  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="icon" href="assets/img/sukajadi-logo.svg">
   <!-- Site Title -->
-  <title>{{ config('app.name') }}</title>
+  <title>@yield('judul') | {{ config('app.name') }}</title>
+  <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
@@ -41,10 +41,9 @@
                 <div class="cs-main_header_center">
                     <div class="cs-nav">
                         <ul class="cs-nav_list">
-                            <li><a href="#home class="cs-smoth_scroll">Beranda</a></li>
+                            <li><a href="/" class="cs-smoth_scroll">Beranda</a></li>
                             <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll">Kegiatan</a></li>
-                            <li><a href="#data" class="cs-smoth_scroll">Data</a></li>
-                            <li><a href="{{ route('vaksinasi') }}" class="cs-smoth_scroll">Vaksinasi</a></li>
+                            <li><a href="{{ route('data') }}" class="cs-smoth_scroll">Data</a></li>
                             <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll">Posyandu</a></li>
                             <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll">Rembug Warga</a></li>
                         </ul>

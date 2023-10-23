@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BotManController;
-
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\PosyanduController;
+use App\Http\Controllers\RembugController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,10 +45,11 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
             Route::match(['get','post'],'{id}/ubah', 'ubahAkun')->name('edit');
             Route::delete('{id}/hapus', 'hapusAkun')->name('delete');
         });
+        Route::get('/dataKegiatan', [HomeController::class, 'dataKegiatan'])->name('dataKegiatan');
+        Route::get('/kalender', [AkunController::class, 'kalender'])->name('kalender');
 });
- // Menambahkan rute untuk bagian dataKegiatan
- Route::get('/dataKegiatan', [HomeController::class, 'dataKegiatan'])->name('dataKegiatan');
- Route::get('/kalender', [AkunController::class, 'kalender'])->name('kalender');
+
+
 
   // Menambahkan rute untuk bagian Laporan
   Route::get('/inputLaporan', [AkunController::class, 'inputLaporan'])->name('inputLaporan');
@@ -72,3 +76,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
+
+Route::get('/kegiatan', [KegiatanController::class, 'kegiatan'])->name('kegiatan');
+Route::get('/data', [DataController::class, 'data'])->name('data');
+Route::get('/posyandu', [PosyanduController::class, 'posyandu'])->name('posyandu');
+Route::get('/rembug', [RembugController::class, 'rembugWarga'])->name('rembug');
