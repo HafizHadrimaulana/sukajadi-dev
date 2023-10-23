@@ -3487,7 +3487,8 @@ chart-cointainer
 
 
 canvas {
-  max-width: 100%;
+  width: 50%;
+  height: auto;
 }
 
 .year-label {
