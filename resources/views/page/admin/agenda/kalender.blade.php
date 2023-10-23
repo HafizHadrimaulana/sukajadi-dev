@@ -24,11 +24,10 @@
     <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
     <h3 class="card-title">
     <i class="far fa-calendar-alt"></i>
-    Calendar
+    Kalender
     </h3>
     
     <div class="card-tools">
-    
     <div class="btn-group">
     <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
     <i class="fas fa-bars"></i>
