@@ -25,6 +25,11 @@ class AkunController extends Controller
         return view('page.admin.laporan.permasalahan');
     }
 
+    public function kalender()
+    {
+        return view('page.admin.agenda.kalender');
+    }
+
     public function dataTable(Request $request)
     {
         $totalFilteredRecord = $totalDataRecord = $draw_val = "";
