@@ -256,94 +256,100 @@
   </div>
   <div class="cs-height_25 cs-height_lg_25"></div>
 </div>
-    <div class="chart-container">
-    <canvas id="myChart"></canvas>
+  <div class="container">
+  <div class="chart-container">
+        <canvas id="myChart"></canvas>
+        <select id="selectYear">
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
     </div>
-    <div class="col-md-6">
-                    <!-- Tambahkan elemen untuk memilih tahun -->
-                    <label for="selectYear">Pilih Tahun:</label>
-                    <select id="selectYear">
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <!-- Tambahkan opsi tahun sesuai dengan kebutuhan Anda -->
-                    </select>
-                </div>
-      </div>
+    </div>
       <div class="cs-height_75 cs-height_lg_45"></div>
     </div>
   </section>
-  <!-- End Main Feature -->
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var selectYear = document.getElementById('selectYear');
 
-<!-- Skrip JavaScript untuk membuat grafik -->
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var selectYear = document.getElementById('selectYear');
+        // Data grafik awal
+        var data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], // Label bulan
+            datasets: [{
+                label: 'Contoh Grafik',
+                data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120], // Data contoh
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
 
-    // Data grafik awal
-    var data = {
-        labels: ['2021', '2022', '2023'], // Tambahkan tahun ke dalam labels
-        datasets: [{
-            label: 'Contoh Grafik',
-            data: [10, 20, 30],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)'
-            ],
-            borderWidth: 0.5
-        }]
-    };
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: {
-            responsive: true
-        }
-    });
-
-    // Event listener untuk perubahan tahun
-    selectYear.addEventListener('change', function () {
-        var selectedYear = selectYear.value;
-        drawChart(selectedYear); // Memanggil fungsi drawChart dengan tahun yang dipilih
-    });
-
-    // Fungsi untuk menggambar grafik
-    function drawChart(year) {
-        // Di sini Anda dapat mengatur data grafik dan label berdasarkan tahun yang dipilih
-        // Misalnya, Anda dapat memuat data dari server atau sumber data eksternal lainnya
-        // Kemudian, Anda dapat memperbarui properti 'data' dari objek myChart dengan data yang baru
-
-        if (year === '2021') {
-            data.labels = ['Jan 2021', 'Feb 2021', 'Mar 2021']; // Contoh label berdasarkan tahun
-            data.datasets[0].data = [10, 20, 30]; // Contoh data berdasarkan tahun
-        } else if (year === '2022') {
-            data.labels = ['Jan 2022', 'Feb 2022', 'Mar 2022']; // Contoh label berdasarkan tahun
-            data.datasets[0].data = [15, 25, 35]; // Contoh data berdasarkan tahun
-        } else if (year === '2023') {
-            data.labels = ['Jan 2023', 'Feb 2023', 'Mar 2023']; // Contoh label berdasarkan tahun
-            data.datasets[0].data = [12, 22, 32]; // Contoh data berdasarkan tahun
-        }
-
-        // Membuat objek Chart baru atau memperbarui grafik yang ada
-        if (myChart) {
-            myChart.destroy(); // Hancurkan grafik yang ada jika ada
-        }
-        myChart = new Chart(ctx, {
+        var myChart = new Chart(ctx, {
             type: 'bar',
             data: data,
             options: {
                 responsive: true
             }
         });
-    }
-</script>
+
+        // Event listener untuk perubahan tahun
+        selectYear.addEventListener('change', function () {
+            var selectedYear = selectYear.value;
+            drawChart(selectedYear); // Memanggil fungsi drawChart dengan tahun yang dipilih
+        });
+
+        // Fungsi untuk menggambar grafik berdasarkan tahun
+        function drawChart(year) {
+            // Di sini Anda dapat mengatur data grafik berdasarkan tahun yang dipilih
+            // Misalnya, Anda dapat memuat data dari server atau sumber data eksternal lainnya
+            // Kemudian, Anda dapat memperbarui properti 'data' dari objek myChart dengan data yang baru
+
+            var newData = generateDataForYear(year);
+
+            // Membuat objek Chart baru atau memperbarui grafik yang ada
+            if (myChart) {
+                myChart.destroy(); // Hancurkan grafik yang ada jika ada
+            }
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels, // Label bulan tetap sama
+                    datasets: [{
+                        label: 'Contoh Grafik',
+                        data: newData, // Data yang baru
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        }
+
+        // Fungsi untuk menghasilkan data contoh berdasarkan tahun
+        function generateDataForYear(year) {
+            var newData = [];
+            // Di sini Anda dapat menghasilkan data berdasarkan tahun yang dipilih
+            // Ini hanya contoh, Anda dapat menggantinya dengan data sesuai kebutuhan
+            switch (year) {
+                case '2021':
+                    newData = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
+                    break;
+                case '2022':
+                    newData = [15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125];
+                    break;
+                case '2023':
+                    newData = [12, 22, 32, 42, 52, 62, 72, 82, 92, 102, 112, 122];
+                    break;
+            }
+            return newData;
+        }
+    </script>
   <!-- Start About -->
   <section id="about" class="cs-gradient_bg_1">
     <div class="cs-height_100 cs-height_lg_70"></div>

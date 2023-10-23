@@ -3470,15 +3470,41 @@ li.menu-item-has-children
 /*
 chart-cointainer
 */
-
-.chart-container {
-  width: 300px; /* Sesuaikan lebar kotak sesuai kebutuhan Anda */
-  height: 300px; /* Sesuaikan tinggi kotak sesuai kebutuhan Anda */
-  border: 1px solid #ccc; /* Contoh garis tepi untuk kotak */
-  padding: 10px; /* Contoh padding untuk memberi ruang di sekitar grafik */
-  background-color: #f0f0f0; /* Warna latar belakang kotak */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
+.chart-container {
+  background-color: #ffffff;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 0 auto; /* Mengatur margin otomatis untuk menempatkan elemen di tengah horizontal */
+  display: block; /* Mengatur display menjadi block agar elemen mengisi lebar penuh */
+  position: relative;
+  max-width: 80%; /* Anda dapat mengatur lebar maksimum sesuai kebutuhan Anda */
+}
+
+
+canvas {
+  max-width: 100%;
+}
+
+.year-label {
+  position: absolute; /* Mengatur posisi absolut untuk teks tahun */
+  top: 10px; /* Jarak dari bagian atas grafik */
+  right: 10px; /* Jarak dari bagian kanan grafik */
+  font-weight: bold; /* Teks yang tebal */
+}
+
+select {
+  padding: 5px;
+  font-size: 16px;
+  position: absolute;
+  top: 10px; /* Sesuaikan posisi vertikal sesuai kebutuhan Anda */
+  right: 10px; /* Sesuaikan posisi horizontal sesuai kebutuhan Anda */
+  z-index: 1; /* Mengatur urutan tumpukan sehingga pilihan tahun tampil di atas grafik */
+}
 /*
 end chart-cointainer
 */
