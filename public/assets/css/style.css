@@ -3476,35 +3476,26 @@ chart-cointainer
 }
 
 .chart-container {
-  background-color: #ffffff;
-  padding: 20px;
-  overflow-x: auto;
-  margin: 0 auto; /* Mengatur margin otomatis untuk menempatkan elemen di tengah horizontal */
-  display: block; /* Mengatur display menjadi block agar elemen mengisi lebar penuh */
-  position: relative;
-  max-width: 80%; /* Anda dapat mengatur lebar maksimum sesuai kebutuhan Anda */
+  background-color: #ffffff; /* Warna latar belakang untuk grafik */
+  padding: 20px; /* Ruang tambahan di sekitar grafik */
+  overflow-x: auto; /* Memungkinkan grafik untuk melebar ke kiri dan kanan jika diperlukan */
+  display: inline-block; /* Mengatur agar elemen div hanya memenuhi lebar yang diperlukan */
+  position: relative; /* Mengatur posisi relatif untuk elemen ini */
 }
 
 
 canvas {
-  width: 50%;
-  height: auto;
+  max-width: 100%;
 }
 
 .year-label {
   position: absolute; /* Mengatur posisi absolut untuk teks tahun */
-  top: 10px; /* Jarak dari bagian atas grafik */
-  right: 10px; /* Jarak dari bagian kanan grafik */
   font-weight: bold; /* Teks yang tebal */
 }
 
 select {
   padding: 5px;
   font-size: 16px;
-  position: absolute;
-  top: 10px; /* Sesuaikan posisi vertikal sesuai kebutuhan Anda */
-  right: 10px; /* Sesuaikan posisi horizontal sesuai kebutuhan Anda */
-  z-index: 1; /* Mengatur urutan tumpukan sehingga pilihan tahun tampil di atas grafik */
 }
 /*
 end chart-cointainer
