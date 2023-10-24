@@ -57,20 +57,6 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
- // Menambahkan rute untuk bagian Kegiatan
- Route::get('/kegiatan', [HomeController::class, 'kegiatan'])->name('kegiatan');
-
- // Menambahkan rute untuk bagian Vaksinasi
- Route::get('/vaksinasi', [HomeController::class, 'vaksinasi'])->name('vaksinasi');
-
- // Menambahkan rute untuk bagian Posyandu
- Route::get('/posyandu', [HomeController::class, 'posyandu'])->name('posyandu');
-
- // Menambahkan rute untuk bagian Rembug Warga
- Route::get('/rembug-warga', [HomeController::class, 'rembugWarga'])->name('rembug-warga');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -80,4 +66,4 @@ Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 Route::get('/kegiatan', [KegiatanController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/data', [DataController::class, 'data'])->name('data');
 Route::get('/posyandu', [PosyanduController::class, 'posyandu'])->name('posyandu');
-Route::get('/rembug', [RembugController::class, 'rembugWarga'])->name('rembug');
+Route::get('/rembug-warga', [RembugController::class, 'rembugWarga'])->name('rembug-warga');
