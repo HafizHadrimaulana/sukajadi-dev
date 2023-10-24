@@ -35,31 +35,31 @@
             <div class="container">
                 <div class="cs-main_header_in">
                     <div class="cs-main_header_left">
-                        <a class="cs-site_branding cs-accent_color" href="welcome.blade.php">
-                        <a href="#home" class="navbar-brand">
-                           <span class="custom-text"><b>PORTAL</b>| Kecamatan</span>
-                        </a>
+                        <a class="cs-site_branding cs-accent_color" >
+                           <span href="/" class="custom-text"><b>PORTAL</b> | Kecamatan</span>
                         </a>
                     </div>
                     <div class="cs-main_header_center">
                         <div class="cs-nav">
                             <ul class="cs-nav_list">
-                                <li><a href="/" class="cs-smoth_scroll">Beranda</a></li>
-                                <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll">Kegiatan</a></li>
-                                <li><a href="{{ route('data') }}" class="cs-smoth_scroll">Data</a></li>
-                                <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll">Posyandu</a></li>
-                                <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll">Rembug Warga</a></li>
+                              <li><a href="/" class="cs-smoth_scroll"><b>Beranda</b></a></li>
+                              <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll"><b>Kegiatan</b></a></li>
+                              <li><a href="{{ route('data') }}" class="cs-smoth_scroll"><b>Data</b></a></li>
+                              <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll"><b>Posyandu</b></a></li>
+                              <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll"><b>Rembug Warga</b></a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- Masukkan kode yang baru Anda berikan di sini -->
-                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    <div class="cs-main_header_right">
+                      <div class="cs-toolbox">
                        @if (!Auth::check())
-                       <a href="{{ route('login') }}" class="login-button text-sm login-text">
-                        <span class="arrow"><b>➔</b></span><b>Login</b>
+                       <a href="{{ route('login') }}" class="cs-btn cs-color1 cs-modal_btn">
+                        <span class="cs-btn cs-color1 cs-modal_btn" data-modal="login">Login</span>
                       </a>
                       @endif
-                       </div>
+                      </div>
+                    </div>
                     <!-- Akhir kode yang baru Anda berikan -->
                 </div>
             </div>
