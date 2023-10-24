@@ -40,7 +40,7 @@
         <div class="cs-preloader_in">
           <img src="assets/img/sukajadi-logo.svg" alt="Logo">
         </div>
-      </div>
+    </div>
       <!-- Start Header Section -->
       <header class="cs-site_header cs-style1 cs-sticky-header cs-primary_color cs-white_bg">
         <div class="cs-main_header">

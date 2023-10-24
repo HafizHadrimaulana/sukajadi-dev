@@ -476,9 +476,9 @@
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item">
             <div class="cs-footer_widget_text">
-              <img src="assets/img/sukajadi-logo.svg" alt="Logo">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9837031494253!2d107.5856049755271!3d-6.892552267449541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6636e2ff101%3A0x61b8a9b5b9162459!2sKantor%20Kecamatan%20SUKAJADI!5e0!3m2!1sid!2sid!4v1698183714051!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               <p>
-               <br>Jl. Sukamulya No. 4 Kota Bandung 40161
+               <b href="https://maps.app.goo.gl/yujf3FWo1rP9uMfx5">Jl. Sukamulya No. 4 Kota Bandung 40161</b>
               </p>
             </div>
             <div class="cs-height_30 cs-height_lg_30"></div>
@@ -489,9 +489,13 @@
         </div><!-- .col -->
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item widget_nav_menu">
-          
-            <ul class="menu">
+
+          </div>
+        </div><!-- .col -->
+        <div class="col-lg-3 col-md-6">
+          <div class="cs-footer_item widget_nav_menu">
             <h2 class="cs-widget_title">Sosial Media</h2>
+            <ul class="menu">
             <a href="https://www.facebook.com/people/kec_sukajadi/100068761213783/"><img src="assets/img/fb.png">&nbsp;&nbsp;Facebook</a>
             <br><br>
             <a href="https://twitter.com/Kec_Sukajadi"><img src="assets/img/x.png">&nbsp;&nbsp;X</a>
@@ -511,13 +515,15 @@
               
             </ul>
           </div>
-        </div><!-- .col -->
+        </div>
       </div>
     </div>
     <div class="cs-height_40 cs-height_lg_30"></div>
     <div class="cs-copyright text-center">
-      <div class="container">Copyright 2023. Created by SI UNIKOM.</div>
-    </div>
+      <strong>Copyright &copy; <script>document.write(new Date().getFullYear())</script>
+          <a>Developer Kecamatan Sukajadi</a>.</strong>
+      All rights reserved.
+      </div>
   </footer>
   <!-- End Footer -->
 

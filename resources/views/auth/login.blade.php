@@ -2,12 +2,12 @@
 <div class="login-box">
     <div class="login-logo">
         <a href="#">
-            <b>Portal</b>Sukajadi</a>
+            <b>PORTAL</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="cs-form_field cs-border_color">
-            <p class="login-box-msg">Masuk untuk memulai sesi Anda</p>
+            <p class="login-box-msg">Silahkan Masuk Ke Panel Admin</p>
 
             <form action="{{ route('login') }}" method="post">
                 @csrf
@@ -56,17 +56,17 @@
                     @enderror
                 </div>
                 <div class="row">
-                    <div class="col-8">
+                    {{-- <div class="col-8">
                         <div class="icheck-primary">
                             <input type="checkbox" id="remember">
                             <label for="remember">
                                 Ingat sesi saya
                             </label>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- /.col -->
                     <div class="mb-0">
-                        <button type="submit" class="cs-btn cs-size_md w-100">Masuk</button>
+                        <button type="submit" class="cs-btn cs-size_md w-100">Login</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -85,13 +85,13 @@
             </div> --}}
             <!-- /.social-auth-links -->
 
-            <p class="mb-1">
+            {{-- <p class="mb-1">
                 <a href="{{ route('password.request') }}">Lupa password?</a>
             </p>
             <p class="mb-0">
                 Belum mempunyai akun?
                 <a href="{{ route('register') }}" class="text-center">Register</a>
-            </p>
+            </p> --}}
         </div>
         <!-- /.login-card-body -->
     </div>

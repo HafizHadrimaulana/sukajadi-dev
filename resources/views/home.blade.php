@@ -514,7 +514,7 @@ To Do List
 
 <section class="col-lg-5 connectedSortable ui-sortable">
 
-<div class="card bg-gradient-primary">
+<div class="card bg-gradient-secondary">
 <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
 <h3 class="card-title">
 <i class="fas fa-map-marker-alt mr-1"></i>
