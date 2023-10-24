@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-Bd1wty3WALnARDD67cRwdo5p0PD60fphF7Q1F9tn8u6d9RE/0Qnm8U69l7c1Zn2Q" crossorigin="anonymous">
-
+  
 </head>
 
 <body>
@@ -511,9 +511,11 @@ window.addEventListener('load', function() {
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item">
             <div class="cs-footer_widget_text">
-              <img src="assets/img/sukajadi-logo.svg" alt="Logo">
+              <div class="col-md-9 equal-height item" style="height: 368px;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1980.4917043017813!2d107.58818796946076!3d-6.892587513616151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6636e2ff101%3A0x61b8a9b5b9162459!2sKantor%20Kecamatan%20SUKAJADI!5e0!3m2!1sid!2sid!4v1698152883903!5m2!1sid!2sid" width="368" height="368" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
               <p>
-               <br>Jl. Sukamulya No. 4 Kota Bandung 40161
+               Jl. Sukamulya No. 4 Kota Bandung 40161
               </p>
             </div>
             <div class="cs-height_30 cs-height_lg_30"></div>
@@ -522,9 +524,9 @@ window.addEventListener('load', function() {
             </div>
           </div>
         </div><!-- .col -->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item widget_nav_menu">
-          
             <ul class="menu">
             <h2 class="cs-widget_title">Sosial Media</h2>
             <a href="https://www.facebook.com/people/kec_sukajadi/100068761213783/"><img src="assets/img/fb.png">&nbsp;&nbsp;Facebook</a>
@@ -536,6 +538,7 @@ window.addEventListener('load', function() {
             </ul>
           </div>
         </div><!-- .col -->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item widget_nav_menu">
             <h2 class="cs-widget_title">Kontak</h2>
