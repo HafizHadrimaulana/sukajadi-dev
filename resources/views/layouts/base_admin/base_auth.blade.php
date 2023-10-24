@@ -56,11 +56,11 @@
                     <div class="cs-main_header_center navbar-expand-sm navbar-collapse">
                         <div class="cs-nav">
                             <ul class="cs-nav_list">
-                                <li><a href="/" class="cs-smoth_scroll">Beranda</a></li>
-                                <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll">Kegiatan</a></li>
-                                <li><a href="{{ route('data') }}" class="cs-smoth_scroll">Data</a></li>
-                                <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll">Posyandu</a></li>
-                                <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll">Rembug Warga</a></li>
+                                <li><a href="/" class="cs-smoth_scroll"><b>Beranda</b></a></li>
+                                <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll"><b>Kegiatan</b></a></li>
+                                <li><a href="{{ route('data') }}" class="cs-smoth_scroll"><b>Data</b></a></li>
+                                <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll"><b>Posyandu</b></a></li>
+                                <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll"><b>Rembug Warga</b></a></li>
                             </ul>
                         </div>
                     </div>

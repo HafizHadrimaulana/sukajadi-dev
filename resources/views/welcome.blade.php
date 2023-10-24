@@ -33,12 +33,10 @@
             <div class="cs-main_header_in">
                 <div class="cs-main_header_left">
                     <a class="cs-site_branding cs-accent_color" >
-                    <a href="/" class="navbar-brand">
-                       <span class="custom-text"><b>PORTAL</b>| Kecamatan</span>
-                    </a>
+                       <span class="custom-text"><b>PORTAL</b> | Kecamatan</span>
                     </a>
                 </div>
-                <div class="cs-main_header_center navbar-expand-sm navbar-collapse">
+                <div class="cs-main_header_center">
                     <div class="cs-nav">
                         <ul class="cs-nav_list">
                             <li><a href="/" class="cs-smoth_scroll">Beranda</a></li>
@@ -50,13 +48,15 @@
                     </div>
                 </div>
                 <!-- Masukkan kode yang baru Anda berikan di sini -->
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="cs-main_header_right">
+                  <div class="cs-toolbox">
                    @if (!Auth::check())
-                   <a href="{{ route('login') }}" class="login-button text-sm login-text">
-                    <span class="arrow"><b>➔</b></span><b>Login</b>
+                   <a href="{{ route('login') }}" class="cs-btn cs-color1 cs-modal_btn">
+                    <span class="cs-btn cs-color1 cs-modal_btn" data-modal="login">Login</span>
                   </a>
                   @endif
-                   </div>
+                  </div>
+                </div>
                 <!-- Akhir kode yang baru Anda berikan -->
             </div>
         </div>
@@ -157,9 +157,8 @@ window.addEventListener('load', function() {
     <div class="cs-height_95 cs-height_lg_70"></div>
     <div class="container">
       <div class="cs-seciton_heading cs-style1 text-center">
-        <div class="cs-section_subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">Kecamatan Sukajadi</div>
         <div class="cs-height_10 cs-height_lg_10"></div>
-        <h3 class="cs-section_title">DATA & KEGIATAN</h3>
+        <h3 class="cs-section_title">DATA & GRAFIK</h3>
       </div>
       <div class="cs-height_50 cs-height_lg_40"></div>
       <div class="row box-container">

@@ -52,8 +52,8 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
 
 
   // Menambahkan rute untuk bagian Laporan
-  Route::get('/inputLaporan', [AkunController::class, 'inputLaporan'])->name('inputLaporan');
-  Route::get('/permasalahan', [AkunController::class, 'permasalahanLaporan'])->name('permasalahan');
+  Route::get('/inputLaporan', [HomeController::class, 'inputLaporan'])->name('inputLaporan');
+  Route::get('/permasalahan', [HomeController::class, 'permasalahanLaporan'])->name('permasalahan');
 
 Auth::routes();
 
