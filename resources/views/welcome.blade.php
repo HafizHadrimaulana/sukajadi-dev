@@ -32,10 +32,8 @@
         <div class="container">
             <div class="cs-main_header_in">
                 <div class="cs-main_header_left">
-                    <a class="cs-site_branding cs-accent_color" href="welcome.blade.php">
-                    <a href="#home" class="navbar-brand">
-                       <span class="custom-text"><b>PORTAL</b>| Kecamatan</span>
-                    </a>
+                    <a class="cs-site_branding cs-accent_color" >
+                       <span class="custom-text"><b>PORTAL</b> | Kecamatan</span>
                     </a>
                 </div>
                 <div class="cs-main_header_center">
@@ -50,13 +48,15 @@
                     </div>
                 </div>
                 <!-- Masukkan kode yang baru Anda berikan di sini -->
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="cs-main_header_right">
+                  <div class="cs-toolbox">
                    @if (!Auth::check())
-                   <a href="{{ route('login') }}" class="login-button text-sm login-text">
-                    <span class="arrow"><b>➔</b></span><b>Login</b>
+                   <a href="{{ route('login') }}" class="cs-btn cs-color1 cs-modal_btn">
+                    <span class="cs-btn cs-color1 cs-modal_btn" data-modal="login">Login</span>
                   </a>
                   @endif
-                   </div>
+                  </div>
+                </div>
                 <!-- Akhir kode yang baru Anda berikan -->
             </div>
         </div>
@@ -69,10 +69,10 @@
   <div id="home">
 
     <div class="cs-height_80 cs-height_lg_80"></div>
-  <center>
+  {{-- <center>
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo.png" style="height: 8rem;" data-pagespeed-url-hash="858298967" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo2.png" style="height: 8rem;" data-pagespeed-url-hash="1797676001" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-</center>>
+</center>> --}}
     <script>
         var botmanWidget = {
             aboutText:'Kecamatan Sukajadi, 2023',
@@ -123,9 +123,8 @@
     <div class="cs-height_95 cs-height_lg_70"></div>
     <div class="container">
       <div class="cs-seciton_heading cs-style1 text-center">
-        <div class="cs-section_subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">Kecamatan Sukajadi</div>
         <div class="cs-height_10 cs-height_lg_10"></div>
-        <h3 class="cs-section_title">DATA & KEGIATAN</h3>
+        <h3 class="cs-section_title">DATA & GRAFIK</h3>
       </div>
       <div class="cs-height_50 cs-height_lg_40"></div>
       <div class="row box-container">

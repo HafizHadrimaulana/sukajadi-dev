@@ -46,14 +46,14 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
             Route::delete('{id}/hapus', 'hapusAkun')->name('delete');
         });
         Route::get('/dataKegiatan', [HomeController::class, 'dataKegiatan'])->name('dataKegiatan');
-        Route::get('/kalender', [AkunController::class, 'kalender'])->name('kalender');
+        Route::get('/kalender', [HomeController::class, 'kalender'])->name('kalender');
 });
 
 
 
   // Menambahkan rute untuk bagian Laporan
-  Route::get('/inputLaporan', [AkunController::class, 'inputLaporan'])->name('inputLaporan');
-  Route::get('/permasalahan', [AkunController::class, 'permasalahanLaporan'])->name('permasalahan');
+  Route::get('/inputLaporan', [HomeController::class, 'inputLaporan'])->name('inputLaporan');
+  Route::get('/permasalahan', [HomeController::class, 'permasalahanLaporan'])->name('permasalahan');
 
 Auth::routes();
 

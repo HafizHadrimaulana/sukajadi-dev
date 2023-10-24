@@ -6,7 +6,7 @@
     </div>
     <!-- /.login-logo -->
     <div class="card">
-        <div class="card-body login-card-body">
+        <div class="cs-form_field cs-border_color">
             <p class="login-box-msg">Masuk untuk memulai sesi Anda</p>
 
             <form action="{{ route('login') }}" method="post">
@@ -14,7 +14,7 @@
                 <div class="input-group mb-3">
                 {{-- <input type="email" class="form-control" placeholder="Email" autocomplete="off"> --}}
                     <input
-                        id="email"
+                        {{-- id="email" --}}
                         type="email"
                         placeholder="Email"
                         class="form-control @error('email') is-invalid @enderror"
@@ -23,12 +23,11 @@
                         required="required"
                         autocomplete="email"
                         autofocus="autofocus">
-
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
                         </div>
-                    </div>
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -66,8 +65,8 @@
                         </div>
                     </div>
                     <!-- /.col -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                    <div class="mb-0">
+                        <button type="submit" class="cs-btn cs-size_md w-100">Masuk</button>
                     </div>
                     <!-- /.col -->
                 </div>

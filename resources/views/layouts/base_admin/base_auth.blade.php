@@ -24,10 +24,8 @@
         <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-
-  
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/pro.min.css">  
     </head>
 
     <body class="hold-transition cs-hero cs-style1 cs-bg 
@@ -37,7 +35,7 @@
     register-page
     @else
     login-page
-    @endif" data-src="assets/img/wallpaper.svg ">
+    @endif" data-src="assets/img/wallpaper.svg">
     <div class="cs-preloader cs-white_bg cs-center">
         <div class="cs-preloader_in">
           <img src="assets/img/sukajadi-logo.svg" alt="Logo">
@@ -49,20 +47,20 @@
             <div class="container">
                 <div class="cs-main_header_in">
                     <div class="cs-main_header_left">
-                        <a class="cs-site_branding cs-accent_color" href="welcome.blade.php">
-                        <a href="#home" class="navbar-brand">
+                        <a class="cs-site_branding cs-accent_color" >
+                            <a href="/" class="navbar-brand">
                            <span class="custom-text"><b>PORTAL</b>| Kecamatan</span>
                         </a>
                         </a>
                     </div>
-                    <div class="cs-main_header_center">
+                    <div class="cs-main_header_center navbar-expand-sm navbar-collapse">
                         <div class="cs-nav">
                             <ul class="cs-nav_list">
-                                <li><a href="/" class="cs-smoth_scroll">Beranda</a></li>
-                                <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll">Kegiatan</a></li>
-                                <li><a href="{{ route('data') }}" class="cs-smoth_scroll">Data</a></li>
-                                <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll">Posyandu</a></li>
-                                <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll">Rembug Warga</a></li>
+                                <li><a href="/" class="cs-smoth_scroll"><b>Beranda</b></a></li>
+                                <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll"><b>Kegiatan</b></a></li>
+                                <li><a href="{{ route('data') }}" class="cs-smoth_scroll"><b>Data</b></a></li>
+                                <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll"><b>Posyandu</b></a></li>
+                                <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll"><b>Rembug Warga</b></a></li>
                             </ul>
                         </div>
                     </div>
