@@ -46,7 +46,7 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
             Route::delete('{id}/hapus', 'hapusAkun')->name('delete');
         });
         Route::get('/dataKegiatan', [HomeController::class, 'dataKegiatan'])->name('dataKegiatan');
-        Route::get('/kalender', [AkunController::class, 'kalender'])->name('kalender');
+        Route::get('/kalender', [HomeController::class, 'kalender'])->name('kalender');
 });
 
 

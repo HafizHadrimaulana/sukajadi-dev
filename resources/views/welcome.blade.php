@@ -32,13 +32,13 @@
         <div class="container">
             <div class="cs-main_header_in">
                 <div class="cs-main_header_left">
-                    <a class="cs-site_branding cs-accent_color" href="welcome.blade.php">
-                    <a href="#home" class="navbar-brand">
+                    <a class="cs-site_branding cs-accent_color" >
+                    <a href="/" class="navbar-brand">
                        <span class="custom-text"><b>PORTAL</b>| Kecamatan</span>
                     </a>
                     </a>
                 </div>
-                <div class="cs-main_header_center">
+                <div class="cs-main_header_center navbar-expand-sm navbar-collapse">
                     <div class="cs-nav">
                         <ul class="cs-nav_list">
                             <li><a href="/" class="cs-smoth_scroll">Beranda</a></li>
@@ -69,10 +69,10 @@
   <div id="home">
 
     <div class="cs-height_80 cs-height_lg_80"></div>
-  <center>
+  {{-- <center>
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo.png" style="height: 8rem;" data-pagespeed-url-hash="858298967" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo2.png" style="height: 8rem;" data-pagespeed-url-hash="1797676001" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-</center>>
+</center>> --}}
     <script>
         var botmanWidget = {
             aboutText:'Kecamatan Sukajadi, 2023',
