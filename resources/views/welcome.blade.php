@@ -514,9 +514,9 @@ window.addEventListener('load', function() {
               <div class="col-md-9 equal-height item" style="height: 368px;">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1980.4917043017813!2d107.58818796946076!3d-6.892587513616151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6636e2ff101%3A0x61b8a9b5b9162459!2sKantor%20Kecamatan%20SUKAJADI!5e0!3m2!1sid!2sid!4v1698152883903!5m2!1sid!2sid" width="368" height="368" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-              <p>
+              <a href="https://maps.google.com/maps?ll=-6.891003,107.588277&z=16&t=m&hl=id&gl=ID&mapclient=embed&cid=7041564615353181273">
                Jl. Sukamulya No. 4 Kota Bandung 40161
-              </p>
+              </a>
             </div>
             <div class="cs-height_30 cs-height_lg_30"></div>
             <div class="cs-social_btns cs-style1">
