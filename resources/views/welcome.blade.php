@@ -6,18 +6,18 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="ThemeMarch">
   <!-- Favicon Icon -->
-  <link rel="icon" href="assets/img/sukajadi-logo.svg">
+  <link rel="icon" href="assets/img/favicon.png">
   <!-- Site Title -->
-  <title>@yield('judul') | {{ config('app.name') }}</title>
-  <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <title>{{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-Bd1wty3WALnARDD67cRwdo5p0PD60fphF7Q1F9tn8u6d9RE/0Qnm8U69l7c1Zn2Q" crossorigin="anonymous">
-  
+
 </head>
 
 <body>
@@ -79,40 +79,6 @@
             introMessage :'Halo, Saya adalah BOT! Apakah ada yang bisa saya bantu?',
         };
     </script>
-    <script>
-window.addEventListener('load', function() {
-    // Pilih elemen target untuk diobservasi
-    var targetElement = document.body; // Ini perlu diubah ke document.body atau elemen div yang sesuai
-
-    // Opsi konfigurasi untuk observer
-    var config = {
-        childList: true,
-        subtree: true // mengobservasi perubahan pada elemen target dan semua keturunannya
-    };
-
-    // Callback function untuk eksekusi ketika mutasi terdeteksi
-    var callback = function(mutationsList, observer) {
-        for(var mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                var titleElement = document.querySelector('.botman-title'); // Gantilah ini sesuai dengan class atau id yang sesungguhnya
-                if (titleElement) {
-                    titleElement.textContent = 'Kecamatan Sukajadi';
-                    observer.disconnect(); // Hentikan observer setelah judul berhasil diubah
-                    return; // Keluar dari loop dan fungsi
-                }
-            }
-        }
-    };
-
-    // Buat instance observer dengan callback function
-    var observer = new MutationObserver(callback);
-
-    // Mulai observasi
-    observer.observe(targetElement, config);
-});
-
-   </script>
-
     <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0.0/build/js/widget.min.js'></script>
 <section class="cs-hero cs-style1 cs-bg" data-src="assets/img/wallpaper.svg">
       <div class="container">
@@ -510,12 +476,10 @@ window.addEventListener('load', function() {
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item">
             <div class="cs-footer_widget_text">
-              <div class="col-md-9 equal-height item" style="height: 368px;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1980.4917043017813!2d107.58818796946076!3d-6.892587513616151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6636e2ff101%3A0x61b8a9b5b9162459!2sKantor%20Kecamatan%20SUKAJADI!5e0!3m2!1sid!2sid!4v1698152883903!5m2!1sid!2sid" width="368" height="368" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-              <a href="https://maps.google.com/maps?ll=-6.891003,107.588277&z=16&t=m&hl=id&gl=ID&mapclient=embed&cid=7041564615353181273">
-               Jl. Sukamulya No. 4 Kota Bandung 40161
-              </a>
+              <img src="assets/img/sukajadi-logo.svg" alt="Logo">
+              <p>
+               <br>Jl. Sukamulya No. 4 Kota Bandung 40161
+              </p>
             </div>
             <div class="cs-height_30 cs-height_lg_30"></div>
             <div class="cs-social_btns cs-style1">
@@ -523,9 +487,9 @@ window.addEventListener('load', function() {
             </div>
           </div>
         </div><!-- .col -->
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item widget_nav_menu">
+          
             <ul class="menu">
             <h2 class="cs-widget_title">Sosial Media</h2>
             <a href="https://www.facebook.com/people/kec_sukajadi/100068761213783/"><img src="assets/img/fb.png">&nbsp;&nbsp;Facebook</a>
@@ -537,7 +501,6 @@ window.addEventListener('load', function() {
             </ul>
           </div>
         </div><!-- .col -->
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item widget_nav_menu">
             <h2 class="cs-widget_title">Kontak</h2>

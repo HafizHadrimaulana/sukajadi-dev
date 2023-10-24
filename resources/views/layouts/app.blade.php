@@ -23,7 +23,7 @@
     register-page
     @else
     login-page
-    @endif" data-src="assets/img/wallpaper.svg ">
+    @endif" data-src="#">
     <div class="cs-preloader cs-white_bg cs-center">
         <div class="cs-preloader_in">
           <img src="assets/img/sukajadi-logo.svg" alt="Logo">
