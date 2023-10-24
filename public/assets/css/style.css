@@ -46,6 +46,28 @@ h6 {
   font-family: 'Poppins', sans-serif;
 }
 
+/* CSS Anda bisa ditempatkan di sini */
+.laporan-section {
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+.laporan {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px; /* Mengurangi padding untuk membuat kotak lebih kecil */
+  max-width: 300px; /* Batasan lebar maksimum */
+  height: 200px; /* Tinggi tetap */
+  overflow: hidden; /* Menghilangkan scroll, jika kontennya melebihi tinggi */
+  white-space: normal; /* Mengizinkan teks mematahkan baris jika terlalu panjang */
+  text-overflow: ellipsis; /* Menambahkan elipsis (...) jika teks terlalu panjang */
+}
+
+/* Tambahkan gaya lain yang Anda perlukan */
+
+/* Tambahkan gaya lain yang Anda perlukan */
+
+
 .cs-primary_font {
   letter-spacing: 0.02em;
 }
