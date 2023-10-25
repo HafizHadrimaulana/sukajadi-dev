@@ -27,22 +27,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/pro.min.css">  
     </head>
-
-    <body class="hold-transition cs-hero cs-style1 cs-bg 
-    @if (Route::is('login') || Route::is('password.request') || Route::is('password.reset'))
-    login-page
-    @elseif (Route::is('register'))
-    register-page
-    @else
-    login-page
-    @endif" data-src="assets/img/wallpaper.svg">
-    <div class="cs-preloader cs-white_bg cs-center">
-        <div class="cs-preloader_in">
-          <img src="assets/img/sukajadi-logo.svg" alt="Logo">
-        </div>
-    </div>
-      <!-- Start Header Section -->
-      <header class="cs-site_header cs-style1 cs-sticky-header cs-primary_color cs-white_bg">
+    <header class="cs-site_header cs-style1 cs-sticky-header cs-primary_color cs-white_bg">
         <div class="cs-main_header">
             <div class="container">
                 <div class="cs-main_header_in">
@@ -77,6 +62,22 @@
             </div>
         </div>
     </header>
+
+    <body class="hold-transition cs-hero cs-style1 cs-bg
+    @if (Route::is('login') || Route::is('password.request') || Route::is('password.reset'))
+    login-page
+    @elseif (Route::is('register'))
+    register-page
+    @else
+    login-page
+    @endif" data-src="assets/img/wallpaper.svg">
+    <div class="cs-preloader cs-white_bg cs-center">
+        <div class="cs-preloader_in">
+          <img src="assets/img/sukajadi-logo.svg" alt="Logo">
+        </div>
+    </div>
+      <!-- Start Header Section -->
+
 
         @yield('content')
 

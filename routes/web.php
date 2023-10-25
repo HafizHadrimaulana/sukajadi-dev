@@ -47,6 +47,9 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
         });
         Route::get('/dataKegiatan', [HomeController::class, 'dataKegiatan'])->name('dataKegiatan');
         Route::get('/kalender', [HomeController::class, 'kalender'])->name('kalender');
+        Route::get('/suratMasuk', [HomeController::class, 'suratMasuk'])->name('suratMasuk');
+        Route::get('/suratKeluar', [HomeController::class, 'suratKeluar'])->name('suratKeluar');
+        Route::get('/suratKeputusan', [HomeController::class, 'suratKeputusan'])->name('suratKeputusan');
 });
 
 

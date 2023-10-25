@@ -38,7 +38,22 @@ $links = [
                 "section_text" => "Kalender",
                 "section_icon" => "fa fa-calendar",
                 "section_href" => route('kalender')
-            ]
+            ],
+            [
+                "section_text" => "Surat Masuk",
+                "section_icon" => "fa fa-envelope",
+                "section_href" => route('suratMasuk')
+            ],
+            [
+                "section_text" => "Surat Keluar",
+                "section_icon" => "fa fa-envelope",
+                "section_href" => route('suratKeluar')
+            ],
+            [
+                "section_text" => "Surat Keputusan",
+                "section_icon" => "fa fa-envelope",
+                "section_href" => route('suratKeputusan')
+            ],
         ]
     ],
     [
@@ -64,7 +79,7 @@ $navigation_links = json_decode(json_encode($links));
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-secondary elevation-4 sidebar-mini-xs">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="/home" class="brand-link">
       <center><span class="logo-mini"><b>P</b><span class="brand-text font-weight-light"><b>ORTAL</b></span></span></center>
       
  

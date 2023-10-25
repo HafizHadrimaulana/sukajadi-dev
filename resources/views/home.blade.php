@@ -10,12 +10,6 @@
           <small>Grafik</small>
           </h1>
         </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Beranda</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-          </ol>
-        </div>
       </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -38,7 +32,7 @@
                 <div class="icon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <a href="https://sukajadi.bandung.go.id/portal/admin/agenda/agenda_kalender" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
 </div>
 
@@ -53,8 +47,7 @@
                 <div class="icon">
                   <i class="fa fa-credit-card"></i>
                 </div>
-                <!-- href="https://sukajadi.bandung.go.id/portal/admin/kependudukan/entri_pendaftaran" -->
-                <a href="#grafik-pelayanan" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
 
@@ -70,7 +63,7 @@
                 <div class="icon">
                   <i class="fas fa-syringe"></i>
                 </div>
-                <a href="https://sukajadi.bandung.go.id/portal/publik/covid/vaksin_publik_pendaftaran" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
 
@@ -87,7 +80,7 @@
                 <div class="icon">
                   <i class="fa fa-hospital"></i>
                 </div>
-                <a href="https://sukajadi.bandung.go.id/portal/pokjanal" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
         </div>
@@ -104,7 +97,7 @@
                 <div class="icon">
                   <i class="fa fa-star"></i>
                 </div>
-                <a href="https://sukajadi.bandung.go.id/portal/admin/data/data_daftar_penghargaan" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -119,7 +112,7 @@
                 <div class="icon">
                   <i class="fa fa-database"></i>
                 </div>
-                <a href="https://sukajadi.bandung.go.id/portal/admin/data/data_daftar_sarpras" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -134,7 +127,7 @@
                 <div class="icon">
                   <i class="fa fa-child"></i>
                 </div>
-                <a href="https://sukajadi.bandung.go.id/portal/dutabulin" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -149,7 +142,7 @@
                 <div class="icon">
                   <i class="fa fa-comments"></i>
                 </div>
-                <a href="https://sukajadi.bandung.go.id/portal/admin/aspirasi/rembugwarga_rekap" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
         </div>

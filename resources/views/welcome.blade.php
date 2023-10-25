@@ -87,7 +87,7 @@
           <img src="assets/img/hero_img.png" alt="Hero Image" class="wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.4s">
         </div>
 
-        <div class="cs-hero_text">
+        <div class="cs-hero_text" style="background-color: rgba(255, 255, 255, 0.4);-webkit-backdrop-filter: blur(5px);backdrop-filter: blur(5px);border-radius:10px;margin-top:40px">
           <div class="cs-hero_secondary_title">Selamat Datang
           </div>
           <h1 class="cs-hero_title">KECAMATAN SUKJADI<br>KOTA BANDUNG</h1>

@@ -21,6 +21,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "chart.js": "^4.4.0"
+        "chart.js": "^4.4.0",
+        "leaflet": "^1.9.4"
     }
 }

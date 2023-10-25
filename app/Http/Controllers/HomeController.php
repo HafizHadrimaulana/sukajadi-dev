@@ -58,7 +58,20 @@ class HomeController extends Controller
         return view('page.admin.agenda.kalender');
     }
 
+    public function suratMasuk()
+    {
+        return view('page.admin.agenda.suratMasuk');
+    }
     
+    public function suratKeluar()
+    {
+        return view('page.admin.agenda.suratKeluar');
+    }
+
+    public function suratKeputusan()
+    {
+        return view('page.admin.agenda.suratKeputusan');
+    }
 
     public function updateprofile(Request $request)
     {
