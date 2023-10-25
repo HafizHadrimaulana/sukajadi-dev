@@ -50,6 +50,10 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
         Route::get('/suratMasuk', [HomeController::class, 'suratMasuk'])->name('suratMasuk');
         Route::get('/suratKeluar', [HomeController::class, 'suratKeluar'])->name('suratKeluar');
         Route::get('/suratKeputusan', [HomeController::class, 'suratKeputusan'])->name('suratKeputusan');
+        Route::get('/cetak-laporan-agenda', [HomeController::class, 'cetakLaporanagenda'])->name('cetak-laporan-agenda');
+        Route::get('/cetak-laporan-surat-masuk', [HomeController::class, 'cetakLaporansuratmasuk'])->name('cetak-laporan-surat-masuk');
+        Route::get('/cetak-laporan-surat-keluar', [HomeController::class, 'cetakLaporansuratkeluar'])->name('cetak-laporan-surat-keluar');
+        Route::get('/cetak-laporan-surat-keputusan', [HomeController::class, 'cetakLaporansuratkeputusan'])->name('cetak-laporan-surat-keputusan');
 });
 
 

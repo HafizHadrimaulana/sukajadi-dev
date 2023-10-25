@@ -73,6 +73,26 @@ class HomeController extends Controller
         return view('page.admin.agenda.suratKeputusan');
     }
 
+    public function cetakLaporanagenda()
+    {
+        return view('page.admin.agenda.cetak.cetak-laporan-agenda');
+    }
+
+    public function cetakLaporansuratmasuk()
+    {
+        return view('page.admin.agenda.cetak.cetak-laporan-surat-masuk');
+    }
+
+    public function cetakLaporansuratkeluar()
+    {
+        return view('page.admin.agenda.cetak.cetak-laporan-surat-keluar');
+    }
+
+    public function cetakLaporansuratkeputusan()
+    {
+        return view('page.admin.agenda.cetak.cetak-laporan-surat-keputusan');
+    }
+
     public function updateprofile(Request $request)
     {
         $usr = User::findOrFail(Auth::user()->id);

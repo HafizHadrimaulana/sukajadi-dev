@@ -5,7 +5,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="assets/img/sukajadi-logo.svg">
-        <title>@yield('judul') | Portal Sukajadi</title>
+        <title>@yield('judul') | {{ config('app.name') }}</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link

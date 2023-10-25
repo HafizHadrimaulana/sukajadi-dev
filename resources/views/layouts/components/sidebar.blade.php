@@ -54,6 +54,27 @@ $links = [
                 "section_icon" => "fa fa-envelope",
                 "section_href" => route('suratKeputusan')
             ],
+            [
+                "section_text" => "Laporan Agenda",
+                "section_icon" => "fa fa-calendar",
+                "section_href" => route('cetak-laporan-agenda')
+            ],
+            [
+                "section_text" => "Laporan Surat Masuk",
+                "section_icon" => "fa fa-pdf",
+                "section_href" => route('cetak-laporan-surat-masuk')
+            ],
+            [
+                "section_text" => "Laporan Surat Keluar",
+                "section_icon" => "fa fa-pdf",
+                "section_href" => route('cetak-laporan-surat-keluar')
+            ],
+            [
+                "section_text" => "Laporan Surat Keputusan",
+                "section_icon" => "fa fa-pdf",
+                "section_href" => route('cetak-laporan-surat-keputusan')
+            ],
+            
         ]
     ],
     [
