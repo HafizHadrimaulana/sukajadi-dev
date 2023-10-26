@@ -90,7 +90,7 @@
         <div class="cs-hero_text" style="background-color: rgba(255, 255, 255, 0.4);-webkit-backdrop-filter: blur(5px);backdrop-filter: blur(5px);border-radius:10px;margin-top:40px">
           <div class="cs-hero_secondary_title">Selamat Datang
           </div>
-          <h1 class="cs-hero_title">KECAMATAN SUKJADI<br>KOTA BANDUNG</h1>
+          <h1 class="cs-hero_title">KECAMATAN SUKAJADI<br>KOTA BANDUNG</h1>
           <div class="cs-hero_subtitle">Jl. Sukamulya No.4</div>
         </div>
         <div class="cs-hero_shapes">
@@ -476,7 +476,7 @@
         <div class="col-lg-3 col-md-6">
           <div class="cs-footer_item">
             <div class="cs-footer_widget_text">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9837031494253!2d107.5856049755271!3d-6.892552267449541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6636e2ff101%3A0x61b8a9b5b9162459!2sKantor%20Kecamatan%20SUKAJADI!5e0!3m2!1sid!2sid!4v1698183714051!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9837031494253!2d107.5856049755271!3d-6.892552267449541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6636e2ff101%3A0x61b8a9b5b9162459!2sKantor%20Kecamatan%20SUKAJADI!5e0!3m2!1sid!2sid!4v1698183714051!5m2!1sid!2sid" width="500" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               <p>
                <b href="https://maps.app.goo.gl/yujf3FWo1rP9uMfx5">Jl. Sukamulya No. 4 Kota Bandung 40161</b>
               </p>
