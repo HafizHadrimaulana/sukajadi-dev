@@ -242,7 +242,7 @@ $links = [
 $navigation_links = json_decode(json_encode($links));
 @endphp
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-secondary elevation-4 sidebar-mini-xs">
+  <aside class="main-sidebar sidebar-dark-secondary sidebar-mini">
     <!-- Brand Logo -->
     <a href="/home" class="brand-link">
       <center><span class="logo-mini"><b>P</b><span class="brand-text font-weight-light"><b>ORTAL</b></span></span></center>

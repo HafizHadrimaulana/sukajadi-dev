@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
 
 <head>
   <!-- Meta Tags -->
@@ -27,13 +27,13 @@
     </div>
   </div>
   <!-- Start Header Section -->
-  <header class="cs-site_header cs-style1 cs-sticky-header cs-primary_color cs-white_bg">
+  <header class="cs-site_header cs-style1 cs-sticky-header cs-primary_color cs-white_bg wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="1s">
     <div class="cs-main_header">
         <div class="container">
             <div class="cs-main_header_in">
                 <div class="cs-main_header_left">
                     <a class="cs-site_branding cs-accent_color" >
-                       <span href="/" class="custom-text"><b>PORTAL</b> | Kecamatan</span>
+                       <span href="/" class="custom-text"><b>PORTAL</b> | Kewilayahan</span>
                     </a>
                 </div>
                 <div class="cs-main_header_center">
@@ -67,7 +67,6 @@
 
   <!-- Start Hero -->
   <div id="home">
-
     <div class="cs-height_80 cs-height_lg_80"></div>
   {{-- <center>
 <img src="https://sukajadi.bandung.go.id/portal/upload/logo.png" style="height: 8rem;" data-pagespeed-url-hash="858298967" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
@@ -80,14 +79,14 @@
         };
     </script>
     <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0.0/build/js/widget.min.js'></script>
-<section class="cs-hero cs-style1 cs-bg" data-src="assets/img/wallpaper.svg">
+<section class="cs-hero cs-style1 cs-bg" style="background: url('assets/img/wallpaper.svg') no-repeat fixed left bottom;background-size:cover;')">
       <div class="container">
         <div class="cs-hero_img">
           <div class="cs-hero_img_bg cs-bg" data-src="assets/img/hero_img_bg.png"></div>
-          <img src="assets/img/hero_img.png" alt="Hero Image" class="wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.4s">
+          <img src="assets/img/hero_img.png" alt="Hero Image" class="wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="1s">
         </div>
 
-        <div class="cs-hero_text" style="background-color: rgba(255, 255, 255, 0.4);-webkit-backdrop-filter: blur(5px);backdrop-filter: blur(5px);border-radius:10px;margin-top:40px">
+        <div class="cs-hero_text wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="1s"  >
           <div class="cs-hero_secondary_title">Selamat Datang
           </div>
           <h1 class="cs-hero_title">KECAMATAN SUKAJADI<br>KOTA BANDUNG</h1>
@@ -119,7 +118,7 @@
   <!-- End Hero -->
 
   <!-- Start Main Feature -->
-  <section class="cs-bg" data-src="assets/img/feature_bg.svg">
+  <section>
     <div class="cs-height_95 cs-height_lg_70"></div>
     <div class="container">
       <div class="cs-seciton_heading cs-style1 text-center">
@@ -325,147 +324,149 @@
 
     // Fungsi drawChart() Anda bisa menyesuaikannya seperti sebelumnya
 </script>
-
+<section id="agenda" class="row" style="background: url('assets/img/wallpaper.svg') no-repeat fixed left bottom;background-size:cover;">     
+  <div class="cs-height_95 cs-height_lg_70"></div>
+                    <center><h1><b> PROFIL </b></h1></center>
+                        <br>
+                    <div class="container">   
+                        <div class="col-md-4">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                                                          
+                                  <h3 class="box-title"><b>Agenda Hari ini (3)</b></h3>
+                    
+                                  <div class="box-tools pull-right">
+                                    
+                                  </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body" style="overflow-y:auto;height:55vh">
+                                  <ul class="products-list product-list-in-box">
+                                                        					
+                    				<li class="item"> 
+                                       
+                                        <span class="">
+                                            Pertemuan Rutin PKK                                          <span class="label bg-black pull-right">08:00</span>
+                                        </span>  <br>
+                                        <!--<span class="">
+                                          <i class="fa fa-user"></i> Kasi PM                                        </span>--> 
+                                        <small class="product-description ">
+                                          Agenda Kecamatan Sukajadi                                        </small> 
+                                    </li>
+                                                        					
+                    				<li class="item"> 
+                                       
+                                        <span class="">
+                                            Undangan  Pembinaan Statistik Sektoral                                           <span class="label bg-black pull-right">09:00</span>
+                                        </span>  <br>
+                                        <!--<span class="">
+                                          <i class="fa fa-user"></i> Sdr. Hendarul                                        </span>--> 
+                                        <small class="product-description ">
+                                          Agenda Kecamatan Sukajadi                                        </small> 
+                                    </li>
+                                                        					
+                    				<li class="item"> 
+                                       
+                                        <span class="">
+                                            Rapat Evaluasi ke II Bulan Dana Kemanusiaan PMI Kota Bandung Tahun 2023                                          <span class="label bg-black pull-right">14:00</span>
+                                        </span>  <br>
+                                        <!--<span class="">
+                                          <i class="fa fa-user"></i> Kasi Kesos                                        </span>--> 
+                                        <small class="product-description ">
+                                          Agenda Kecamatan Sukajadi                                        </small> 
+                                    </li>
+                                     
+                                    <!-- /.item -->
+                                  </ul>
+                                </div>
+                                <!-- /.box-body --> 
+                                <div class="box-footer with-border">
+                                      
+                                </div>
+                            </div>
+                        </div> 
+                        
+                        <div class="col-md-8">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                  <h3 class="box-title"><b>Selayang Pandang</b></h3>
+                    
+                                  <div class="box-tools pull-right">
+                                     
+                                  </div>
+                                </div>
+                                    
+                                <div class="box-body" style="overflow-x:scroll;height:55vh">
+                                  <iframe style="display:block; width:98%; height:55vh;" src="https://drive.google.com/file/d/12UTeTfALhe2w64YFQQPsXBhr-Kf3eaqx/preview?usp=sharing" title="Link">
+                                    <!-- pake preview  -->
+                                </iframe> 
+                                </div> 
+                                <!-- /.box-body -->
+                                <div class="box-footer with-border">
+                                  
+                                </div>
+                            </div>
+                            
+                        </div> 
+                        <div class="cs-height_75 cs-height_lg_70"></div>
+                    </div> 
+                </section>
   <!-- Start About -->
-  <section id="about" class="cs-gradient_bg_1">
-    <div class="cs-height_100 cs-height_lg_70"></div>
-    <div class="container">
-      <div class="row align-items-center flex-column-reverse-lg">
-        <div class="col-xl-6 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
-          <div class="cs-left_full_width cs-space110">
-            <div class="cs-left_sided_img">
-              <img src="assets/img/about_img_1.png" alt="About">
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-6">
-          <div class="cs-height_0 cs-height_lg_40"></div>
-          <div class="cs-seciton_heading cs-style1">
-            <div class="cs-section_subtitle">...</div>
-            <div class="cs-height_10 cs-height_lg_10"></div>
-            <h3 class="cs-section_title">....</h3>
-          </div>
-          <div class="cs-height_20 cs-height_lg_20"></div>
-          <p>
-            ...<br>
-            ...<br>
-            ...
-          </p>
-          <div class="cs-height_15 cs-height_lg_15"></div>
-          <div class="cs-list_1_wrap">
-            <ul class="cs-list cs-style1 cs-mp0">
-              <li>
-                <span class="cs-list_icon">
-                  <img src="assets/img/icons/tick.svg" alt="Tick">
-                </span>
-                <div class="cs-list_right">
-                  <h3>...</h3>
-                  <p>...</p>
-                </div>
-              </li>
-              <li>
-                <span class="cs-list_icon">
-                  <img src="assets/img/icons/tick.svg" alt="Tick">
-                </span>
-                <div class="cs-list_right">
-                  <h3>...</h3>
-                  <p>...</p>
-                </div>
-              </li>
-            </ul>
-            <div class="cs-list_img wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"><img src="assets/img/about_img_2.png" alt="About"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="cs-height_100 cs-height_lg_70"></div>
-    <div class="cs-height_135 cs-height_lg_0"></div>
-  </section>
-  <!-- End About -->
-  <!-- Start Retail Stores -->
-  <section class="cs-gradient_bg_1">
+  <section class="cs-bg">
     <div class="cs-height_95 cs-height_lg_70"></div>
     <div class="container">
       <div class="cs-seciton_heading cs-style1 text-center">
-        <div class="cs-section_subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">...</div>
+        <div class="cs-section_subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s"></div>
         <div class="cs-height_10 cs-height_lg_10"></div>
-        <h3 class="cs-section_title">...<br>...</h3>
+        <h3 class="cs-section_title"><b>Media Sosial</b></h3>
       </div>
       <div class="cs-height_50 cs-height_lg_40"></div>
-      <div class="row align-items-center flex-column-reverse-lg">
-        <div class="col-xl-6">
-          <div class="cs-left_full_width cs-space40">
-            <div class="cs-left_sided_img">
-              <img src="assets/img/retail-store.png" alt="Retail Stores">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="cs-pricing_table cs-style1">
+            <div class="cs-pricing_head">
+              <div class="cs-pricing_heading">
+                <div class="cs-pricing_icon cs-center"><img src="assets/img/fb.png"></div>
+                <h2 class="cs-pricing_title cs-m0"><b>Facebook</b></h2>
+              </div>
             </div>
+            <center>
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkec_sukajadi-100384031598775%2F&amp;tabs=timeline&amp;width=330&amp;height=525&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId" width="330" height="525" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </center>
           </div>
+          <div class="cs-height_25 cs-height_lg_25"></div>
         </div>
-        <div class="col-xl-6">
-          <div class="cs-height_25 cs-height_lg_40"></div>
-          <div class="row wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
-            <div class="col-lg-11 offset-lg-1">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="cs-iconbox cs-style2 text-center">
-                    <div class="cs-iconbox_icon"><img src="assets/img/icons/retail_icon_1.svg" alt="Icon"></div>
-                    <h2 class="cs-iconbox_title">...</h2>
-                  </div>
-                  <div class="cs-height_25 cs-height_lg_25"></div>
-                </div>
-                <div class="col-md-6">
-                  <div class="cs-iconbox cs-style2 text-center">
-                    <div class="cs-iconbox_icon"><img src="assets/img/icons/retail_icon_2.svg" alt="Icon"></div>
-                    <h2 class="cs-iconbox_title">...</h2>
-                  </div>
-                  <div class="cs-height_25 cs-height_lg_25"></div>
-                </div>
+        <div class="col-lg-4">
+          <div class="cs-pricing_table cs-style1">
+            <div class="cs-pricing_head">
+              <div class="cs-pricing_heading">
+                <div class="cs-pricing_icon cs-center"><img src="assets/img/x.png"></div>
+                <h2 class="cs-pricing_title cs-m0"><b>Twitter</b></h2>
               </div>
             </div>
+            <center>
+              <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 300px; height: 415px; display: block; flex-grow: 1;" title="Twitter Timeline" src="https://syndication.twitter.com/srv/timeline-profile/screen-name/Kec_Sukajadi?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=id&amp;origin=https%3A%2F%2Fsukajadi.bandung.go.id%2Fportal%2F&amp;sessionId=b0830a9466115dd08a730f6641add6ab7f3fc14f&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=01917f4d1d4cb%3A1696883169554"></iframe>
+            </center>
           </div>
-          <div class="row wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
-            <div class="col-lg-11">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="cs-iconbox cs-style2 text-center">
-                    <div class="cs-iconbox_icon"><img src="assets/img/icons/retail_icon_3.svg" alt="Icon"></div>
-                    <h2 class="cs-iconbox_title">...</h2>
-                  </div>
-                  <div class="cs-height_25 cs-height_lg_25"></div>
-                </div>
-                <div class="col-md-6">
-                  <div class="cs-iconbox cs-style2 text-center">
-                    <div class="cs-iconbox_icon"><img src="assets/img/icons/retail_icon_4.svg" alt="Icon"></div>
-                    <h2 class="cs-iconbox_title">...</h2>
-                  </div>
-                  <div class="cs-height_25 cs-height_lg_25"></div>
-                </div>
+          <div class="cs-height_25 cs-height_lg_25"></div>
+        </div>
+        <div class="col-lg-4">
+          <div class="cs-pricing_table cs-style1">
+            <div class="cs-pricing_head">
+              <div class="cs-pricing_heading">
+                <div class="cs-pricing_icon cs-center"><img src="assets/img/ig.png"></div>
+                <h2 class="cs-pricing_title cs-m0"><b>Instagram</b></h2>
               </div>
             </div>
+            <center>
+              <iframe src="https://widgets.woxo.tech/f4dfe12b-8bf2-47f1-b4cb-43b07e0bf90b#mission-control-component-2b7293a1-b29d-4709-8b76-1b358fc2af44" title="Instagram widgets for website" data-hj-allow-iframe="true" style="width: 100%; height: 100%; border: none; overflow: hidden; opacity: 100; transition: all 0.5s ease 0s;"></iframe>
+            </center>
           </div>
-          <div class="row wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
-            <div class="col-lg-11 offset-lg-1">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="cs-iconbox cs-style2 text-center">
-                    <div class="cs-iconbox_icon"><img src="assets/img/icons/retail_icon_5.svg" alt="Icon"></div>
-                    <h2 class="cs-iconbox_title">...</h2>
-                  </div>
-                  <div class="cs-height_25 cs-height_lg_25"></div>
-                </div>
-                <div class="col-md-6">
-                  <div class="cs-iconbox cs-style2 text-center">
-                    <div class="cs-iconbox_icon"><img src="assets/img/icons/retail_icon_6.svg" alt="Icon"></div>
-                    <h2 class="cs-iconbox_title">...</h2>
-                  </div>
-                  <div class="cs-height_25 cs-height_lg_25"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="cs-height_25 cs-height_lg_25"></div>
         </div>
       </div>
+      <div class="cs-height_75 cs-height_lg_45"></div>
     </div>
-    <div class="cs-height_75 cs-height_lg_70"></div>
   </section>
   <!-- End Retail Stores -->
   <!-- Start Footer -->
