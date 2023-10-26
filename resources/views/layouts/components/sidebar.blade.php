@@ -1,6 +1,12 @@
 @php
 $links = [
     [
+        "text" => "MENU",
+        "icon" => false,
+        "href" => "#",
+        "is_multi" => false
+    ],
+    [
         "href" => route('home'),
         "text" => "DASHBOARD",
         "icon" => "fas fa-home",
@@ -79,7 +85,7 @@ $links = [
     ], 
     [
         "text" => "DATA",
-        "icon" => "fa fa-data",
+        "icon" => "fa fa-database",
         "is_multi" => true,
         "href" => [
             [
@@ -127,7 +133,7 @@ $links = [
     ],
     [
         "text" => "LAYANAN",
-        "icon" => "fas fa-users",
+        "icon" => "fas fa-street-view",
         "is_multi" => true,
         "href" => [
             [
@@ -149,7 +155,7 @@ $links = [
     ],
     [
         "text" => "ASPIRASI",
-        "icon" => "fas fa-users",
+        "icon" => "fa fa-hashtag",
         "is_multi" => true,
         "href" => [
             [
@@ -166,7 +172,7 @@ $links = [
     ],
     [
         "text" => "DOKUMEN",
-        "icon" => "fas fa-users",
+        "icon" => "fa fa-cloud",
         "is_multi" => true,
         "href" => [
             [
@@ -182,14 +188,20 @@ $links = [
         ]
     ],
     [
+        "text" => "PENGATURAN",
+        "icon" => false,
+        "href" => "#",
+        "is_multi" => false
+    ],
+    [
       "href" => route('pemberitahuan'),
-      "text" => "pemberitahuan",
-      "icon" => "fas fa-camera",
+      "text" => "PEMBERITAHUAN",
+      "icon" => "fa fa-bell",
       "is_multi" => false
     ],
     [
-        "text" => "Pengaturan",
-        "icon" => "fas fa-users",
+        "text" => "PENGATURAN",
+        "icon" => "fa fa-cogs",
         "is_multi" => true,
         "href" => [
             [
