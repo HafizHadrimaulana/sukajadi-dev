@@ -92,7 +92,83 @@ class HomeController extends Controller
     {
         return view('page.admin.agenda.cetak.cetak-laporan-surat-keputusan');
     }
-
+    public function mitra()
+    {
+        return view('page.admin.data.mitra');
+    }
+    public function mediaSosial()
+    {
+        return view('page.admin.data.mediaSosial');
+    }
+    public function pegawai()
+    {
+        return view('page.admin.data.pegawai');
+        
+    }
+    public function penghargaan()
+    {
+        return view('page.admin.data.penghargaan');
+    }
+    public function saranaDanprasarana()
+    {
+        return view('page.admin.data.saranaDanprasarana');
+    }
+    public function usaha()
+    {
+        return view('page.admin.data.usaha');
+    }
+    public function unggulan()
+    {
+        return view('page.admin.data.unggulan');
+    }
+    public function pkl()
+    {
+        return view('page.admin.data.pkl');
+    }
+    public function pkb()
+    {
+        return view('page.admin.layanan.pkb');
+    }
+    public function pbb()
+    {
+        return view('page.admin.layanan.pbb');
+    }
+    public function dataWarga()
+    {
+        return view('page.admin.layanan.dataWarga');
+    }
+    public function rembugWargaadmin()
+    {
+        return view('page.admin.aspirasi.rembugWargaadmin');
+    }
+    public function matrixPippk()
+    {
+        return view('page.admin.aspirasi.matrixPippk');
+    }
+    public function file()
+    {
+        return view('page.admin.dokumen.file');
+    }
+    public function link()
+    {
+        return view('page.admin.dokumen.link');
+    }
+    public function pemberitahuan()
+    {
+        return view('page.admin.pemberitahuan');
+    }
+    public function tahun()
+    {
+        return view('page.admin.pengaturan.tahun');
+    }
+    public function bulan()
+    {
+        return view('page.admin.pengaturan.bulan');
+    }
+    public function tahunAnggaran()
+    {
+        return view('page.admin.pengaturan.tahunAnggaran');
+    }
     public function updateprofile(Request $request)
     {
         $usr = User::findOrFail(Auth::user()->id);

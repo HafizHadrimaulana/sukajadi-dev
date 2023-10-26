@@ -76,6 +76,138 @@ $links = [
             ],
             
         ]
+    ], 
+    [
+        "text" => "DATA",
+        "icon" => "fa fa-data",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "Mitra",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('mitra')
+            ],
+            [
+                "section_text" => "Media Sosial",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('mediaSosial')
+            ],
+            [
+                "section_text" => "Pegawai",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('pegawai')
+            ],
+            [
+                "section_text" => "Penghargaan",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('penghargaan')
+            ],
+            [
+                "section_text" => "Sarana dan Prasarana",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('saranaDanprasarana')
+            ],
+            [
+                "section_text" => "Usaha",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('usaha')
+            ],
+            [
+                "section_text" => "Unggulan",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('unggulan')
+            ],
+            [
+                "section_text" => "PKL",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('pkl')
+            ]
+
+        ]
+    ],
+    [
+        "text" => "LAYANAN",
+        "icon" => "fas fa-users",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "PKB",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('pkb')
+            ],
+            [
+                "section_text" => "PBB",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('pbb')
+            ],
+            [
+                "section_text" => "Data Warga",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('dataWarga')
+            ]
+        ]
+    ],
+    [
+        "text" => "ASPIRASI",
+        "icon" => "fas fa-users",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "Rembug Warga",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('rembugWargaadmin')
+            ],
+            [
+                "section_text" => "Matrix PIPPK",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('matrixPippk')
+            ]
+        ]
+    ],
+    [
+        "text" => "DOKUMEN",
+        "icon" => "fas fa-users",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "File",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('file')
+            ],
+            [
+                "section_text" => "Link",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('link')
+            ]
+        ]
+    ],
+    [
+      "href" => route('pemberitahuan'),
+      "text" => "pemberitahuan",
+      "icon" => "fas fa-camera",
+      "is_multi" => false
+    ],
+    [
+        "text" => "Pengaturan",
+        "icon" => "fas fa-users",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "Tahun",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('tahun')
+            ],
+            [
+                "section_text" => "Bulan",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('bulan')
+            ],
+            [
+                "section_text" => "Tahun Anggaran",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('tahunAnggaran')
+            ]
+        ]
     ],
     [
         "text" => "KELOLA AKUN",

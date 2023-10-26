@@ -54,6 +54,25 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
         Route::get('/cetak-laporan-surat-masuk', [HomeController::class, 'cetakLaporansuratmasuk'])->name('cetak-laporan-surat-masuk');
         Route::get('/cetak-laporan-surat-keluar', [HomeController::class, 'cetakLaporansuratkeluar'])->name('cetak-laporan-surat-keluar');
         Route::get('/cetak-laporan-surat-keputusan', [HomeController::class, 'cetakLaporansuratkeputusan'])->name('cetak-laporan-surat-keputusan');
+        Route::get('/mitra', [HomeController::class, 'mitra'])->name('mitra');
+        Route::get('/media-sosial', [HomeController::class, 'mediaSosial'])->name('mediaSosial');
+        Route::get('/pegawai', [HomeController::class, 'pegawai'])->name('pegawai');
+        Route::get('/penghargaan', [HomeController::class, 'penghargaan'])->name('penghargaan');
+        Route::get('/sarana-dan-prasarana', [HomeController::class, 'saranaDanprasarana'])->name('saranaDanprasarana');
+        Route::get('/usaha', [HomeController::class, 'usaha'])->name('usaha');
+        Route::get('/unggulan', [HomeController::class, 'unggulan'])->name('unggulan');
+        Route::get('/pkl', [HomeController::class, 'pkl'])->name('pkl');
+        Route::get('/pkb', [HomeController::class, 'pkb'])->name('pkb');
+        Route::get('/pbb', [HomeController::class, 'pbb'])->name('pbb');
+        Route::get('/data-warga', [HomeController::class, 'dataWarga'])->name('dataWarga');
+        Route::get('/rembug-warga', [HomeController::class, 'rembugWargaadmin'])->name('rembugWargaadmin');
+        Route::get('/matrix-pippk', [HomeController::class, 'matrixPippk'])->name('matrixPippk');
+        Route::get('/file', [HomeController::class, 'file'])->name('file');
+        Route::get('/link', [HomeController::class, 'link'])->name('link');
+        Route::get('/pemberitahuan', [HomeController::class, 'pemberitahuan'])->name('pemberitahuan');
+        Route::get('/tahun', [HomeController::class, 'tahun'])->name('tahun');
+        Route::get('/bulan', [HomeController::class, 'bulan'])->name('bulan');
+        Route::get('/tahunAnggaran', [HomeController::class, 'tahunAnggaran'])->name('tahunAnggaran');
 });
 
 
