@@ -470,7 +470,7 @@
   <!-- End Retail Stores -->
   <!-- Start Footer -->
   <footer class="cs-footer">
-    <div class="cs-height_75 cs-height_lg_70"></div>
+    <div class="cs-height_30 cs-height_lg_20"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-6">
@@ -481,7 +481,7 @@
                <b href="https://maps.app.goo.gl/yujf3FWo1rP9uMfx5">Jl. Sukamulya No. 4 Kota Bandung 40161</b>
               </p>
             </div>
-            <div class="cs-height_30 cs-height_lg_30"></div>
+            <div class="cs-height_20 cs-height_lg_20"></div>
             <div class="cs-social_btns cs-style1">
             
             </div>
@@ -518,7 +518,7 @@
         </div>
       </div>
     </div>
-    <div class="cs-height_40 cs-height_lg_30"></div>
+    <div class="cs-height_10 cs-height_lg_20"></div>
     <div class="cs-copyright text-center">
       <strong>Copyright &copy; <script>document.write(new Date().getFullYear())</script>
           <a>Developer Kecamatan Sukajadi</a>.</strong>
