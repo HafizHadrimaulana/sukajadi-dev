@@ -242,13 +242,24 @@ $links = [
 $navigation_links = json_decode(json_encode($links));
 @endphp
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-secondary sidebar-mini">
+  <aside class="main-sidebar sidebar-dark-dark sidebar-mini bg-dark" >
     <!-- Brand Logo -->
-    <a href="/home" class="brand-link">
-      <center><span class="logo-mini"><b>P</b><span class="brand-text font-weight-light"><b>ORTAL</b></span></span></center>
-      
- 
+    <a class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <center>
+        <span class="brand-link">
+            <b class="logo-mini">P<span class="brand-text logo-lg">ORTAL</span></b>
+        </span>
+        </center>
+        <!-- logo for regular state and mobile devices -->
     </a>
+    
+    
+    
+    
+    
+    
+
 
     <!-- Sidebar -->
     <div class="sidebar">
