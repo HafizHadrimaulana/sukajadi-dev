@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="ThemeMarch">
   <!-- Favicon Icon -->
-  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="icon" href="assets/img/sukajadi-logo.svg">
   <!-- Site Title -->
   <title>{{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
