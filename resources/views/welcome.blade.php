@@ -418,7 +418,7 @@
       <div class="cs-seciton_heading cs-style1 text-center">
         <div class="cs-section_subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s"></div>
         <div class="cs-height_10 cs-height_lg_10"></div>
-        <h3 class="cs-section_title"><b>Media Sosial</b></h3>
+        <h3 class="cs-section_title"><b>MEDIA SOSIAL</b></h3>
       </div>
       <div class="cs-height_50 cs-height_lg_40"></div>
       <div class="row">
