@@ -75,7 +75,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&d
                     @endif
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right elevation-4">
                     <!-- User image -->
                     <li class="user-header bg-white">
                         @if (Auth::user()->user_image)
@@ -101,7 +101,7 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&d
                         href="#">Friends</a> </div> </div> <!-- /.row -- </li>-->
 
                         <!-- Menu Footer-->
-                        <li class="user-footer ">
+                        <li class="user-footer bg-dark ">
                             <a href="{{ route('profile') }}" class="btn btn-default btn-flat bg-secondary float-left">Profile</a>
                             <a
                                 class="btn btn-default btn-flat bg-red float-right"

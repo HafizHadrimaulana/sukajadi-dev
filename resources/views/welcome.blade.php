@@ -118,7 +118,7 @@
   <!-- End Hero -->
 
   <!-- Start Main Feature -->
-  <section>
+  <section data-src="assets/img/feature_bg.svg">>
     <div class="cs-height_95 cs-height_lg_70"></div>
     <div class="container">
       <div class="cs-seciton_heading cs-style1 text-center">
@@ -167,7 +167,7 @@
   <div class="cs-height_25 cs-height_lg_0"></div>
   <div class="cs-iconbox cs-style1">
     <div class="cs-iconbox_icon cs-center">
-      <img src="assets/img/icons/icon_box_2.svg" alt="Icon">
+      <img src="assets/img/icons/icon_box_2.svg">
     </div>
     <div class="cs-iconbox_in">
       <h3 class="cs-iconbox_title">Layanan</h3>
@@ -324,95 +324,50 @@
 
     // Fungsi drawChart() Anda bisa menyesuaikannya seperti sebelumnya
 </script>
-<section class="row" style="background: url('assets/img/wallpaper.svg') no-repeat fixed left bottom;background-size:cover;">     
-  <div class="cs-height_95 cs-height_lg_70"></div>
-                  <h3 class="cs-section_title">PROFIL</h3>
-                        <br>
-                    <div class="container">   
-                        <div class="col-md-4">
-                            <div class="box">
-                                <div class="box-header with-border">
-                                                                          
-                                  <h3 class="box-title"><b>Agenda Hari ini (3)</b></h3>
-                    
-                                  <div class="box-tools pull-right">
-                                    
-                                  </div>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body" style="overflow-y:auto;height:55vh">
-                                  <ul class="products-list product-list-in-box">
-                                                        					
-                    				<li class="item"> 
-                                       
-                                        <span class="">
-                                            Pertemuan Rutin PKK                                          <span class="label bg-black pull-right">08:00</span>
-                                        </span>  <br>
-                                        <!--<span class="">
-                                          <i class="fa fa-user"></i> Kasi PM                                        </span>--> 
-                                        <small class="product-description ">
-                                          Agenda Kecamatan Sukajadi                                        </small> 
-                                    </li>
-                                                        					
-                    				<li class="item"> 
-                                       
-                                        <span class="">
-                                            Undangan  Pembinaan Statistik Sektoral                                           <span class="label bg-black pull-right">09:00</span>
-                                        </span>  <br>
-                                        <!--<span class="">
-                                          <i class="fa fa-user"></i> Sdr. Hendarul                                        </span>--> 
-                                        <small class="product-description ">
-                                          Agenda Kecamatan Sukajadi                                        </small> 
-                                    </li>
-                                                        					
-                    				<li class="item"> 
-                                       
-                                        <span class="">
-                                            Rapat Evaluasi ke II Bulan Dana Kemanusiaan PMI Kota Bandung Tahun 2023                                          <span class="label bg-black pull-right">14:00</span>
-                                        </span>  <br>
-                                        <!--<span class="">
-                                          <i class="fa fa-user"></i> Kasi Kesos                                        </span>--> 
-                                        <small class="product-description ">
-                                          Agenda Kecamatan Sukajadi                                        </small> 
-                                    </li>
-                                     
-                                    <!-- /.item -->
-                                  </ul>
-                                </div>
-                                <!-- /.box-body --> 
-                                <div class="box-footer with-border">
-                                      
-                                </div>
-                            </div>
-                        </div> 
-                        
-                        <div class="col-md-8">
-                            <div class="box">
-                                <div class="box-header with-border">
-                                  <h3 class="box-title"><b>Selayang Pandang</b></h3>
-                    
-                                  <div class="box-tools pull-right">
-                                     
-                                  </div>
-                                </div>
-                                    
-                                <div class="box-body" style="overflow-x:scroll;height:55vh">
-                                  <iframe style="display:block; width:98%; height:55vh;" src="https://drive.google.com/file/d/12UTeTfALhe2w64YFQQPsXBhr-Kf3eaqx/preview?usp=sharing" title="Link">
-                                    <!-- pake preview  -->
-                                </iframe> 
-                                </div> 
-                                <!-- /.box-body -->
-                                <div class="box-footer with-border">
-                                  
-                                </div>
-                            </div>
-                            
-                        </div> 
-                        <div class="cs-height_75 cs-height_lg_70"></div>
-                    </div> 
-                </section>
+<section id="agenda" class="cs-hero cs-style1 cs-bg" style="background: url('assets/img/wallpaper.svg') no-repeat fixed left bottom;background-size:cover;')">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-header bg-secondary">
+                      <h3 class="card-title"><b>Agenda Hari ini (5)</b></h3>
+                      <div class="card-tools">
+                          <!-- Add any tools here -->
+                      </div>
+                  </div>
+                  <div class="card-body" style="overflow-y: auto; height: 55vh;">
+                      <ul class="list-group">
+                          <li class="list-group-item">
+                              <div>
+                                  Undangan TFT (Training for Trainer) Ayah
+                                  <span class="badge bg-black float-end">08:00</span>
+                              </div>
+                              <small class="text-muted">Agenda Kecamatan Sukajadi</small>
+                          </li>
+                          <!-- Add more list items here -->
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header bg-primary">
+                      <h3 class="card-title"><b>Selayang Pandang</b></h3>
+                      <div class="card-tools">
+                          <!-- Add any tools here -->
+                      </div>
+                  </div>
+                  <div class="card-body" style="overflow-x: scroll; height: 55vh;">
+                      <iframe style="display: block; width: 98%; height: 100%;" src="https://drive.google.com/file/d/12UTeTfALhe2w64YFQQPsXBhr-Kf3eaqx/preview?usp=sharing" title="Link"></iframe>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
   <!-- Start About -->
-  <section class="cs-bg">
+  <section class="cs-bg" data-src="assets/img/feature_bg.svg">
     <div class="cs-height_95 cs-height_lg_70"></div>
     <div class="container">
       <div class="cs-seciton_heading cs-style1 text-center">
@@ -426,7 +381,7 @@
           <div class="cs-pricing_table cs-style1">
             <div class="cs-pricing_head">
               <div class="cs-pricing_heading">
-                <div class="cs-pricing_icon cs-center"><img src="assets/img/fb.png"></div>
+                <div class="cs-pricing_icon cs-center"><img src="assets/img/facebook.svg"></div>
                 <h2 class="cs-pricing_title cs-m0"><b>Facebook</b></h2>
               </div>
             </div>
@@ -440,7 +395,7 @@
           <div class="cs-pricing_table cs-style1">
             <div class="cs-pricing_head">
               <div class="cs-pricing_heading">
-                <div class="cs-pricing_icon cs-center"><img src="assets/img/x.png"></div>
+                <div class="cs-pricing_icon cs-center"><img src="assets/img/twitter.svg"></div>
                 <h2 class="cs-pricing_title cs-m0"><b>Twitter</b></h2>
               </div>
             </div>
@@ -454,7 +409,7 @@
           <div class="cs-pricing_table cs-style1">
             <div class="cs-pricing_head">
               <div class="cs-pricing_heading">
-                <div class="cs-pricing_icon cs-center"><img src="assets/img/ig.png"></div>
+                <div class="cs-pricing_icon cs-center"><img src="assets/img/instagram.svg"></div>
                 <h2 class="cs-pricing_title cs-m0"><b>Instagram</b></h2>
               </div>
             </div>

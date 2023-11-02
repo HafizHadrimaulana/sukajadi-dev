@@ -15582,7 +15582,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 .sidebar .nav-link p,
 .main-sidebar .brand-text,
 .main-sidebar .logo-xs,
-.main-sidebar .logo-xl,
+.main-sidebar ,
 .sidebar .user-panel .info {
   transition: margin-left 0.3s linear, opacity 0.3s ease, visibility 0.3s ease;
 }
