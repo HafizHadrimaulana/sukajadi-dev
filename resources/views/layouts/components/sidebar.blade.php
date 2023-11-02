@@ -244,14 +244,14 @@ $navigation_links = json_decode(json_encode($links));
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-dark sidebar-mini-xs bg-dark" >
     <!-- Brand Logo -->
-    <a class="brand-link">
+    <div class="brand-link">
     <center>
         <span class="logo-xs"><b>P</b>.</span>
     </center> 
     <center>       
         <span class="brand-text"><b>PORTAL</b></span>
     </center>
-      </a>
+</div>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar Menu -->
