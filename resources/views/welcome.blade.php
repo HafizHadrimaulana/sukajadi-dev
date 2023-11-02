@@ -352,7 +352,7 @@
 
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header bg-primary">
+                  <div class="card-header bg-secondary">
                       <h3 class="card-title"><b>Selayang Pandang</b></h3>
                       <div class="card-tools">
                           <!-- Add any tools here -->
