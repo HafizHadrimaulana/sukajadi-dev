@@ -96,7 +96,7 @@
                                     <img
                                         class="elevation-3"
                                         id="prevImg"
-                                        src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"
+                                        src="{{ asset('vendor/adminlte3/img/user2.png') }}"
                                         width="150px"/>
                                     @endif
                                 </div>

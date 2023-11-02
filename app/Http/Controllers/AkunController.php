@@ -71,7 +71,7 @@ class AkunController extends Controller
                 if ($akun_val->user_image) {
                     $img = $akun_val->user_image;
                 } else {
-                    $img = asset('vendor/adminlte3/img/user2-160x160.jpg');
+                    $img = asset('vendor/adminlte3/img/user2.png');
                 }
                 $akunnestedData['name'] = $akun_val->name;
                 $akunnestedData['email'] = $akun_val->email;
