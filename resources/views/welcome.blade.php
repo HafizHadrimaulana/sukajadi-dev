@@ -16,6 +16,11 @@
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{ asset('vendor/adminlte3/plugins/fontawesome-free/css/all.min.css') }}">
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-Bd1wty3WALnARDD67cRwdo5p0PD60fphF7Q1F9tn8u6d9RE/0Qnm8U69l7c1Zn2Q" crossorigin="anonymous"> --}}
 
 </head>
@@ -27,7 +32,7 @@
     </div>
   </div>
   <!-- Start Header Section -->
-  <header class="cs-site_header cs-style1 cs-sticky-header cs-primary_color cs-white_bg wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="1s">
+  <header class="cs-site_header cs-style1 cs-sticky-header cs-primary_color cs-white_bg wow fadeInDown" data-wow-duration="2.5s" data-wow-delay="1s">
     <div class="cs-main_header">
         <div class="container">
             <div class="cs-main_header_in">
@@ -83,15 +88,26 @@
       <div class="container">
         <div class="cs-hero_img">
           <div class="cs-hero_img_bg cs-bg" data-src="assets/img/hero_img_bg.png"></div>
-          <img src="assets/img/hero_img.png" alt="Hero Image" class="wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="1s">
+          <img src="assets/img/hero_img.png" alt="Hero Image" class="wow fadeInRight" data-wow-duration="2.5s" data-wow-delay="1s">
         </div>
 
-        <div class="cs-hero_text wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="1s"  >
-          <div class="cs-hero_secondary_title">Selamat Datang
+        <div class="col-md-6 wow fadeInLeft" data-wow-duration="2.5s" data-wow-delay="1s" style="background-color: rgba(255, 255, 255, 0.4); backdrop-filter: blur(5px); border-radius: 10px; margin-top: 40px;">
+          <div class="cs-height_10 cs-height_lg_10"></div>
+          <div class="cs-seciton_heading cs-style1 text-black"><i><b>Selamat datang</b></i></div>
+          <div class="cs-height_10 cs-height_lg_10"></div>
+          <div class="cs-section_title">
+              <h2><b>KECAMATAN SUKAJADI <br> KOTA BANDUNG</b></h2>
           </div>
-          <h1 class="cs-hero_title">KECAMATAN SUKAJADI<br>KOTA BANDUNG</h1>
-          <div class="cs-hero_subtitle">Jl. Sukamulya No.4</div>
-        </div>
+          <div class="cs-height_10 cs-height_lg_10"></div>
+          <div class="cs-section-heading">
+            <h3>
+              <a href="https://goo.gl/maps/gRh2ttacVEXej3ec9" class="fa fa-map-pin"> Jl. Sukamulya No.4 </a>
+          </h3>
+          </div>
+          <!--<a class="btn bg-yellow" href="https://wa.me/6282118717109" target="_blank"><i class="fa fa-whatsapp"></i> <b>0821-1871-7109</b></a>-->
+
+          <!--<a class="btn btn-primary btn-xl text-uppercase" href="#data">Selanjutnya</a-->
+      </div>
         <div class="cs-hero_shapes">
           <div class="cs-shape cs-shape_position1">
             <img src="assets/img/shape/shape_1.svg" alt="Shape">
@@ -325,12 +341,21 @@
     // Fungsi drawChart() Anda bisa menyesuaikannya seperti sebelumnya
 </script>
 <section id="agenda" class="cs-hero cs-style1 cs-bg" style="background: url('assets/img/wallpaper.svg') no-repeat fixed left bottom;background-size:cover;')">
+  <div class="cs-height_95 cs-height_lg_70"></div>
+  <div class="container">
+    <div class="cs-seciton_heading cs-style1 text-center">
+      <div class="cs-section_subtitle wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s"></div>
+      <div class="cs-height_10 cs-height_lg_10"></div>
+      <h3 class="cs-section_title"><b>PROFIL</b></h3>
+      
+      <div class="cs-height_75 cs-height_lg_45"></div>
+    </div>
   <div class="container">
       <div class="row">
           <div class="col-md-4">
               <div class="card">
-                  <div class="card-header bg-secondary">
-                      <h3 class="card-title"><b>Agenda Hari ini (5)</b></h3>
+                  <div class="card-header bg-white">
+                      <h3 class="card-title">Agenda Hari ini (5)</h3>
                       <div class="card-tools">
                           <!-- Add any tools here -->
                       </div>
@@ -352,8 +377,8 @@
 
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header bg-secondary">
-                      <h3 class="card-title"><b>Selayang Pandang</b></h3>
+                  <div class="card-header bg-white">
+                      <h3 class="card-title">Selayang Pandang</h3>
                       <div class="card-tools">
                           <!-- Add any tools here -->
                       </div>
@@ -413,9 +438,17 @@
                 <h2 class="cs-pricing_title cs-m0"><b>Instagram</b></h2>
               </div>
             </div>
-            <center>
-              <iframe src="https://widgets.woxo.tech/f4dfe12b-8bf2-47f1-b4cb-43b07e0bf90b#mission-control-component-2b7293a1-b29d-4709-8b76-1b358fc2af44" title="Instagram widgets for website" data-hj-allow-iframe="true" style="width: 100%; height: 100%; border: none; overflow: hidden; opacity: 100; transition: all 0.5s ease 0s;"></iframe>
-            </center>
+            <div class="card-body" style="overflow-y: auto; height: 65vh;">
+              <div data-cmp-container-id="mission-control-component-baf4e5d1-593c-4e0a-a869-349bc3b06442">
+                  <article>
+                      <div data-mc-cmp-id="mission-control-component-baf4e5d1-593c-4e0a-a869-349bc3b06442" data-mc-loaded="true" style="height: 581px; position: relative; overflow: hidden; flex-basis: 100%; width: 100%;">
+                          <div></div>
+                          <iframe src="https://widgets.woxo.tech/f4dfe12b-8bf2-47f1-b4cb-43b07e0bf90b#mission-control-component-baf4e5d1-593c-4e0a-a869-349bc3b06442" title="Instagram widgets for the website" data-hj-allow-iframe="true" style="width: 100%; height: 100%; border: none; overflow: hidden; opacity: 100; transition: all 0.5s ease 0s;"></iframe>
+                      </div>
+                  </article>
+              </div>
+              <script src="https://cdn2.woxo.tech/a.js#615e68b43f3a7a0016d3d073" async="" data-usrc=""></script>
+          </div>
           </div>
           <div class="cs-height_25 cs-height_lg_25"></div>
         </div>
@@ -474,11 +507,10 @@
         </div>
       </div>
     </div>
-    <div class="cs-height_10 cs-height_lg_20"></div>
+    <div class="cs-height_10 cs-height_lg_10"></div>
     <div class="cs-copyright text-center">
-      <strong>Copyright &copy; <script>document.write(new Date().getFullYear())</script>
-          <a>Developer Kecamatan Sukajadi</a>.</strong>
-      All rights reserved.
+      <strong>Made With <div class="fa fa-clock"> 
+          by Portal <script>document.write(new Date().getFullYear())</script></div>.</strong>
       </div>
   </footer>
   <!-- End Footer -->
