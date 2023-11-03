@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+@role('superadmin|kecamatan')
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -165,4 +166,10 @@
                 });
         });
 </script>
+<section class="content">
+    <div class="alert alert-danger" role="alert">
+      Anda tidak memiliki akses ke halaman ini.
+    </div>
+</section>
+@endrole
 @endsection

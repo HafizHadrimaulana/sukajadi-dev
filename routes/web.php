@@ -27,6 +27,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/akun', [HomeController::class, 'index'])
+      ->middleware('checkrolebyid:6,8') // 1 dan 2 adalah contoh ID role yang diizinkan
+      ->name('page.admin.akun.index');
+
 Route::group(['prefix' => 'dashboard/admin'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 

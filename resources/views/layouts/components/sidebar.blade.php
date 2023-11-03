@@ -225,6 +225,7 @@ $links = [
         "text" => "KELOLA AKUN",
         "icon" => "fas fa-users",
         "is_multi" => true,
+        "roles" => ['superadmin', 'kecamatan'],
         "href" => [
             [
                 "section_text" => "Data Akun",
@@ -244,89 +245,102 @@ $navigation_links = json_decode(json_encode($links));
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-dark sidebar-mini-xs bg-dark" >
     <!-- Brand Logo -->
-    <div class="brand-link">
-    <center>
-        <span class="logo-xs"><b>P</b>.</span>
-    </center> 
-    <center>       
-        <span class="brand-text"><b>PORTAL</b></span>
-    </center>
-</div>
+    <a class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <center>
+        <span class="brand-link">
+            <b class="logo-mini">P<span class="brand-text logo-lg">ORTAL</span></b>
+        </span>
+        </center>
+        <!-- logo for regular state and mobile devices -->
+    </a>
+    
+    
+    
+    
+    
+    
+
+
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             @foreach ($navigation_links as $link)
-                 @php
-                 $shouldShow = true;
-                 $user = Auth::user();
-
-                 if ($user) {
-                 $user_role = $user->role;
-                 } else {
-                 $user_role = null;
-                 }
-
-                 if (isset($link->roles)) { 
-                 $shouldShow = in_array($user_role, $link->roles);
-                 }
-
-                 if ($link->text === 'KELOLA AKUN') {
-                 $allowed_roles = ['superadmin', 'kecamatan'];
-                 $shouldShow = in_array($user_role, $allowed_roles);
-                 }
-                 @endphp
-                    @if ($shouldShow)
-                        @if (!$link->is_multi)
-                            <li class="nav-item">
-                                <a href="{{ (url()->current() == $link->href) ? '#' : $link->href }}" class="nav-link {{ (url()->current() == $link->href) ? 'active' : '' }}">
-                                    <i class="nav-icon {{ $link->icon }}"></i>
-                                    <p>{{ $link->text }}</p>
-                                </a>
-                            </li>
-                            @else
-                              @php
-                               $open = '';
-                                $status = '';
-                                 foreach($link->href as $section) {
-                                 if (url()->current() == $section->section_href) {
-                            $open = 'menu-open';
-                            $status = 'active';
-                            break;
+    @php
+        $shouldShow = true;
+        $user = Auth::user();
+        if ($user) {
+            $user_role = $user->roles->pluck('name')->toArray();
+        } else {
+            $user_role = null;
+        }
+        if (isset($link->roles)) {
+            $shouldShow = count(array_intersect($user_role, $link->roles)) > 0;
+        }
+        if ($link->text === 'KELOLA AKUN') {
+            $allowed_roles = ['superadmin', 'kecamatan'];
+            $shouldShow = count(array_intersect($user_role, $allowed_roles)) > 0;
+        }
+    @endphp
+    @if ($shouldShow)
+        @if (!$link->is_multi)
+            <li class="nav-item">
+                <a href="{{ (url()->current() == $link->href) ? '#' : $link->href }}" class="nav-link {{ (url()->current() == $link->href) ? 'active' : '' }}">
+                    <i class="nav-icon {{ $link->icon }}"></i>
+                    <p>{{ $link->text }}</p>
+                </a>
+            </li>
+        @else
+            @php
+                $open = '';
+                $status = '';
+                foreach($link->href as $section) {
+                    if (url()->current() == $section->section_href) {
+                        $open = 'menu-open';
+                        $status = 'active';
+                        break;
+                    }
+                }
+            @endphp
+            <li class="nav-item {{$open}}">
+                <a href="#" class="nav-link {{$status}}">
+                    <i class="nav-icon {{ $link->icon }}"></i>
+                    <p>
+                        {{ $link->text }}
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    @foreach ($link->href as $section)
+                        @php
+                            $shouldShowSection = true;
+                            if (isset($section->roles)) {
+                                $shouldShowSection = count(array_intersect($user_role, $section->roles)) > 0;
                             }
-                         }
-                           @endphp
-                            <li class="nav-item {{$open}}">
-                                <a href="#" class="nav-link {{$status}}">
-                                    <i class="nav-icon {{ $link->icon }}"></i>
-                                    <p>
-                                        {{ $link->text }}
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
+                        @endphp
+                        @if ($shouldShowSection)
+                            @if ($section->section_text === 'Kelola Akun')
+                                @php
+                                    $allowed_roles = ['superadmin', 'kecamatan'];
+                                    $shouldShowSection = count(array_intersect($user_role, $allowed_roles)) > 0;
+                                @endphp
+                            @endif
+                            <li class="nav-item">
+                                <a href="{{ (url()->current() == $section->section_href) ? '#' : $section->section_href }}" class="nav-link {{ (url()->current() == $section->section_href) ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ $section->section_text }}</p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    @foreach ($link->href as $section)
-                                        @php
-                                            $shouldShowSection = true;
-                                            if (isset($section->roles)) {
-                                                $shouldShowSection = in_array($user_role, $section->roles);
-                                            }
-                                        @endphp
-                                        @if ($shouldShowSection)
-                                            <li class="nav-item">
-                                                <a href="{{ (url()->current() == $section->section_href) ? '#' : $section->section_href }}" class="nav-link {{ (url()->current() == $section->section_href) ? 'active' : '' }}">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>{{ $section->section_text }}</p>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
                             </li>
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
+                </ul>
+            </li>
+        @endif
+    @endif
+@endforeach
+
             </ul>
         </nav>
     </div>
