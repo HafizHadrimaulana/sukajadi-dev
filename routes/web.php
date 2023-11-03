@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BotManController;
-use App\Http\Controllers\DataController;
+use App\Http\Controllers\DataBerandaController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\RembugController;
@@ -94,6 +94,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 
 Route::get('/kegiatan', [KegiatanController::class, 'kegiatan'])->name('kegiatan');
-Route::get('/data', [DataController::class, 'data'])->name('data');
+Route::get('/data', [DataBerandaController::class, 'data'])->name('data');
 Route::get('/posyandu', [PosyanduController::class, 'posyandu'])->name('posyandu');
 Route::get('/rembug-warga', [RembugController::class, 'rembugWarga'])->name('rembug-warga');

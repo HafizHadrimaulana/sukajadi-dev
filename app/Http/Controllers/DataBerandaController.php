@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DataController extends Controller
+class DataBerandaController extends Controller
 {
     public function data()
     {
