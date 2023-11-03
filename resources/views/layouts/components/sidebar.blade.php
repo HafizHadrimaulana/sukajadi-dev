@@ -272,7 +272,7 @@ $navigation_links = json_decode(json_encode($links));
         if (isset($link->roles)) {
             $shouldShow = count(array_intersect($user_role, $link->roles)) > 0;
         }
-        if ($link->text === 'KELOLA AKUN') {
+        if ($link->text === 'KELOLA AKUN' || $link->text === 'PENGATURAN') {
             $allowed_roles = ['superadmin', 'kecamatan'];
             $shouldShow = count(array_intersect($user_role, $allowed_roles)) > 0;
         }
@@ -314,7 +314,7 @@ $navigation_links = json_decode(json_encode($links));
                             }
                         @endphp
                         @if ($shouldShowSection)
-                            @if ($section->section_text === 'Kelola Akun')
+                            @if ($section->section_text === 'Kelola Akun' || $section->section_text === 'PENGATURAN')
                                 @php
                                     $allowed_roles = ['superadmin', 'kecamatan'];
                                     $shouldShowSection = count(array_intersect($user_role, $allowed_roles)) > 0;

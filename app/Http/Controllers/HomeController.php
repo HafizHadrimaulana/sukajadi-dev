@@ -49,7 +49,7 @@ class HomeController extends Controller
          // Cek apakah user memiliki role 'superadmin' atau 'kecamatan'
          if ($userRoles->contains('superadmin') || $userRoles->contains('kecamatan')) {
              // Tampilkan view untuk halaman akun admin
-             return view('page.admin.akun.addAkun');
+             return view('home');
          }
          
          // Return view home sebagai default

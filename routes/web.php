@@ -29,10 +29,10 @@ Auth::routes();
 
 Route::get('/akun', [HomeController::class, 'index'])
       ->middleware('role:superadmin|kecamatan') // Menggunakan nama role
-      ->name('page.admin.akun.index');
+      ->name('home');
 
 Route::group(['prefix' => 'dashboard/admin'], function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [HomeController::class, 'profile'])->name('profile');
