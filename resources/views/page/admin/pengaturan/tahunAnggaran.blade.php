@@ -1,9 +1,9 @@
 @extends('layouts.base_admin.base_dashboard')
 @section('judul', 'Tahun Anggaran')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@role('superadmin|kecamatan')
-@section('content')
 
+@section('content')
+@role('superadmin|kecamatan')
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -20,9 +20,9 @@
       </div>
     </div><!-- /.container-fluid -->
 </section>
-
-@endsection
 @endrole
+@endsection
+
 
 <script type="text/javascript">
   // Gunakan DOMContentLoaded untuk memastikan script dieksekusi setelah dokumen dimuat sepenuhnya

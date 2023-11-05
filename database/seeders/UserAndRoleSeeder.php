@@ -79,7 +79,7 @@ class UserAndRoleSeeder extends Seeder
         $lkk = User::create([
             'name' => 'LKK',
             'email' => 'lkk@example.com',
-            'password' => Hash::make('lkk123')
+            'password' => Hash::make('lkk12345')
         ]);
         $lkk->assignRole('lkk');
     }
