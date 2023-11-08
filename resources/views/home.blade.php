@@ -15,10 +15,10 @@
 </section>
 
 <section class="content">
-  <div class="container">
+<div class="container-fluid">
       <div class="row">
           <div class="col-lg-3 col-6">
-              <div class="small-box bg-info">
+              <div class="rounded small-box bg-info">
                   <div class="inner">
                     <script type="text/javascript">
                       window.setTimeout("waktu()", 1000);
@@ -166,30 +166,147 @@
               </div>
           </div>
       </div>
-  </div>
+    </div>
 
   <div class="row">
-      <section class="col-lg-5 connectedSortable ui-sortable">
-          <div class="card bg-gradient-secondary">
-              <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
-                  <h3 class="card-title">
-                      <i class="fas fa-map-marker-alt mr-1"></i>
-                      GIS Sukajadi Bandung
-                  </h3>
-                  <div class="card-tools">
-                      <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                          <i class="far fa-calendar-alt"></i>
-                      </button>
-                      <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
-                          <i class="fas fa-minus"></i>
-                      </button>
-                  </div>
+
+        <div class="col-lg-3 col-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><b>Agenda Hari ini (0)</b></h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-bs-toggle="collapse" data-bs-target="#agenda"><i class="fas fa-minus"></i>
+                </button> 
               </div>
-              <div class="card-body">
-                  <iframe width='100%' height='640px' src='https://www.arcgis.com/apps/View/index.html?appid=aff8a31acc4342c191004bc9c4eb84cb&extent=107.5702,-6.8908,107.6105,-6.8706' frameborder='0' scrolling='no'></iframe>
-              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body" id="agenda" style="overflow-y:auto;height:29vh">
+              <ul class="list-group list-group-flush">
+                <!-- List items here -->
+              </ul>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer text-center">
+              <a href="https://sukajadi.bandung.go.id/portal/admin/agenda/agenda_kalender" class="stretched-link">Lihat semua Agenda <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+            <!-- /.card-footer -->
           </div>
-      </section>
+        </div>
+        
+        <!-- ... Other columns here ... -->
+        <div class="col-lg-6 col-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><b>Grafik Agenda &amp; Surat</b></h3>
+                <div class="card-tools ms-auto">
+                  <select id="tahun_grafik_surat" onchange="pilihan_tahun_grafik_surat()" class="form-select form-select-sm">
+                    <option value="4">2023</option>
+                    <option value="3">2022</option>
+                    <option value="2">2021</option>
+                    <option value="1">2020</option>
+                  </select>
+                  <button type="button" class="btn btn-tool" data-bs-toggle="collapse" data-bs-target="#chartCollapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body collapse show" id="chartCollapse">
+                <div class="chart">
+                  <canvas id="myChart_surat"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+          
+          <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            pilih_tahun_grafik_surat();
+          });
+          
+          function pilihan_tahun_grafik_surat() {
+            var tahun_grafik_surat = document.getElementById('tahun_grafik_surat').value;
+            pilih_tahun_grafik_surat(tahun_grafik_surat);
+          }
+          
+          function pilih_tahun_grafik_surat(tahun_grafik_surat) {
+            var url = tahun_grafik_surat ?
+              `https://sukajadi.bandung.go.id/portal/admin/dashboard/ajax_grafik_surat/${tahun_grafik_surat}` :
+              'https://sukajadi.bandung.go.id/portal/admin/dashboard/ajax_grafik_surat/';
+          
+            fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                var labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                var value_jumlah_agenda = data.map(item => item.jumlah_agenda);
+                var value_jumlah_surat_masuk = data.map(item => item.jumlah_surat_masuk);
+                var value_jumlah_surat_keluar = data.map(item => item.jumlah_surat_keluar);
+          
+                var ctx = document.getElementById('myChart_surat').getContext('2d');
+                var chart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: labels,
+                    datasets: [
+                      { label: 'Agenda', stack: 'stack', backgroundColor: "#52d9ce", data: value_jumlah_agenda },
+                      { label: 'Masuk', stack: 'stack', backgroundColor: "#98e78f", data: value_jumlah_surat_masuk },
+                      { label: 'Keluar', stack: 'stack', backgroundColor: "#f6cf58", data: value_jumlah_surat_keluar }
+                    ]
+                  },
+                  options: {
+                    scales: {
+                      y: {
+                        beginAtZero: true,
+                        grid: {
+                          display: false
+                        }
+                      },
+                      x: {
+                        grid: {
+                          display: false
+                        }
+                      }
+                    },
+                    plugins: {
+                      legend: {
+                        labels: {
+                          usePointStyle: true,
+                          boxWidth: 6
+                        }
+                      }
+                    }
+                  }
+                });
+              });
+          }
+          </script>
+              <div class="col-lg-3 col-6">
+                <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title mb-0"><b>Pie Surat</b></h3>
+                    <div class="card-tools">
+                      <select id="tahun_pie_surat" class="form-select form-select-sm" onchange="pilihan_tahun_pie_surat()">
+                        <option value="4">2023</option>
+                        <option value="3">2022</option>
+                        <option value="2">2021</option>
+                        <option value="1">2020</option>
+                      </select>
+                      <button type="button" class="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#collapseExample">
+                        <i class="bi bi-dash"></i>
+                      </button> 
+                    </div>
+                  </div>
+                  <div class="collapse show" id="collapseExample">
+                    <div class="card-body">
+                      <!-- Chart's container -->
+                      <canvas id="myChart_surat_pie" class="chartjs-render-monitor"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+        
+      
   </div>
 </section>
 @endsection

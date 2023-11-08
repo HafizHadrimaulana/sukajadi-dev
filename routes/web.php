@@ -9,6 +9,7 @@ use App\Http\Controllers\DataBerandaController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\RembugController;
+use App\Http\Controllers\GisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,7 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
         Route::get('/tahun', [HomeController::class, 'tahun'])->name('tahun');
         Route::get('/bulan', [HomeController::class, 'bulan'])->name('bulan');
         Route::get('/tahunAnggaran', [HomeController::class, 'tahunAnggaran'])->name('tahunAnggaran');
+        Route::resource('sarpras',(GisController::class));
 });
 
 
