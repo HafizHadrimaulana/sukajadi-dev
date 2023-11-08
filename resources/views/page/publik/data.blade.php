@@ -20,7 +20,9 @@ crossorigin=""></script>
 </style>
 <style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
 @section('content')
+<div class="container-fluid">
 <div id="map"></div>
+</div>
 <script>
 	var map = L.map('map').setView([-6.8923871723015395, 107.5882335402375], 14);
 	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJpcHJhdGFtYSIsImEiOiJjbGZubmdib3UwbnRxM3Bya3M1NGE4OHRsIn0.oxYqbBbaBwx0dHLguu5gOA', {

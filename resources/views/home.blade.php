@@ -168,8 +168,8 @@
       </div>
     </div>
 
+<div class="container-fluid">    
   <div class="row">
-
         <div class="col-lg-3 col-6">
           <div class="card">
             <div class="card-header">
@@ -306,7 +306,7 @@
               </div>
           
         
-      
+  </div>
   </div>
 </section>
 @endsection
