@@ -7,9 +7,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BotManController;
 use App\Http\Controllers\DataBerandaController;
 use App\Http\Controllers\KegiatanController;
-use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\RembugController;
 use App\Http\Controllers\GisController;
+use App\Http\Controllers\PenghargaanController;
+use App\Http\Controllers\SaranaPrasaranaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,5 +98,6 @@ Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 
 Route::get('/kegiatan', [KegiatanController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/data', [DataBerandaController::class, 'data'])->name('data');
-Route::get('/posyandu', [PosyanduController::class, 'posyandu'])->name('posyandu');
+Route::get('/penghargaan', [PenghargaanController::class, 'data'])->name('data');
+Route::get('/sarana', [SaranaPrasaranaController::class, 'data'])->name('data');
 Route::get('/rembug-warga', [RembugController::class, 'rembugWarga'])->name('rembug-warga');

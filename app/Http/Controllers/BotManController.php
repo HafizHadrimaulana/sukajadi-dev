@@ -15,12 +15,22 @@ class BotManController extends Controller
         $botman = app('botman');
 
         $botman->hears('Mulai', function (BotMan $bot) {
+            $lastAccessTime = cache()->get('last_access_time');
+            $currentTime = now();
+
+            if ($lastAccessTime && $currentTime->diffInSeconds($lastAccessTime) > 5) {
+                // Reset state atau mulai percakapan baru
+            }
+            cache()->put('last_access_time', $currentTime);
             $question = Question::create('Apa yang Anda ingin tanyakan?')
                 ->fallback('Tidak dapat memilih pertanyaan')
                 ->callbackId('ask_reason')
                 ->addButtons([
-                    Button::create('Siapa nama Anda?')->value('name'),
-                    Button::create('Apa kabar?')->value('status'),
+                    Button::create('1. Pembuatan KTP')->value('ktp'),
+                    Button::create('2. Pembuatan KK')->value('kk'),
+                    Button::create('3. Pengurusan surat pindah masuk atau keluar')->value('pindah'),
+                    Button::create('4. Pengurusan akta kelahiran atau kematian')->value('akta'),
+                    Button::create('5. Pengurusan surat izin usaha (untuk pedagang atau usaha kecil)')->value('izin'),
                     // ... tambah tombol lainnya
                 ]);
 
@@ -29,12 +39,23 @@ class BotManController extends Controller
                     $selectedValue = $answer->getValue();  // Mendapatkan nilai dari tombol yang dipilih
 
                     switch ($selectedValue) {
-                        case 'name':
-                            $this->say('Saya adalah BotMan. Bagaimana saya bisa membantu Anda hari ini?');
+                        case 'ktp':
+                            $this->say('Untuk pembuatan KTP di kecamatan, Anda perlu menyiapkan fotokopi Kartu Keluarga, Surat Pengantar dari RT/RW, dan Akta Kelahiran atau dokumen pengganti. Setelah itu, kunjungi kantor kecamatan untuk mengajukan permohonan dan mengikuti proses administratif yang ditetapkan.');
                             break;
-                        case 'status':
-                            $this->say('Saya adalah bot, saya selalu baik-baik saja! Bagaimana dengan Anda?');
+                        case 'kk':
+                            $this->say('Untuk membuat Kartu Keluarga (KK) di kecamatan, siapkan dokumen seperti Akta Kelahiran, Surat Nikah, dan KTP, lalu ajukan permohonan di kantor kecamatan.');
                             break;
+                        case 'pindah':
+                             $this->say('Untuk pengurusan surat pindah masuk atau keluar di kecamatan, siapkan dokumen yang diperlukan seperti KTP, KK, dan Surat Pengantar RT/RW, lalu ajukan permohonan di kantor kecamatan.');
+                             break;
+                         case 'akta':
+                             $this->say('
+                             Untuk pengurusan akta kelahiran atau kematian di kecamatan, bawa dokumen seperti surat keterangan kelahiran atau kematian dari rumah sakit atau dokter, KTP orang tua atau pelapor, dan KK, lalu ajukan di kantor kecamatan.');
+                             break;
+                         case 'izin':
+                             $this->say('Untuk mengurus surat izin usaha di kecamatan bagi pedagang atau pemilik usaha kecil, Anda perlu menyiapkan beberapa dokumen. Pertama, siapkan fotokopi Kartu Tanda Penduduk (KTP) dan Kartu Keluarga (KK) Anda. Kedua, buatlah proposal usaha yang menjelaskan jenis dan skala bisnis yang akan Anda jalankan. Setelah dokumen lengkap, ajukan permohonan surat izin usaha ke kantor kecamatan setempat. Proses ini akan melibatkan verifikasi dokumen dan mungkin beberapa tahapan administratif tambahan sesuai kebijakan kecamatan.');
+                             break;
+
                         // ... tambah kasus lainnya
                     }
                 }
@@ -62,46 +83,5 @@ class BotManController extends Controller
         });
 
         $botman->listen();
-    }
-}
-
-class BantuanConversation extends Conversation
-{
-    public function run()
-    {
-        $this->ask('Silakan tulis permintaan Anda, misalnya "pembuatan KTP" atau "pembuatan SIM".', function ($answer) {
-            $request = strtolower($answer->getText());
-    
-            if (strpos($request, 'pembuatan ktp') !== false) {
-                $this->say('Untuk pembuatan KTP, Anda perlu mengunjungi kantor kependudukan setempat dan membawa dokumen-dokumen yang diperlukan.');
-                $this->askConfirmation('pembuatan KTP');
-            } elseif (strpos($request, 'pembuatan sim') !== false) {
-                $this->say('Untuk pembuatan SIM, Anda perlu pergi ke kantor polisi setempat dan mengikuti prosedur pendaftaran.');
-                $this->askConfirmation('pembuatan SIM');
-            } else {
-                $this->say('Maaf, saya tidak memiliki informasi tentang permintaan tersebut. Silakan coba lagi atau tanyakan sesuatu yang lain.');
-                $this->repeat();
-            }
-        });
-    }
-    
-    public function askConfirmation($previousRequest)
-    {
-        $this->ask("Apakah Anda sudah mengerti cara $previousRequest?", function ($answer) use ($previousRequest) {
-            $confirmation = strtolower($answer->getText());
-    
-            if ($confirmation === 'sudah' || $confirmation === 'sudah terimakasih') {
-                $this->say('Baiklah, senang bisa membantu Anda :)');
-                $this->ask("Apakah Anda masih ada pertanyaan tentang $previousRequest atau ingin tahu sesuatu yang lain?", function ($answer) use ($previousRequest) {
-                    // Handle the new answer here. You can repeat the same logic as in run() or call run() again.
-                    $newRequest = strtolower($answer->getText());
-                    // ... logic for handling $newRequest
-                    $this->run();  // Optionally restart the conversation
-                });
-            } else {
-                // If user didn't confirm, you can either repeat the original question or proceed differently.
-                $this->repeat();
-            }
-        });
     }
 }

@@ -21,8 +21,7 @@
     </div><!-- /.container-fluid -->
 </section>
 @endsection
-@endrole
-
+@else
     {{-- Ini adalah script yang akan dijalankan jika pengguna tidak memiliki role yang diperlukan --}}
     <script type="text/javascript">
         // Gunakan DOMContentLoaded untuk memastikan script dieksekusi setelah dokumen dimuat sepenuhnya
@@ -38,3 +37,4 @@
             });
         });
     </script>
+ @endrole

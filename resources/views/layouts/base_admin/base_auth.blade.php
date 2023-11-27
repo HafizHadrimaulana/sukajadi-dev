@@ -42,7 +42,6 @@
                               <li><a href="/" class="cs-smoth_scroll"><b>Beranda</b></a></li>
                               <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll"><b>Kegiatan</b></a></li>
                               <li><a href="{{ route('data') }}" class="cs-smoth_scroll"><b>Data</b></a></li>
-                              <li><a href="{{ route('posyandu') }}" class="cs-smoth_scroll"><b>Posyandu</b></a></li>
                               <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll"><b>Rembug Warga</b></a></li>
                             </ul>
                         </div>

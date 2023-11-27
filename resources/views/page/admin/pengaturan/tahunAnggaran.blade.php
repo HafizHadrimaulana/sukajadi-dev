@@ -20,9 +20,8 @@
       </div>
     </div><!-- /.container-fluid -->
 </section>
-@endrole
 @endsection
-
+@else
 
 <script type="text/javascript">
   // Gunakan DOMContentLoaded untuk memastikan script dieksekusi setelah dokumen dimuat sepenuhnya
@@ -38,3 +37,4 @@
       });
   });
 </script>
+@endrole
