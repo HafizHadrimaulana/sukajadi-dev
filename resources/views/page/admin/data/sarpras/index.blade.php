@@ -22,7 +22,7 @@
 
 <!-- Main content -->
 <section class="content">
-
+    <div class="container-fluid">
     <!-- Default box -->
     <a href="/dashboard/admin/sarpras/create"><button class="btn btn-success fa fa-plus">Tambah
     </button></a>
@@ -83,6 +83,7 @@
         </div>
         <!-- /.card-body -->
     </div>
+</div>
     <!-- /.card -->
 
 </section>

@@ -1,6 +1,7 @@
 @extends('layouts.base_admin.base_dashboard')
 
 @section('content')
+<div class="container-fluid">
 <form method="post" action="/dashboard/admin/sarpras" >
     @csrf
     <div class="mb-3">
@@ -17,5 +18,5 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-
+</div>
 @endsection
