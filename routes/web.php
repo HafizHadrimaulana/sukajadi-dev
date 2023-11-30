@@ -98,6 +98,4 @@ Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 
 Route::get('/kegiatan', [KegiatanController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/data', [DataBerandaController::class, 'data'])->name('data');
-Route::get('/penghargaan', [PenghargaanController::class, 'data'])->name('data');
-Route::get('/sarana', [SaranaPrasaranaController::class, 'data'])->name('data');
 Route::get('/rembug-warga', [RembugController::class, 'rembugWarga'])->name('rembug-warga');

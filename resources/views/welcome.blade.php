@@ -46,14 +46,7 @@
                         <ul class="cs-nav_list">
                           <li><a href="/" class="cs-smoth_scroll"><b>Beranda</b></a></li>
                           <li><a href="{{ route('kegiatan') }}" class="cs-smoth_scroll"><b>Kegiatan</b></a></li>
-                          <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Data</b> <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                          <li><a href="{{ route('data') }}" class="cs-smoth_scroll">Data</a></li>
-                          <li><a href="{{ route('penghargaan') }}" class="cs-smoth_scroll">Penghargaan</a></li>
-                          
-                          </ul>
-                          </li>
+                          <li><a href="{{ route('data') }}" class="cs-smoth_scroll"><b>Data</b></a></li>
                           <li><a href="{{ route('rembug-warga') }}" class="cs-smoth_scroll"><b>Rembug Warga</b></a></li>
                         </ul>
                     </div>
@@ -87,7 +80,7 @@
         var botmanWidget = {
             aboutText:'Kecamatan Sukajadi, 2023',
             title:'Kecamatan Sukajadi',
-            introMessage :'Halo, Saya adalah BOT! Apakah ada yang bisa saya bantu?',
+            introMessage :'Halo, Saya adalah BOT Kecamatan Sukajadi,Ketik Mulai Untuk Memulai percakapan',
         };
     </script>
     <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0.0/build/js/widget.min.js'></script>
