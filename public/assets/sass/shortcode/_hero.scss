@@ -1,0 +1,229 @@
+/*--------------------------------------------------------------
+8. Hero
+----------------------------------------------------------------*/
+.cs-hero.cs-style1 {
+  position: relative;
+  padding: 70px 0;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  
+  .cs-hero_img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    height: 742px;
+    width: 742px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      position: relative;
+      z-index: 2;
+      max-height: 100%;
+    }
+  }
+  .cs-hero_img_bg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+  }
+  .cs-hero_text {
+    position: relative;
+    z-index: 2;
+  }
+  .cs-hero_title {
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 80px;
+  }
+  .cs-hero_secondary_title {
+    font-weight: 300;
+    font-size: 16px;
+    color: #47C4C0;
+    margin-bottom: 4px;
+  }
+  .cs-hero_subtitle {
+    margin-bottom: 35px;
+    font-size: 18px;
+    line-height: 1.5em;
+  }
+  .cs-shape {
+    position: absolute;
+  }
+  .cs-shape_position1 {
+    left: 7%;
+    top: 62%;
+    animation: animo-x 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  .cs-shape_position2 {
+    left: 30%;
+    top: 78%;
+    animation: anim-y 9s cubic-bezier(0.25, 0, 0.2, 1) infinite;
+  }
+  .cs-shape_position3 {
+    left: 40%;
+    top: 20%;
+    animation: swing-anim 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  .cs-shape_position4 {
+    left: 42%;
+    top: 62%;
+    animation: particalAnimation 35s alternate infinite linear;
+  }
+  .cs-shape_position5 {
+    left: 90%;
+    top: 5%;
+    animation: semi-rotate-anim 9.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  .cs-shape_position6 {
+    left: 85%;
+    top: 75%;
+    animation: up-down-anim 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes particalAnimation {
+
+  0%,
+  100% {
+    transform: translate(0px, 0px);
+  }
+
+  20% {
+    transform: translate(80px, -10px);
+  }
+
+  40% {
+    transform: translate(140px, 70px);
+  }
+
+  60% {
+    transform: translate(90px, 130px);
+  }
+
+  80% {
+    transform: translate(-40px, 80px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes animo-x {
+  50% {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(44px);
+  }
+
+}
+
+@keyframes anim-y {
+  50% {
+    animation-timing-function: cubic-bezier(0.55, 0, 0.2, 1);
+    transform: translateY(17px);
+  }
+
+}
+
+@keyframes rotate-anim {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes semi-rotate-anim {
+  50% {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(25px) rotate(-53deg);
+  }
+}
+
+@keyframes up-down-anim {
+  40% {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(40px) rotate(-1deg);
+  }
+}
+
+@keyframes swing-anim {
+  65% {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-48px) rotate(-75deg);
+  }
+}
+
+// End New Animations
+@media screen and (max-width: 1550px) {
+  .cs-hero.cs-style1 {
+    .cs-hero_img {
+      left: 45%;
+    }
+  }
+}
+@media screen and (max-width: 1536px) {
+  .cs-hero.cs-style1 {
+    min-height: 784px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .cs-hero.cs-style1 {
+    min-height: 820px;
+    .cs-hero_img {
+      left: 51%;
+      height: 550px;
+      width: 550px;
+    }
+  }
+}
+@media screen and (max-width: 1366px) {
+  .cs-hero.cs-style1 {
+    min-height: 690px;
+  }
+}
+@media screen and (max-width: 1199px) {
+  .cs-hero.cs-style1 {
+    .cs-hero_title {
+      font-size: 64px;
+    }
+    .cs-hero_subtitle {
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+    .cs-hero_img {
+      height: 460px;
+      width: 460px;
+    }
+  }
+}
+@media screen and (max-width: 991px) {
+  .cs-hero.cs-style1 {
+    .cs-hero_img {
+      position: relative;
+      transform: initial;
+      left: initial;
+      right: initial;
+      top: initial;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+  }
+}
+@media screen and (max-width: 575px) {
+  .cs-hero.cs-style1 {
+    .cs-hero_img {
+      width: 100%;
+      height: initial;
+    }
+    .cs-hero_title {
+      font-size: 45px;
+    }
+  }
+}

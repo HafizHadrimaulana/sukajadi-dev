@@ -1,0 +1,144 @@
+.bg-pink {
+    background: #eca2c7;
+    color: #fff;
+}
+.bg-color {
+    background: #ffffffdd;
+    opacity: 0.8;
+}
+.bg-color:hover {
+    background: #fff;
+    opacity: 1;
+}
+.inner {
+    color: #fff;
+    opacity: 0.8;
+    filter:invert(100%);
+}
+.inner:hover {
+    color: #fff;
+    opacity: 1;
+    filter:invert(100%);
+}
+.icon i {
+    color: #fff;
+    opacity: 0.3;
+    filter:invert(100%);
+}
+section {
+    padding-bottom: 5.5rem;
+}
+.masthead {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    text-align: left;
+    color: #555;
+    background-color: #fff;
+    background-image: url("https://sukajadi.bandung.go.id/portal/upload/xgambar_latar.png.pagespeed.ic.kavYT9zRa1.webp");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left top;
+    background-size: cover;
+    font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.masthead .masthead-subheading {
+    padding: 10px;
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.5rem;
+}
+.masthead .masthead-heading {
+    padding: 10px;
+    font-size: 3.25rem;
+    font-weight: 700;
+    line-height: 4.25rem;
+}
+@media (min-width:768px) {
+    .masthead {
+        padding-top: 5rem;
+        padding-bottom: 7rem;
+    }
+    .masthead .masthead-subheading {
+        font-size: 2.25rem;
+        font-style: italic;
+        line-height: 2.25rem;
+    }
+    .masthead .masthead-heading {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 3.5rem;
+    }
+}
+.animasi-atas {
+    position: relative;
+    animation-name: pindah_atas;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+@keyframes pindah_atas {
+    from {
+        top: -100px;
+    }
+    to {
+        top: 0;
+    }
+}
+.animasi-kiri {
+    position: relative;
+    animation-name: pindah_kiri;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+@keyframes pindah_kiri {
+    from {
+        left: -300px;
+    }
+    to {
+        left: 0;
+    }
+}
+.animasi-kanan {
+    position: relative;
+    animation-name: pindah_kanan;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+@keyframes pindah_kanan {
+    from {
+        right: -300px;
+    }
+    to {
+        right: 0;
+    }
+}
+
+.navbar {
+    background-color: #fff;
+}
+.dropdown-menu > li > a,
+.main-header .navbar-brand,
+.navbar-nav > li > a,
+.navbar-toggle {
+    color: rgb(0 0 0);
+}
+.nav>li>a:hover, .nav>li>a:active, .nav>li>a:focus {
+    color: #f7f7f7;
+    background: rgb(0 0 1);
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #f7f7f7;
+    background: rgb(0 0 1);
+}
+
+.data a {
+    text-decoration: none !important;
+}
+
+#sosmed .card .card-body {
+    overflow-y:auto;
+    height:65vh
+}
