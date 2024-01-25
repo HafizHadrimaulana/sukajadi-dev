@@ -27,7 +27,7 @@ class PKLController extends Controller
                 $join->on("b.id_j_kelurahan", "=", "a.kelurahan_t_data_pkl");
             })
             ->select("a.kelurahan_t_data_pkl", "b.nama_j_kelurahan", DB::raw('COUNT(*) as jumlah'))
-            ->groupBy("a.kelurahan_t_data_pkl")
+            ->groupBy("a.kelurahan_t_data_pkl", "b.nama_j_kelurahan")
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){
