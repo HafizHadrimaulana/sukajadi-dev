@@ -135,6 +135,18 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
         Route::delete('/{id}/delete','TimeLineController@destroy')->name('delete');
     });
 
+    
+    Route::prefix('/livechat')->name('livechat.')->group(function () {
+        Route::get('/', 'LiveChatController@index')->name('index');
+        Route::get('/create', 'LiveChatController@create')->name('create');
+        Route::post('/store','LiveChatController@store')->name('store');
+        Route::get('/data', 'LiveChatController@data')->name('data');
+        Route::get('/{id}', 'LiveChatController@show')->name('show');
+        Route::get('/{id}/edit','LiveChatController@edit')->name('edit');
+        Route::post('/{id}/update','LiveChatController@update')->name('update');
+        Route::delete('/{id}/delete','LiveChatController@destroy')->name('delete');
+    });
+
     Route::namespace('Data')->group(function(){
         
         Route::prefix('/mitra')->name('mitra.')->group(function () {

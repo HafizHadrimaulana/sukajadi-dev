@@ -19,6 +19,12 @@ $links = [
       "is_multi" => false
     ],
     [
+      "href" => route('admin.livechat.index'),
+      "text" => "LIVECHAT",
+      "icon" => "fas fa-comments",
+      "is_multi" => false
+    ],
+    [
         "text" => "LAPORAN",
         "icon" => "fa fa-list-alt",
         "is_multi" => true,

@@ -22,30 +22,35 @@
     <section class="content">
         <div class="container">
             <div class="timeline">
-                @foreach($data as $t)
+                @foreach($data as $date => $timelines)
                 <div class="time-label">
-                    <span class="bg-red">10 Feb. 2014</span>
+                    <span class="bg-red">{{ \Carbon\Carbon::parse($date)->translatedFormat('l, jS F, Y') }}</span>
                 </div>
-
-
-                <div>
-                    <i class="fas fa-envelope bg-blue"></i>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fas fa-clock"></i> 12:05</span>
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                        <div class="timeline-body">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                            quora plaxo ideeli hulu weebly balihoo...
-                        </div>
-                        <div class="timeline-footer">
-                            <a class="btn btn-primary btn-sm">Read more</a>
-                            <a class="btn btn-danger btn-sm">Delete</a>
+                    @foreach($timelines as $d)
+                    <div>
+                        <i class="fab fa-whatsapp bg-success"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fas fa-clock"></i> {{ \Carbon\Carbon::parse($d->jam_kegiatan)->translatedFormat('H:i') }} - {{ \Carbon\Carbon::parse($d->tanggal_kegiatan)->translatedFormat('jS F Y') }}</span>
+                            <h3 class="timeline-header">
+                                Kecamatan Sukajadi
+                            </h3>
+                            <div class="timeline-body">
+                                <div class="timeline-gallery">
+                                    @foreach ($d->foto as $f)
+                                        <a href="/storage{{ $f->nama_foto }}">
+                                            <img src="/storage{{ $f->nama_foto }}"/>
+                                        </a>
+                                    @endforeach
+                                </div>
+                                {!! $d->nama_kegiatan !!}
+                            </div>
+                            {{-- <div class="timeline-footer">
+                                <a class="btn btn-primary btn-sm">Read more</a>
+                                <a class="btn btn-danger btn-sm">Delete</a>
+                            </div> --}}
                         </div>
                     </div>
-                </div>
-                
+                    @endforeach
                 @endforeach
 
             </div>
