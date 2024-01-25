@@ -30,7 +30,7 @@ class MedsosController extends Controller
                 $join->on("b.id_j_data_medsos", "=", "a.id_j_data_medsos");
             })
             ->select("a.id_j_data_medsos", "b.nama_j_data_medsos", DB::raw('COUNT(*) as jumlah'))
-            ->groupBy("a.id_j_data_medsos")
+            ->groupBy("a.id_j_data_medsos", "b.nama_j_data_medsos")
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){

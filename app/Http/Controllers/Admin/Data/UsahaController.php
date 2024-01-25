@@ -27,7 +27,7 @@ class UsahaController extends Controller
                 $join->on("b.id_j_data_usaha", "=", "a.id_j_data_usaha");
             })
             ->select("a.id_j_data_usaha", "b.nama_j_data_usaha", DB::raw('COUNT(*) as jumlah'))
-            ->groupBy("a.id_j_data_usaha")
+            ->groupBy("a.id_j_data_usaha", "b.nama_j_data_usaha")
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){

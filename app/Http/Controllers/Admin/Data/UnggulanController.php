@@ -27,7 +27,7 @@ class UnggulanController extends Controller
                 $join->on("b.id_j_data_unggulan", "=", "a.id_j_data_unggulan");
             })
             ->select("a.id_j_data_unggulan", "b.nama_j_data_unggulan", DB::raw('COUNT(*) as jumlah'))
-            ->groupBy("a.id_j_data_unggulan")
+            ->groupBy("a.id_j_data_unggulan", "b.nama_j_data_unggulan")
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){

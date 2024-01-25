@@ -32,7 +32,7 @@ class MitraController extends Controller
             })
             ->select("a.id_j_data_mitra", "b.nama_j_data_mitra", DB::raw('COUNT(*) as jumlah', 'a.id_j_tahun'))
             ->where('a.id_j_tahun', $tahun)
-            ->groupBy("a.id_j_data_mitra")
+            ->groupBy("a.id_j_data_mitra", "b.nama_j_data_mitra")
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row) use ($tahun){

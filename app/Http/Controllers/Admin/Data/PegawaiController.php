@@ -26,7 +26,7 @@ class PegawaiController extends Controller
                 $join->on("b.id_j_data_pegawai", "=", "a.id_j_data_pegawai");
             })
             ->select("a.id_j_data_pegawai", "b.nama_j_data_pegawai", DB::raw('COUNT(*) as jumlah'))
-            ->groupBy("a.id_j_data_pegawai")
+            ->groupBy("a.id_j_data_pegawai", "b.nama_j_data_pegawai")
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){
