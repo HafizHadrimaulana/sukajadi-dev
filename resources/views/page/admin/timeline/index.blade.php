@@ -44,7 +44,6 @@
                     <tr>
                         <th>TANGGAL</th>
                         <th>KEGIATAN</th>
-                        <th>SOPD</th>
                         <th>KETERANGAN</th>
                         <th>FOTO</th>
                         <th width="60px"></th>
@@ -109,7 +108,7 @@
                 serverSide: true,
                 dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                 ajax: {
-                    url : "{{ route('admin.kegiatan.index') }}",
+                    url : "{{ route('admin.timeline.index') }}",
                     data : function(data){
                             var tahun = $("#filter-tahun").val();
                             var bulan = $("#filter-bulan").val();
@@ -120,16 +119,10 @@
                     }
                 },
                 columns: [
-                    {data: 'tanggal_t_kegiatan', name: 'tanggal_t_kegiatan'},
+                    {data: 'tanggal_kegiatan', name: 'tanggal_kegiatan'},
                     {data: 'nama_j_kegiatan', name: 'nama_j_kegiatan'},
-                    {data: 'volume_t_kegiatan', name: 'volume_t_kegiatan'},
-                    {data: 'nama_j_satuan', name: 'nama_j_satuan'},
-                    {data: 'lokasi_t_kegiatan', name: 'lokasi_t_kegiatan'},
-                    {data: 'keterangan_t_kegiatan', name: 'keterangan_t_kegiatan'},
-                    {data: 'foto_awal_t_kegiatan', name: 'foto_awal_t_kegiatan'},
-                    {data: 'foto_proses_t_kegiatan', name: 'foto_proses_t_kegiatan'},
-                    {data: 'foto_akhir_t_kegiatan', name: 'foto_akhir_t_kegiatan'},
-                    // {data: 'nama_j_sopd', name: 'nama_j_sopd'},
+                    {data: 'nama_kegiatan', name: 'nama_kegiatan'},
+                    {data: 'foto', name: 'foto'},
                     {
                         data: 'action', 
                         name: 'action', 

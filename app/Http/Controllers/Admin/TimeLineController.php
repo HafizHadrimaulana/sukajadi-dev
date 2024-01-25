@@ -22,45 +22,44 @@ class TimeLineController extends Controller
     public function index(Request $request)
     {
         
+        // $data = Timeline::with(['foto'])
+        // ->join("j_kegiatan as b", function($join){
+        //     $join->on("b.id_j_kegiatan", "=", "t_p_kegiatan.id_j_kegiatan");
+        // })
+        // ->select("t_p_kegiatan.*", "b.nama_j_kegiatan")
+        // ->orderBy('id', 'DESC')
+        // ->get(1);
+        // dd($data);
         if ($request->ajax()) {
             
             $tahun = $request->tahun;
             $bulan = $request->bulan;
             $sopd = $request->sopd;
             
-            $data = DB::table("t_kegiatan as a")
+            $data = Timeline::with(['foto'])
             ->join("j_kegiatan as b", function($join){
-                $join->on("b.id_j_kegiatan", "=", "a.id_j_kegiatan");
+                $join->on("b.id_j_kegiatan", "=", "t_p_kegiatan.id_j_kegiatan");
             })
-            ->join("j_satuan as c", function($join){
-                $join->on("c.id_j_satuan", "=", "a.id_j_satuan");
-            })
-            // ->join("j_sopd as d", function($join){
-            //     $join->on("d.id_j_sopd", "=", "a.id_j_sopd");
-            // })
-            ->select("a.*", "b.nama_j_kegiatan", "c.nama_j_satuan")
-            ->where('a.id_j_tahun', $tahun)
-            ->where('a.id_j_bulan', $bulan)
-            // ->where('a.id_j_tahun', $tahun)
+            ->select("t_p_kegiatan.*", "b.nama_j_kegiatan")
+            ->orderBy('id', 'DESC')
             ->get();
+            
             return DataTables::of($data)
-                ->addColumn('action', function($row) use ($tahun){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.kegiatan.show', ['id' => $row->id_t_kegiatan]) .'><i class="fa fa-list"></i> Detail</a>';
+                ->addColumn('action', function($row){
+                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.timeline.show', $row->id) .'><i class="fa fa-list"></i> Detail</a>';
                     return $btn; 
                 })
-                ->addColumn('foto_awal_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_awal_t_kegiatan .'" class="circle-avatar"/>';
+                ->addColumn('foto', function($row){
+
+                    if(count($row->foto)){
+                        $foto = $row->foto[0]->nama_foto;
+                    }else{
+                        $foto = '';
+                    }
+                    $btn = '<img src="'. $foto .'" class="circle-avatar"/>';
                     return $btn; 
                 })
-                ->addColumn('foto_proses_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_proses_t_kegiatan .'" class="circle-avatar"/>';
-                    return $btn; 
-                })
-                ->addColumn('foto_akhir_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_akhir_t_kegiatan .'" class="circle-avatar"/>';
-                    return $btn; 
-                })
-                ->rawColumns(['action', 'foto_awal_t_kegiatan', 'foto_proses_t_kegiatan', 'foto_akhir_t_kegiatan']) 
+                ->rawColumns(['action', 'foto', 'nama_kegiatan']) 
                 ->make(true);
         }
         return view('page.admin.timeline.index');
@@ -90,7 +89,7 @@ class TimeLineController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $rules = [
             'jenis_kegiatan' => 'required',
             'keterangan' => 'required',
@@ -107,36 +106,49 @@ class TimeLineController extends Controller
         }else{
             DB::beginTransaction();
             try{
-                $tgl = Carbon::parse($request->tgl);
+                $tgl = Carbon::today();
 
                 $data = new TimeLine();
-                $data->id_j_tahun = $tgl->format('Y');
-                $data->id_j_bulan = $tgl->format('Ym');
-                $data->tanggal_t_kegiatan = $tgl->format('Y-m-d');
+                $data->tanggal_kegiatan = $tgl->format('Y-m-d');
+                $data->jam_kegiatan = $tgl->format('H:i');
                 $data->id_j_kegiatan = $request->jenis_kegiatan;
-                $data->volume_t_kegiatan = $request->volume;
-                $data->id_j_satuan = $request->satuan;
-                $data->keterangan_t_kegiatan = $request->keterangan;
-                $data->lokasi_t_kegiatan = $request->lokasi;
-                $data->lat_t_kegiatan = $request->lat;
-                $data->lng_t_kegiatan = $request->lng;
-
-                if($request->foto1){
-                    $fileName = time().uniqid() . '.' . $request->foto1->extension();
-                    Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto1, $fileName);
-                    $data->foto_awal_t_kegiatan = '/uploads/kegiatan/'.$fileName;
-                }
-                if($request->foto2){
-                    $fileName = time().uniqid() . '.' . $request->foto2->extension();
-                    Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto2, $fileName);
-                    $data->foto_proses_t_kegiatan = '/uploads/kegiatan/'.$fileName;
-                }
-                if($request->foto3){
-                    $fileName = time().uniqid() . '.' . $request->foto3->extension();
-                    Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto3, $fileName);
-                    $data->foto_akhir_t_kegiatan = '/uploads/kegiatan/'.$fileName;
-                }
+                $data->nama_kegiatan = $request->keterangan;
+                $data->lokasi_kegiatan = $request->alamat;
+                $data->lat_kegiatan = $request->lat;
+                $data->lng_kegiatan = $request->lng;
+                $data->status_kegiatan = ($request->status_kegiatan) ? 1  : 0;
+                $data->id_user = auth()->user()->id;
                 $data->save();
+                if(count($request->foto)){
+                    foreach($request->foto as $f){
+                        
+                        $fileName = time().uniqid() . '.' . $f->extension();
+                        Storage::disk('public')->putFileAs('uploads/timeline', $f, $fileName);
+
+                        $foto = new TimeLineFoto();
+                        $foto->id_user = auth()->user()->id;
+                        $foto->nama_foto = '/uploads/timeline/'.$fileName;
+                        // $foto->size = $f->size();
+                        $data->foto()->save($foto);
+                    }
+
+                }
+
+                // if($request->foto1){
+                //     $fileName = time().uniqid() . '.' . $request->foto1->extension();
+                //     Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto1, $fileName);
+                //     $data->foto_awal_t_kegiatan = '/uploads/kegiatan/'.$fileName;
+                // }
+                // if($request->foto2){
+                //     $fileName = time().uniqid() . '.' . $request->foto2->extension();
+                //     Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto2, $fileName);
+                //     $data->foto_proses_t_kegiatan = '/uploads/kegiatan/'.$fileName;
+                // }
+                // if($request->foto3){
+                //     $fileName = time().uniqid() . '.' . $request->foto3->extension();
+                //     Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto3, $fileName);
+                //     $data->foto_akhir_t_kegiatan = '/uploads/kegiatan/'.$fileName;
+                // }
 
             }catch(\QueryException $e){
                 DB::rollback();
@@ -144,7 +156,7 @@ class TimeLineController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.kegiatan.index');
+            return redirect()->route('admin.timeline.index');
         }
     }
 
@@ -156,7 +168,11 @@ class TimeLineController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Timeline::with('foto')->where('id', $id)->first();
+        // dd($data);
+        return view('page.admin.timeline.show',[
+            'data' => $data
+        ]);
     }
 
     /**

@@ -20,11 +20,34 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap4-theme@1.0.0/dist/select2-bootstrap4.min.css">        
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         @yield('script_head')
         @stack('styles')
         <style>
             .is-invalid + .select2-container--bootstrap .select2-selection--single {
                 border: 1px solid #dc3545 !important;
+            }
+
+            .timeline-gallery{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .timeline-gallery a{
+                width: 100px;
+                height: 100px;
+                overflow: hidden;
+                margin-right: 10px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+
+            .timeline-gallery a:first-child {
+                margin-left: 0;
+            }
+            .timeline-gallery img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         </style>
         <!-- jQuery -->
@@ -39,6 +62,7 @@
         <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         @stack('scripts')
     </head>
     <body class="hold-transition sidebar-mini">
@@ -67,6 +91,14 @@
         <script>
             $(document).ready(function() {
                 $('.select2').select2();
+
+                $('.timeline-gallery').magnificPopup({
+                    delegate: 'a',
+                    type: 'image',
+                    gallery:{
+                        enabled:true
+                    }
+                });
             });
         </script>
     </body>
