@@ -128,6 +128,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
             Route::get('/create', 'PegawaiController@create')->name('create');
             Route::post('/store','PegawaiController@store')->name('store');
             Route::get('/data', 'PegawaiController@data')->name('data');
+            Route::get('/export', 'PegawaiController@export')->name('export');
             Route::get('/{id}', 'PegawaiController@show')->name('show');
             Route::get('/{id}/edit','PegawaiController@edit')->name('edit');
             Route::post('/{id}/update','PegawaiController@update')->name('update');
@@ -139,6 +140,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
             Route::get('/create', 'SaranaController@create')->name('create');
             Route::post('/store','SaranaController@store')->name('store');
             Route::get('/data', 'SaranaController@data')->name('data');
+            Route::get('/export', 'SaranaController@export')->name('export');
             Route::get('/{id}', 'SaranaController@show')->name('show');
             Route::get('/{id}/edit','SaranaController@edit')->name('edit');
             Route::post('/{id}/update','SaranaController@update')->name('update');
@@ -150,6 +152,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
             Route::get('/create', 'UsahaController@create')->name('create');
             Route::post('/store','UsahaController@store')->name('store');
             Route::get('/data', 'UsahaController@data')->name('data');
+            Route::get('/export', 'UsahaController@export')->name('export');
             Route::get('/{id}', 'UsahaController@show')->name('show');
             Route::get('/{id}/edit','UsahaController@edit')->name('edit');
             Route::post('/{id}/update','UsahaController@update')->name('update');

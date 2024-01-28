@@ -64,7 +64,7 @@
                 serverSide: true,
                 dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                 ajax: {
-                    url : "{{ route('admin.usaha.show', $data->id_j_data_usaha) }}",
+                    url : "{{ route('admin.kda.usaha.show', $data->id_j_data_usaha) }}",
                     data : function(data){
                             var tahun = $("#filter-tahun").val();
                             data.tahun = tahun;
@@ -72,12 +72,11 @@
                 },
                 columns: [
                     {data: 'nama_t_data_usaha', name: 'nama_t_data_usaha'},
-                    {data: 'alamat_t_data_usaha', name: 'alamat_t_data_usaha'},
-                    {data: 'rt_t_data_usaha', name: 'rt_t_data_usaha'},
-                    {data: 'rw_t_data_usaha', name: 'rw_t_data_usaha'},
-                    {data: 'nama_j_sopd', name: 'nama_j_sopd'},
-                    {data: 'keterangan_t_data_usaha', name: 'keterangan_t_data_usaha'},
-                    {data: 'detail_t_data_usaha', name: 'detail_t_data_usaha'},
+                    {data: 'pemilik_t_data_usaha', name: 'pemilik_t_data_usaha'},
+                    {data: 'merk_t_data_usaha', name: 'merk_t_data_usaha'},
+                    {data: 'izin_t_data_usaha', name: 'izin_t_data_usaha'},
+                    {data: 'no_izin_t_data_usaha', name: 'no_izin_t_data_usaha'},
+                    {data: 'tahun_berdiri_t_data_usaha', name: 'tahun_berdiri_t_data_usaha'},
                     {
                         data: 'action', 
                         name: 'action', 

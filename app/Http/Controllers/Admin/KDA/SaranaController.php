@@ -39,7 +39,7 @@ class SaranaController extends Controller
                 ->make(true);
         }
 
-        return view('page.admin.data.sarpras.index',[
+        return view('page.admin.kda.sarpras.index',[
             'jenis' => $jenis,
         ]);
     }
@@ -80,7 +80,7 @@ class SaranaController extends Controller
 
         $data = DB::table('j_data_sarpras')->select('*')->where('id_j_data_sarpras', $id)->first();
 
-        return view('page.admin.data.sarpras.detail',[
+        return view('page.admin.kda.sarpras.detail',[
             'jenis' => $jenis,
             'data' => $data
         ]);
@@ -97,7 +97,7 @@ class SaranaController extends Controller
         $jenis = DB::table('j_data_sarpras')->select('*')->orderBy('nama_j_data_sarpras','ASC')->get();
         $kelurahan = DB::table('j_kelurahan')->select('*')->orderBy('nama_j_kelurahan','ASC')->get();
 
-        return view('page.admin.data.sarpras.create',[
+        return view('page.admin.kda.sarpras.create',[
             'jenis' => $jenis,
             'kelurahan' => $kelurahan
         ]);
@@ -161,7 +161,7 @@ class SaranaController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.data.sarpras.show', $request->jenis);
+            return redirect()->route('admin.kda.sarpras.show', $request->jenis);
         }
     }
 
@@ -177,7 +177,7 @@ class SaranaController extends Controller
         $kelurahan = DB::table('j_kelurahan')->select('*')->orderBy('nama_j_kelurahan','ASC')->get();
 
         $data = DB::table('t_data_sarpras')->where('id_t_data_sarpras', $id)->first();
-        return view('page.admin.data.sarpras.edit',[
+        return view('page.admin.kda.sarpras.edit',[
             'jenis' => $jenis,
             'kelurahan' => $kelurahan,
             'data' => $data

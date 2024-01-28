@@ -21,7 +21,6 @@ class UsahaController extends Controller
 
         if ($request->ajax()) {
             
-            
             $data = DB::table("t_data_usaha as a")
             ->join("j_data_usaha as b", function($join){
                 $join->on("b.id_j_data_usaha", "=", "a.id_j_data_usaha");
@@ -31,14 +30,14 @@ class UsahaController extends Controller
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.usaha.show', ['id' => $row->id_j_data_usaha]) .'><i class="fa fa-list"></i> Detail</a>';
+                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.kda.usaha.show', ['id' => $row->id_j_data_usaha]) .'><i class="fa fa-list"></i> Detail</a>';
                     return $btn; 
                 })
                 ->rawColumns(['action']) 
                 ->make(true);
         }
 
-        return view('page.admin.data.usaha.index',[
+        return view('page.admin.kda.usaha.index',[
             'jenis' => $jenis,
         ]);
     }
@@ -79,7 +78,7 @@ class UsahaController extends Controller
 
         $data = DB::table('j_data_usaha')->select('*')->where('id_j_data_usaha', $id)->first();
 
-        return view('page.admin.data.usaha.detail',[
+        return view('page.admin.kda.usaha.detail',[
             'jenis' => $jenis,
             'data' => $data
         ]);
@@ -128,5 +127,12 @@ class UsahaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    
+    public function export(Request $request)
+    {
+        //
+        dd($request->all());
     }
 }

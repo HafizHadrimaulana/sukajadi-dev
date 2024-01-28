@@ -49,6 +49,14 @@
                 height: 100%;
                 object-fit: cover;
             }
+            
+            .select2-close-mask{
+                z-index: 2099;
+            }
+
+            .select2-dropdown{
+                z-index: 3051;
+            }
         </style>
         <!-- jQuery -->
         <script src="{{ asset('vendor/adminlte3/plugins/jquery/jquery.min.js') }}"></script>
