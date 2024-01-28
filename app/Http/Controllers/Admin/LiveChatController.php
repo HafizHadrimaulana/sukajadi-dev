@@ -10,7 +10,7 @@ use DataTables;
 use Carbon\Carbon;
 use App\Models\Kegiatan;
 use Storage;
-
+use App\Models\Chat;
 class LiveChatController extends Controller
 {
     /**
@@ -20,8 +20,11 @@ class LiveChatController extends Controller
      */
     public function index(Request $request)
     {
+        $chats = Chat::withCount('unseen_messages')->orderBy('unseen_messages_count', 'desc')->paginate(10);
 
-        return view('page.admin.livechat.index');
+        return view('page.admin.livechat.index',[
+            'chats' => $chats
+        ]);
     }
 
     /**

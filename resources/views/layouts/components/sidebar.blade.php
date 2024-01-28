@@ -136,6 +136,33 @@ $links = [
             ]
         ]
     ],
+    [
+        "text" => "DATA KDA",
+        "icon" => "fa fa-list-alt",
+        "is_multi" => true,
+        "href" => [
+            [
+                "section_text" => "Pegawai",
+                "section_icon" => "fas fa-circle",
+                "section_href" => route('admin.kda.pegawai.index')
+            ],
+            [
+                "section_text" => "Sarana & Prasarana",
+                "section_icon" => "fas fa-circle",
+                "section_href" => route('admin.kda.sarpras.index')
+            ],
+            [
+                "section_text" => "Usaha",
+                "section_icon" => "fas fa-circle",
+                "section_href" => route('admin.kda.usaha.index')
+            ],
+            [
+                "section_text" => "Pengajuan",
+                "section_icon" => "fas fa-circle",
+                "section_href" => route('admin.kda.pengajuan.index')
+            ],
+        ]
+    ],
     // [
     //     "text" => "LAYANAN",
     //     "icon" => "fas fa-street-view",

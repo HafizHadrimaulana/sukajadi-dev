@@ -41,49 +41,17 @@ Route::get('/akun', [HomeController::class, 'index'])
         Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');
     });
 
-//     Route::controller(AkunController::class)
-//         ->prefix('akun')
-//         ->as('akun.')
-//         ->group(function () {
-//             Route::get('/', 'index')->name('index');
-//             Route::post('showdata', 'dataTable')->name('dataTable');
-//             Route::match(['get','post'],'tambah', 'tambahAkun')->name('add');
-//             Route::match(['get','post'],'{id}/ubah', 'ubahAkun')->name('edit');
-//             Route::delete('{id}/hapus', 'hapusAkun')->name('delete');
-//         });
-//         Route::get('/dataKegiatan', [HomeController::class, 'dataKegiatan'])->name('dataKegiatan');
-//         Route::get('/kalender', [HomeController::class, 'kalender'])->name('kalender');
-//         Route::get('/suratMasuk', [HomeController::class, 'suratMasuk'])->name('suratMasuk');
-//         Route::get('/suratKeluar', [HomeController::class, 'suratKeluar'])->name('suratKeluar');
-//         Route::get('/suratKeputusan', [HomeController::class, 'suratKeputusan'])->name('suratKeputusan');
-//         Route::get('/cetak-laporan-agenda', [HomeController::class, 'cetakLaporanagenda'])->name('cetak-laporan-agenda');
-//         Route::get('/cetak-laporan-surat-masuk', [HomeController::class, 'cetakLaporansuratmasuk'])->name('cetak-laporan-surat-masuk');
-//         Route::get('/cetak-laporan-surat-keluar', [HomeController::class, 'cetakLaporansuratkeluar'])->name('cetak-laporan-surat-keluar');
-//         Route::get('/cetak-laporan-surat-keputusan', [HomeController::class, 'cetakLaporansuratkeputusan'])->name('cetak-laporan-surat-keputusan');
-//         Route::get('/mitra', [HomeController::class, 'mitra'])->name('mitra');
-//         Route::get('/media-sosial', [HomeController::class, 'mediaSosial'])->name('mediaSosial');
-//         Route::get('/pegawai', [HomeController::class, 'pegawai'])->name('pegawai');
-//         Route::get('/penghargaan', [HomeController::class, 'penghargaan'])->name('penghargaan');
-//         Route::get('/sarana-dan-prasarana', [HomeController::class, 'saranaDanprasarana'])->name('saranaDanprasarana');
-//         Route::get('/usaha', [HomeController::class, 'usaha'])->name('usaha');
-//         Route::get('/unggulan', [HomeController::class, 'unggulan'])->name('unggulan');
-//         Route::get('/pkl', [HomeController::class, 'pkl'])->name('pkl');
-//         Route::get('/pkb', [HomeController::class, 'pkb'])->name('pkb');
-//         Route::get('/pbb', [HomeController::class, 'pbb'])->name('pbb');
-//         Route::get('/data-warga', [HomeController::class, 'dataWarga'])->name('dataWarga');
-//         Route::get('/rembug-warga', [HomeController::class, 'rembugWargaadmin'])->name('rembugWargaadmin');
-//         Route::get('/matrix-pippk', [HomeController::class, 'matrixPippk'])->name('matrixPippk');
-//         Route::get('/file', [HomeController::class, 'file'])->name('file');
-//         Route::get('/link', [HomeController::class, 'link'])->name('link');
-//         Route::get('/pemberitahuan', [HomeController::class, 'pemberitahuan'])->name('pemberitahuan');
-//         Route::get('/tahun', [HomeController::class, 'tahun'])->name('tahun');
-//         Route::get('/bulan', [HomeController::class, 'bulan'])->name('bulan');
-//         Route::get('/tahunAnggaran', [HomeController::class, 'tahunAnggaran'])->name('tahunAnggaran');
-//         Route::resource('sarpras',(GisController::class));
-// });
 Route::prefix('/json')->name('json.')->group(function () {
     Route::get('/bulan', 'JsonController@bulan')->name('bulan');
     Route::get('/sopd', 'JsonController@sopd')->name('sopd');
+});
+
+
+Route::prefix('/chat')->name('chat.')->group(function () {
+    Route::get('/', 'ChatController@index')->name('index');
+    Route::post('/create', 'ChatController@create')->name('create');
+    Route::get('/get-message', 'ChatController@message')->name('message');
+    Route::post('/sent-message', 'ChatController@send')->name('send');
 });
 // Menambahkan rute untuk bagian Laporan
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -103,6 +71,11 @@ Route::name('data.')->group(function () {
         Route::get('/', 'DataController@sarpras')->name('index');
         Route::get('/{id}', 'DataController@sarprasDetail')->name('show');
         Route::get('/{id}/data', 'DataController@sarprasData')->name('data');
+    });
+
+    Route::prefix('/kda')->name('kda.')->group(function () {
+        Route::get('/', 'KDAController@index')->name('index');
+        Route::post('/store', 'KDAController@store')->name('store');
     });
 });
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->group(function(){
@@ -147,6 +120,55 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
         Route::delete('/{id}/delete','LiveChatController@destroy')->name('delete');
     });
 
+
+    Route::namespace('KDA')->prefix('/kda')->name('kda.')->group(function () {
+        
+        Route::prefix('/pegawai')->name('pegawai.')->group(function () {
+            Route::get('/', 'PegawaiController@index')->name('index');
+            Route::get('/create', 'PegawaiController@create')->name('create');
+            Route::post('/store','PegawaiController@store')->name('store');
+            Route::get('/data', 'PegawaiController@data')->name('data');
+            Route::get('/{id}', 'PegawaiController@show')->name('show');
+            Route::get('/{id}/edit','PegawaiController@edit')->name('edit');
+            Route::post('/{id}/update','PegawaiController@update')->name('update');
+            Route::delete('/{id}/delete','PegawaiController@destroy')->name('delete');
+        });
+        
+        Route::prefix('/sarana-prasarana')->name('sarpras.')->group(function () {
+            Route::get('/', 'SaranaController@index')->name('index');
+            Route::get('/create', 'SaranaController@create')->name('create');
+            Route::post('/store','SaranaController@store')->name('store');
+            Route::get('/data', 'SaranaController@data')->name('data');
+            Route::get('/{id}', 'SaranaController@show')->name('show');
+            Route::get('/{id}/edit','SaranaController@edit')->name('edit');
+            Route::post('/{id}/update','SaranaController@update')->name('update');
+            Route::delete('/{id}/delete','SaranaController@destroy')->name('delete');
+        });
+        
+        Route::prefix('/usaha')->name('usaha.')->group(function () {
+            Route::get('/', 'UsahaController@index')->name('index');
+            Route::get('/create', 'UsahaController@create')->name('create');
+            Route::post('/store','UsahaController@store')->name('store');
+            Route::get('/data', 'UsahaController@data')->name('data');
+            Route::get('/{id}', 'UsahaController@show')->name('show');
+            Route::get('/{id}/edit','UsahaController@edit')->name('edit');
+            Route::post('/{id}/update','UsahaController@update')->name('update');
+            Route::delete('/{id}/delete','UsahaController@destroy')->name('delete');
+        });
+
+        
+        Route::prefix('/pengajuan')->name('pengajuan.')->group(function () {
+            Route::get('/', 'PengajuanController@index')->name('index');
+            Route::get('/create', 'PengajuanController@create')->name('create');
+            Route::post('/store','PengajuanController@store')->name('store');
+            Route::get('/data', 'PengajuanController@data')->name('data');
+            Route::get('/{id}', 'PengajuanController@show')->name('show');
+            Route::get('/{id}/edit','PengajuanController@edit')->name('edit');
+            Route::post('/{id}/update','PengajuanController@update')->name('update');
+            Route::delete('/{id}/delete','PengajuanController@destroy')->name('delete');
+        });
+    });
+    
     Route::namespace('Data')->group(function(){
         
         Route::prefix('/mitra')->name('mitra.')->group(function () {
@@ -250,8 +272,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
             Route::post('/{id}/update','PKLController@update')->name('update');
             Route::delete('/{id}/delete','PKLController@destroy')->name('delete');
         });
-        
     });
+
 
     Route::namespace('Pengaturan')->group(function(){
         

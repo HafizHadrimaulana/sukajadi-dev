@@ -1,10 +1,10 @@
-const pusher = new Pusher('qwerty12345', {
+const pusher = new Pusher('48d7eff46a84a5298751', {
     wsHost: '127.0.0.1',
     wsPort: 6001,
     wssPort: 6001,
     disableStats: true,
     enabledTransports: ['ws', 'wss'],
-    cluster: 'mt1',
+    cluster: 'ap1',
 });
 var chats_update_channel = pusher.subscribe('chats-update');
 chats_update_channel.bind('chats', function (response) {

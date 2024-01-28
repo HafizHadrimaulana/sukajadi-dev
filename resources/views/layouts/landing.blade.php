@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Portal | </title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -38,7 +40,7 @@
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('js/pusher.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/8.3.0/pusher.min.js" integrity="sha512-tXL5mrkSoP49uQf2jO0LbvzMyFgki//znmq0wYXGq94gVF6TU0QlrSbwGuPpKTeN1mIjReeqKZ4/NJPjHN1d2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('js/jquery-cookie.min.js') }}"></script>
     <script src="{{ asset('js/pusher-front.js') }}"></script>
 
@@ -46,6 +48,11 @@
     @stack('scripts')
     
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $(document).ready(function() {
             $('.timeline-gallery').each(function() { // the containers for all your galleries
                 $(this).magnificPopup({
@@ -83,6 +90,7 @@
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li><a href="{{ route('data.penghargaan.index') }}" class="dropdown-item">Penghargaan </a></li>
                                 <li><a href="{{ route('data.sarpras.index') }}" class="dropdown-item">Sarana & Prasarana</a></li>
+                                <li><a href="{{ route('data.kda.index') }}" class="dropdown-item">Pengajuan Data KDA</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -109,7 +117,7 @@
         </aside>
 
 
-        <div class="back-to-top">
+        <div class="live-chat">
             <button class="chat-button">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
@@ -127,79 +135,89 @@
                             </button>
                         </div>
                     </div>
-
-                    <div class="card-body">
-
-                        <div class="direct-chat-messages">
-
-                            <div class="direct-chat-msg">
-                                <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-name float-left">Alexander Pierce</span>
-                                    <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                    <div id="messagesContainer" style="display: none">
+                        <div class="card-body">
+                            <div class="direct-chat-messages">
+                                <div class="direct-chat-msg">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-left">Admin</span>
+                                        <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                                    </div>
+                                    <div class="direct-chat-text ms-0">
+                                        Hello ada yang bisa saya bantu ?
+                                    </div>
                                 </div>
-
-                                <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg"
-                                    alt="Message User Image">
-
-                                <div class="direct-chat-text">
-                                    Is this template really for free? That's unbelievable!
+    
+                                <div class="common-chat">
+                                    <div class="common-chat-head">
+                                        Silahkan Pilih Topik Yang Ingin Kamu Tanyakan,
+                                    </div>
+                                    <div class="common-chat-body">
+                                        <ul>
+                                            <li>
+                                                Pembuatan KTP
+                                            </li>
+                                            <li>
+                                                Pembuatan KK
+                                            </li>
+                                            <li>
+                                                Pengurusan Surat Pindah / Masuk
+                                            </li>
+                                            <li>
+                                                Pengurusan Akta Kelahiran
+                                            </li>
+                                            <li>
+                                                Pengurusan Surat Izin Usaha
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-
+    
+                                <div class="direct-chat-msg right">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-right">Sarah Bullock</span>
+                                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                                    </div>
+                                    <div class="direct-chat-text me-0">
+                                        You better believe it!
+                                    </div>
+                                </div>
                             </div>
-
-
-                            <div class="direct-chat-msg right">
-                                <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-name float-right">Sarah Bullock</span>
-                                    <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                                </div>
-
-                                <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg"
-                                    alt="Message User Image">
-
-                                <div class="direct-chat-text">
-                                    You better believe it!
-                                </div>
-
-                            </div>
-
                         </div>
-
-
-                        <div class="direct-chat-contacts">
-                            <ul class="contacts-list">
-                                <li>
-                                    <a href="#">
-                                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg"
-                                            alt="User Avatar">
-                                        <div class="contacts-list-info">
-                                            <span class="contacts-list-name">
-                                                Count Dracula
-                                                <small class="contacts-list-date float-right">2/28/2015</small>
-                                            </span>
-                                            <span class="contacts-list-msg">How have you been? I was...</span>
-                                        </div>
-
-                                    </a>
-                                </li>
-
-                            </ul>
-
+    
+                        <div class="card-footer">
+                            <form id="messageForm" method="POST">
+                                <div class="input-group">
+                                    <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                                    <span class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </span>
+                                </div>
+                            </form>
                         </div>
-
                     </div>
-
-                    <div class="card-footer">
-                        <form action="#" method="post">
-                            <div class="input-group">
-                                <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                                <span class="input-group-append">
-                                    <button type="submit" class="btn btn-primary">Send</button>
-                                </span>
+                    <div id="chatContactContainer" class="card-body py-3 px-2" style="display:none">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="chat-name">Nama</label>
+                                <input name="name" type="text" placeholder="John Doe" class="form-control" id="chat-name">
+                                <div id="error-name" class="invalid-feedback"></div>
                             </div>
+                            <div class="form-group">
+                                <label for="chat-email">Email</label>
+                                <input name="email" type="text" placeholder="email@gmail.com" class="form-control" id="chat-email">
+                                <div id="error-email" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="chat-hp">No Handphone</label>
+                                <input name="hp" type="text" placeholder="+62" class="form-control" id="chat-hp">
+                                <div id="error-hp" class="invalid-feedback"></div>
+                            </div>
+                            <button class="btn btn-primary w-100" type="submit">
+                                Submit
+                            </button>
                         </form>
                     </div>
-
                 </div>
             </div>
             {{-- CHAT HTML SNIPPET END --}}

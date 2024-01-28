@@ -1,5 +1,11 @@
 @extends('layouts.base_admin.base_dashboard')
 @section('judul', 'Kegiatan')
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/chattle_admin.min.css') }}">
+@endpush
+
+
 @section('content')
 
 <!-- Content Header (Page header) -->
@@ -20,12 +26,69 @@
 </section>
 
 <section class="content">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Kontak</h3>
+                </div>
+                <div class="card-body p-0" style="display: block;">
+                    <ul class="nav nav-pills flex-column">
+                        @foreach ($chats as $chat)
+                        <li onclick="fetchData(this)" class="nav-item" id="{{ $chat->id }}" data-sender-name="{{ $chat->name }}">
+                            <a href="javascript:void(0)" class="nav-link text-black">{{ $chat->name }}
+                                <div class="text-sm">({{ $chat->email }})</div>
+                                @if ($chat->unseen_messages()->count() > 0)
+                                    <div class="badge bg-primary float-right">
+                                        {{ $chat->unseen_messages()->count() }}
+                                    </div>
+                                @endif
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button id="loading" class="btn btn-primary w-100">
+                        Load more
+                    </button>
+                </div>
 
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="card card-primary card-outline direct-chat direct-chat-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Direct Chat</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="direct-chat-messages"></div>
+                </div>
+                <div class="card-footer">
+                <form action="#" method="post">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            name="message"
+                            placeholder="Type Message ..."
+                            class="form-control">
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-success">Send</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 @endsection
 
 @push('scripts')
+<script src="/js/pusher.min.js"></script>
+<script src="/js/chattle_admin.js"></script>
     <script>
         
 
