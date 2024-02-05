@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use DataTables;
 
+
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PegawaiExport;
 class PegawaiController extends Controller
 {
     /**
@@ -123,5 +126,13 @@ class PegawaiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    
+    public function export(Request $request)
+    {
+        $jenis = $request->jenis;
+        return Excel::download(new PegawaiExport($jenis), 'Data Pegawai.xlsx');
+
     }
 }

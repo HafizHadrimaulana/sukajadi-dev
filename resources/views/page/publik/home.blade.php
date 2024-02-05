@@ -28,39 +28,6 @@
                 <a href="#">
                     <div class="small-box bg-color">
                         <div class="inner">
-                            <script type="text/javascript">
-                                window.setTimeout("waktu()", 1000);
-
-                                function waktu() {
-                                    var waktu = new Date();
-                                    setTimeout("waktu()", 1000);
-                                    document.getElementById("jam").innerHTML = checkTime(waktu.getHours()) + ":" +
-                                        checkTime(waktu.getMinutes()) + ":" + checkTime(waktu.getSeconds());
-                                    var tanggallengkap = new String();
-                                    var namahari = ("Minggu Senin Selasa Rabu Kamis Jumat Sabtu");
-                                    namahari = namahari.split(" ");
-                                    var namabulan = ("Jan Feb Mar Apr Mei Jun Jul Ags Sep Okt Nov Des");
-                                    namabulan = namabulan.split(" ");
-                                    var tgl = new Date();
-                                    var hari = tgl.getDay();
-                                    var tanggal = tgl.getDate();
-                                    var bulan = tgl.getMonth();
-                                    var bulan3 = tgl.getMonth() + 1;
-                                    var tahun = tgl.getFullYear().toString().substr(2, 2);
-                                    document.getElementById("tanggal2").innerHTML = tanggal + " " + namabulan[bulan] + " " +
-                                        tahun;
-                                    document.getElementById("tanggal3").innerHTML = tanggal + " / " + bulan3;
-                                    document.getElementById("hari2").innerHTML = namahari[hari];
-                                }
-
-                                function checkTime(i) {
-                                    if (i < 10) {
-                                        i = "0" + i
-                                    };
-                                    return i;
-                                }
-                            </script>
-
                             <h3 class="hidden-xs"><span id="tanggal2">23 Jan 24</span></h3>
                             {{-- <h3 class="hidden-sm hidden-md hidden-lg"><span id="tanggal3">23 / 1</span></h3> --}}
 
@@ -238,4 +205,42 @@
             </div>
         </div>
     </section>
+
+@push('scripts')
+    
+<script type="text/javascript">
+
+    window.setTimeout("waktu()", 1000);
+
+    function waktu() {
+        var waktu = new Date();
+        setTimeout("waktu()", 1000);
+
+        $("#jam").html( checkTime(waktu.getHours()) + ":" + checkTime(waktu.getMinutes()) + ":" + checkTime(waktu.getSeconds()));
+        
+        var namahari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        var namabulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
+
+        var tgl = new Date();
+        var hari = tgl.getDay();
+        var tanggal = tgl.getDate();
+        var bulan = tgl.getMonth();
+        var bulan3 = tgl.getMonth() + 1;
+        var tahun = tgl.getFullYear().toString().substr(2, 2);
+        $("#tanggal2").html(tanggal + " " + namabulan[bulan] + " " + tahun);
+        $("#tanggal3").html(tanggal + " / " + bulan3);
+        $("#hari2").html(namahari[hari]);
+    }
+
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    
+    $(document).ready(function() {
+    });
+</script>
+@endpush
 </x-landing-layout>

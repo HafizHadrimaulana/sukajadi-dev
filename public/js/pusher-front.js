@@ -1,13 +1,11 @@
 Pusher.logToConsole = true;
 const pusher = new Pusher('48d7eff46a84a5298751', {
-    wsHost: '127.0.0.1',
-    wsPort: 6001,
-    wssPort: 6001,
-    disableStats: true,
-    enabledTransports: ['ws', 'wss'],
     cluster: 'ap1',
 });
-
+var channel = pusher.subscribe('test');
+    channel.bind('test', function(data) {
+      alert(JSON.stringify(data));
+    });
 $(document).ready(function(){
     var ch = $.cookie("ch");
     
@@ -21,17 +19,17 @@ $(document).ready(function(){
             type: "POST",
             url: "/chat/sent-message",
             data: {
-                'message': $('#message').val(),
+                'message': $('#chat-message').val(),
                 'chat_id': $.cookie("ch"),
                 'sender': 'warga'
             },
             cache: false,
             success: function (response) {
-                $('#message').val("");
+                $('#chat-message').val("");
                 console.log("sent ajax form");
                 console.log(response);
-                $('#messagesContainer').finish().animate({
-                    scrollTop: $('#messagesContainer').prop("scrollHeight")
+                $('#messagesContainer').find('.direct-chat-messages').finish().animate({
+                    scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")
                 }, 250);
             }
         });
@@ -66,6 +64,7 @@ $(document).ready(function(){
                     success: function (response) {
                         console.log("sent ajax form");
                         console.log(response);
+                        const data = response.data;
                         if(response.fail == true){
                             // if(response.errors.length){
                                 for (control in response.errors) {
@@ -74,16 +73,16 @@ $(document).ready(function(){
                                 }
                             // }
                         }else{
-                            $.cookie("ch", response.data.id, { expires : 1 });
-                            $.cookie("nm", response.data.name, { expires : 1 });
-                            var channel = pusher.subscribe('chat'+response.data.id);
-                            channel.bind('my-messages', function (response) {
+                            $.cookie("ch", data.id, { expires : 1 });
+                            $.cookie("nm", data.name, { expires : 1 });
+                            var channel = pusher.subscribe('chat'+data.id);
+                            channel.bind('my-messages', function (data) {
                                 $('#messagesContainer').find('.direct-chat-messages')
-                                .append(getMessageCont(response.message));
+                                .append(getMessageCont(data.message));
                                 
                                 $('#messagesContainer').append(elm)
-                                $('#messagesContainer').finish().animate({
-                                    scrollTop: $('#messagesContainer').prop("scrollHeight")
+                                $('#messagesContainer').find('.direct-chat-messages').finish().animate({
+                                    scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")
                                 }, 250);
                             });
                             $('#chatContactContainer').css("display","none");
@@ -106,6 +105,7 @@ $(document).ready(function(){
         });
     }
     else{
+        alert('sadsa');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -117,25 +117,26 @@ $(document).ready(function(){
             },
             cache: false,
             success: function (response) {
-                console.log("sent ajax form");
-                console.log(response);
                 for(var i=0; i < response.length; i++){
                     if(response[i].sender == 'admin'){
-                        $('#messagesContainer').append('<div class="message-wrapper"><div class="profile-picture"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="message-content"><p class="name">Admin</p><div class="message">' + response[i].message + '</div></div></div>');
+                        $('#messagesContainer').find('.direct-chat-messages')
+                        .append('<div class="message-wrapper"><div class="profile-picture"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="message-content"><p class="name">Admin</p><div class="message">' + response[i].pesan + '</div></div></div>');
                     }
                     else{
-                        $('#messagesContainer').append('<div class="message-wrapper reverse"><div class="profile-picture"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="message-content"><p class="name">' + $.cookie('nm') + '</p><div class="message">' + response[i].message + '</div></div></div>');
+                        $('#messagesContainer').find('.direct-chat-messages')
+                        .append('<div class="message-wrapper reverse"><div class="profile-picture"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="message-content"><p class="name">' + $.cookie('nm') + '</p><div class="message">' + response[i].pesan + '</div></div></div>');
                     }
+                    $('#messagesContainer').find('.direct-chat-messages').finish().animate({
+                        scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")
+                    }, 250);
                 }
-                $('#messagesContainer').finish().animate({
-                    scrollTop: $('#messagesContainer').prop("scrollHeight")
-                }, 250);
             }
         });
         var channel = pusher.subscribe('chat'+ $.cookie("ch"));
         channel.bind('my-messages', function (response) {
-            $('#messagesContainer').find('.direct-chat-messages')
-            .append(getMessageCont(response.message));
+            console.log('Hasil Fetch');
+            // $('#messagesContainer').find('.direct-chat-messages')
+            // .append(getMessageCont(response.message));
 
             $('#messagesContainer').find('.direct-chat-messages').finish().animate({
                 scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")
@@ -148,14 +149,13 @@ $(document).ready(function(){
             $('.chat-button').css("display","block");
         });
         $('.chat-button').on('click', function(){
-            console.log('coba');
             $('#chatContactContainer').css("display","none");
             $('#messagesContainer').css("display","block");
             $('#inputContainer').css("display","block");
             $('.chat-button').css("display","none");
             $('.chat-container').css("display","flex");
-            $('#messagesContainer').finish().animate({
-                scrollTop: $('#messagesContainer').prop("scrollHeight")
+            $('#messagesContainer').find('.direct-chat-messages').finish().animate({
+                scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")
             }, 250);
         });
     }

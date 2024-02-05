@@ -44,10 +44,9 @@
                                 </div>
                                 {!! $d->nama_kegiatan !!}
                             </div>
-                            {{-- <div class="timeline-footer">
-                                <a class="btn btn-primary btn-sm">Read more</a>
-                                <a class="btn btn-danger btn-sm">Delete</a>
-                            </div> --}}
+                            <div class="timeline-footer">
+                                <button class="btn btn-primary btn-sm" onclick="openMap({{ $d->lat_kegiatan }}, {{ $d->lng_kegiatan }})">Lihat Lokasi</button>
+                            </div>
                         </div>
                     </div>
                     @endforeach
@@ -56,4 +55,15 @@
             </div>
         </div>
     </section>
+
+    @push('scripts')
+        <script>
+            function openMap(lat, lng){
+                console.log('Lihat Map');
+                console.log(lat);
+                console.log(lng);
+            }
+
+        </script>
+    @endpush
 </x-landing-layout>

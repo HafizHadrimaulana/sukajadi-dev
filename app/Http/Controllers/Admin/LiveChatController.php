@@ -11,6 +11,9 @@ use Carbon\Carbon;
 use App\Models\Kegiatan;
 use Storage;
 use App\Models\Chat;
+use App\Models\Message;
+use App\Events\ChatUpdate;
+
 class LiveChatController extends Controller
 {
     /**
@@ -32,15 +35,16 @@ class LiveChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getMessages(Request $request)
     {
-        $jenis = DB::table('j_kegiatan')->select('*')->orderBy('nama_j_kegiatan','ASC')->get();
-        $satuan = DB::table('j_satuan')->select('*')->orderBy('nama_j_satuan','ASC')->get();
-
-        return view('page.admin.livechat.create',[
-            'jenis' => $jenis,
-            'satuan' => $satuan
-        ]);
+        $messages = Message::where('chat_id', $request->chat_id)->orderBy('created_at', 'asc')->get();
+        foreach($messages as $message){
+            $message->is_seen = 1;
+            $message->save();
+        }
+        $chats = Chat::withCount('unseen_messages')->orderBy('unseen_messages_count', 'desc')->paginate(10);
+        event(new ChatUpdate($chats));
+        return response()->json($messages, 200);
     }
 
     /**

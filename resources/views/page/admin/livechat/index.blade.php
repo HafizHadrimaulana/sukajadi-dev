@@ -2,7 +2,7 @@
 @section('judul', 'Kegiatan')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/chattle_admin.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/chattle_admin.min.css') }}"> --}}
 @endpush
 
 
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="direct-chat-messages"></div>
+                    <div class="direct-chat-messages" id="messagesContainer"></div>
                 </div>
                 <div class="card-footer">
                 <form action="#" method="post">
@@ -87,17 +87,38 @@
 @endsection
 
 @push('scripts')
-<script src="/js/pusher.min.js"></script>
-<script src="/js/chattle_admin.js"></script>
-    <script>
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/8.3.0/pusher.min.js" integrity="sha512-tXL5mrkSoP49uQf2jO0LbvzMyFgki//znmq0wYXGq94gVF6TU0QlrSbwGuPpKTeN1mIjReeqKZ4/NJPjHN1d2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/jquery-cookie.min.js'"></script>
+<script src="/js/pusher-admin.js"></script>
+<script>
+    
 
-        $(document).ready(function() {
+    $(document).ready(function() {
+        
+        var tahun = $("#filter-tahun").val();
+        if(tahun){
+            $('#filter-bulan').prop("disabled", false);
             
-            var tahun = $("#filter-tahun").val();
+            $('#filter-bulan').select2({
+                ajax: {
+                    url: "{{ route('json.bulan') }}" +'?tahun='+tahun,
+                    dataType: 'json',
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    }
+                }
+            });
+        }else{
+            $('#filter-bulan').prop("disabled", true);
+        }
+
+        $("#filter-tahun").on("change", function(e){
+            var tahun = $(this).val();
             if(tahun){
-                $('#filter-bulan').prop("disabled", false);
-                
+                $('#filter-bulan').removeAttr("disabled");
+
                 $('#filter-bulan').select2({
                     ajax: {
                         url: "{{ route('json.bulan') }}" +'?tahun='+tahun,
@@ -109,77 +130,57 @@
                         }
                     }
                 });
-            }else{
-                $('#filter-bulan').prop("disabled", true);
             }
 
-            $("#filter-tahun").on("change", function(e){
-                var tahun = $(this).val();
-                if(tahun){
-                    $('#filter-bulan').removeAttr("disabled");
-
-                    $('#filter-bulan').select2({
-                        ajax: {
-                            url: "{{ route('json.bulan') }}" +'?tahun='+tahun,
-                            dataType: 'json',
-                            processResults: function (data) {
-                                return {
-                                    results: data
-                                };
-                            }
-                        }
-                    });
-                }
-
-            });
-
-            var table = $('.datatable').DataTable({
-                processing: true,
-                serverSide: true,
-                dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                ajax: {
-                    url : "{{ route('admin.timeline.index') }}",
-                    data : function(data){
-                            var tahun = $("#filter-tahun").val();
-                            var bulan = $("#filter-bulan").val();
-                            var sopd = $("#filter-sopd").val();
-                            data.tahun = tahun;
-                            data.bulan = bulan;
-                            data.sopd = sopd;
-                    }
-                },
-                columns: [
-                    {data: 'tanggal_kegiatan', name: 'tanggal_kegiatan'},
-                    {data: 'nama_j_kegiatan', name: 'nama_j_kegiatan'},
-                    {data: 'nama_kegiatan', name: 'nama_kegiatan'},
-                    {data: 'foto', name: 'foto'},
-                    {
-                        data: 'action', 
-                        name: 'action', 
-                        orderable: true, 
-                        searchable: true
-                    },
-                ]
-            });
-            $("#btn-filter").on("click", function(e){ 
-                // alert('sasa');
-                $("#data-content").removeClass('d-none');
-                table.draw();
-            });
-            
-
-            $("#btn-reset").on("click", function(e){ 
-                // alert('sasa');
-                $("#filter-tahun").val("");
-                $('#filter-tahun').trigger('change');
-                $("#filter-bulan").val("");
-                $('#filter-bulan').trigger('change');
-                $("#filter-sopd").val("");
-                $('#filter-sopd').trigger('change');
-                $("#data-content").addClass('d-none');
-                table.draw();
-            });
-
         });
-    </script>
+
+        var table = $('.datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            ajax: {
+                url : "{{ route('admin.timeline.index') }}",
+                data : function(data){
+                        var tahun = $("#filter-tahun").val();
+                        var bulan = $("#filter-bulan").val();
+                        var sopd = $("#filter-sopd").val();
+                        data.tahun = tahun;
+                        data.bulan = bulan;
+                        data.sopd = sopd;
+                }
+            },
+            columns: [
+                {data: 'tanggal_kegiatan', name: 'tanggal_kegiatan'},
+                {data: 'nama_j_kegiatan', name: 'nama_j_kegiatan'},
+                {data: 'nama_kegiatan', name: 'nama_kegiatan'},
+                {data: 'foto', name: 'foto'},
+                {
+                    data: 'action', 
+                    name: 'action', 
+                    orderable: true, 
+                    searchable: true
+                },
+            ]
+        });
+        $("#btn-filter").on("click", function(e){ 
+            // alert('sasa');
+            $("#data-content").removeClass('d-none');
+            table.draw();
+        });
+        
+
+        $("#btn-reset").on("click", function(e){ 
+            // alert('sasa');
+            $("#filter-tahun").val("");
+            $('#filter-tahun').trigger('change');
+            $("#filter-bulan").val("");
+            $('#filter-bulan').trigger('change');
+            $("#filter-sopd").val("");
+            $('#filter-sopd').trigger('change');
+            $("#data-content").addClass('d-none');
+            table.draw();
+        });
+
+    });
+</script>
 @endpush

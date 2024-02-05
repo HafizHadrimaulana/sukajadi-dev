@@ -111,7 +111,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
     
     Route::prefix('/livechat')->name('livechat.')->group(function () {
         Route::get('/', 'LiveChatController@index')->name('index');
-        Route::get('/create', 'LiveChatController@create')->name('create');
+        Route::get('/get-messages', 'LiveChatController@getMessages')->name('message');
         Route::post('/store','LiveChatController@store')->name('store');
         Route::get('/data', 'LiveChatController@data')->name('data');
         Route::get('/{id}', 'LiveChatController@show')->name('show');

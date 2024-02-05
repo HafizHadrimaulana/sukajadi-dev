@@ -138,13 +138,17 @@
                     <div id="messagesContainer" style="display: none">
                         <div class="card-body">
                             <div class="direct-chat-messages">
-                                <div class="direct-chat-msg">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-left">Admin</span>
-                                        <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
-                                    </div>
-                                    <div class="direct-chat-text ms-0">
-                                        Hello ada yang bisa saya bantu ?
+                                <div class="message-wrapper mb-3">
+                                    <div class="profile-picture"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-user">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg></div>
+                                    <div class="message-content">
+                                        <p class="name">Admin</p>
+                                        <div class="message">Selamat datang ada yang bisa saya bantu?</div>
                                     </div>
                                 </div>
     
@@ -172,23 +176,14 @@
                                         </ul>
                                     </div>
                                 </div>
-    
-                                <div class="direct-chat-msg right">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-right">Sarah Bullock</span>
-                                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                                    </div>
-                                    <div class="direct-chat-text me-0">
-                                        You better believe it!
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
     
                         <div class="card-footer">
                             <form id="messageForm" method="POST">
                                 <div class="input-group">
-                                    <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                                    <input type="text" id="chat-message" name="message" placeholder="Tulis Pesan ..." class="form-control">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-primary">Send</button>
                                     </span>

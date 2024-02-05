@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         @yield('script_head')
         @stack('styles')
+        <link rel="stylesheet" href="{{ asset('css/chat-front.css') }}">
         <style>
             .is-invalid + .select2-container--bootstrap .select2-selection--single {
                 border: 1px solid #dc3545 !important;
@@ -56,6 +57,9 @@
 
             .select2-dropdown{
                 z-index: 3051;
+            }
+            .select2.select2-container{    
+                width: 100% !important;
             }
         </style>
         <!-- jQuery -->

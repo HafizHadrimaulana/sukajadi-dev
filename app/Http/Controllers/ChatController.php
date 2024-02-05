@@ -94,15 +94,17 @@ class ChatController extends Controller
         $message = Message::create([
             'chat_id' => $request->chat_id,
             'type'    => 'text',
-            'message' => $request->message,
+            'pesan' => $request->message,
             'is_seen' => 0,
             'sender'  => $request->sender
         ]);
         event(new SendMessage($message));
+
         if($message->sender == 'warga'){
             $chats = Chat::withCount('unseen_messages')->orderBy('unseen_messages_count', 'desc')->paginate(10);
             event(new ChatUpdate($chats));
         }
+        
         return response($message, 200);
     }
 

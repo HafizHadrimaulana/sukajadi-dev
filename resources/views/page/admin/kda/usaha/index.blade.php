@@ -2,9 +2,6 @@
 @section('judul', 'Usaha')
 @push('styles')
     <style>
-        .select2.select2-container{    
-            width: 100% !important;
-        }
     </style>
 @endpush
 @section('content')
@@ -34,6 +31,7 @@
         
             <div class="card-tools">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-file-excel me-1"></i>
                     Export
                 </button>
             </div>
@@ -67,7 +65,7 @@
                     <div class="form-group">
                         <label for="field-jenis" class="d-block">Jenis</label>
                         <select class="form-control select2 w-100 {{ $errors->has('jenis') ? 'is-invalid' : '' }}" name="jenis" id="field-jenis" data-placeholder="Pilih Jenis">
-                            <option value="">Semua</option>
+                            <option value="semua">Semua</option>
                             @foreach ($jenis as $t)
                                 <option value="{{ $t->id_j_data_usaha }}" {{ old('jenis') == $t->nama_j_data_usaha ? 'selected="selected"' : '' }}>{{ $t->nama_j_data_usaha }}</option>
                             @endforeach

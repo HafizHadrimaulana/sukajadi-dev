@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 use DataTables;
 use Carbon\Carbon;
 use App\Models\Sarpras;
+
+
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SarprasExport;
 class SaranaController extends Controller
 {
     /**
@@ -65,7 +69,9 @@ class SaranaController extends Controller
                 $join->on("c.id_j_kelurahan", "=", "a.kelurahan_t_data_sarpras");
             })
             ->select("a.*", "b.nama_j_data_sarpras", "c.nama_j_kelurahan")
-            ->where('a.id_j_data_sarpras', $id)
+            ->when($this->jenis != "semua", function($q, $jenis){
+                return $q->where('a.id_j_data_sarpras', '=', $jenis);
+            })
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){
@@ -253,5 +259,14 @@ class SaranaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    
+    
+    public function export(Request $request)
+    {
+        $jenis = $request->jenis;
+        return Excel::download(new SarprasExport($jenis), 'Data Sarana & Prasarana.xlsx');
+
     }
 }

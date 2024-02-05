@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use DataTables;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsahaExport;
 class UsahaController extends Controller
 {
     /**
@@ -65,6 +66,7 @@ class UsahaController extends Controller
             ->select("a.*", "b.nama_j_data_usaha", "c.nama_j_sopd")
             ->where('a.id_j_data_usaha', $id)
             ->get();
+
             return DataTables::of($data)
                 ->addColumn('action', function($row){
                     // $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
@@ -133,6 +135,10 @@ class UsahaController extends Controller
     public function export(Request $request)
     {
         //
-        dd($request->all());
+        // dd($request->all());
+        $jenis = $request->jenis;
+
+        return Excel::download(new UsahaExport($jenis), 'Data Usaha.xlsx');
+
     }
 }

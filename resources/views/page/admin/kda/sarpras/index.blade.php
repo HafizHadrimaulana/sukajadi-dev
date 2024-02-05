@@ -24,6 +24,13 @@
     <div class="card">
         <div class="card-header">
             <a class="btn btn-success" href="{{ route('admin.sarpras.create') }}"><i class="fa fa-plus"></i> Tambah</a>
+            
+            <div class="card-tools">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-file-excel me-1"></i>
+                    Export
+                </button>
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-bordered datatable w-100">
@@ -40,6 +47,36 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Export Excel</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body">
+                <form method="GET" target="_blank" action="{{ route('admin.kda.sarpras.export') }}">
+                <div class="form-group">
+                    <label for="field-jenis" class="d-block">Jenis</label>
+                    <select class="form-control select2 w-100 {{ $errors->has('jenis') ? 'is-invalid' : '' }}" name="jenis" id="field-jenis" data-placeholder="Pilih Jenis">
+                        <option value="semua">Semua</option>
+                        @foreach ($jenis as $t)
+                            <option value="{{ $t->id_j_data_sarpras }}" {{ old('jenis') == $t->id_j_data_sarpras ? 'selected="selected"' : '' }}>{{ $t->nama_j_data_sarpras }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('jenis')" class="mt-2" />
+                </div>
+                <div class="float-right">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Download</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
 
 @endsection
 
