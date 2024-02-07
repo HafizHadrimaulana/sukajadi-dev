@@ -33,7 +33,7 @@ class SuratKeputusanController extends Controller
             })
             ->select("a.*", "b.nama_j_surat", "c.nama_j_tahun")
             ->where('a.id_j_tahun', $tahun)
-            ->where('a.id_j_surat', 1)
+            ->where('a.id_j_surat', 3)
             ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -44,7 +44,7 @@ class SuratKeputusanController extends Controller
                 ->rawColumns(['action']) 
                 ->make(true);
         }
-        return view('page.admin.agenda.surat_masuk.index');
+        return view('page.admin.agenda.surat_keputusan.index');
     }
 
     /**
@@ -54,7 +54,7 @@ class SuratKeputusanController extends Controller
      */
     public function create()
     {
-        return view('page.admin.agenda.surat_masuk.create');
+        return view('page.admin.agenda.surat_keputusan.create');
     }
 
     /**
@@ -91,7 +91,7 @@ class SuratKeputusanController extends Controller
 
                 $data = new Surat();
                 $data->id_j_tahun = $tahun->id_j_tahun;
-                $data->id_j_surat = 1;
+                $data->id_j_surat = 3;
                 $data->tanggal_t_surat = $request->tgl;
                 $data->tanggal_surat_t_surat = $request->tgl_surat;
                 $data->nomor_urut_t_surat = $request->nomor_urut;
@@ -130,7 +130,7 @@ class SuratKeputusanController extends Controller
 
         $data = Surat::where('id_t_surat', $id)->first();
 
-        return view('page.admin.agenda.surat_masuk.show',[
+        return view('page.admin.agenda.surat_keputusan.show',[
             'data' => $data
         ]);
     }
@@ -145,7 +145,7 @@ class SuratKeputusanController extends Controller
     {
         $data = Surat::where('id_t_surat', $id)->first();
 
-        return view('page.admin.agenda.surat_masuk.edit',[
+        return view('page.admin.agenda.surat_keputusan.edit',[
             'data' => $data
         ]);
     }
@@ -185,7 +185,7 @@ class SuratKeputusanController extends Controller
 
                 $data = Surat::where('id_t_surat', $id)->first();
                 $data->id_j_tahun = $tahun->id_j_tahun;
-                $data->id_j_surat = 1;
+                $data->id_j_surat = 3;
                 $data->tanggal_t_surat = $request->tgl;
                 $data->tanggal_surat_t_surat = $request->tgl_surat;
                 $data->nomor_urut_t_surat = $request->nomor_urut;

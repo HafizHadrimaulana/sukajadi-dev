@@ -45,7 +45,9 @@
                                 {!! $d->nama_kegiatan !!}
                             </div>
                             <div class="timeline-footer">
-                                <button class="btn btn-primary btn-sm" onclick="openMap({{ $d->lat_kegiatan }}, {{ $d->lng_kegiatan }})">Lihat Lokasi</button>
+                                <a class="btn btn-primary btn-sm" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination={{ $d->lat_kegiatan }},{{ $d->lng_kegiatan}}">
+                                    Lihat Lokasi
+                                </a>
                             </div>
                         </div>
                     </div>

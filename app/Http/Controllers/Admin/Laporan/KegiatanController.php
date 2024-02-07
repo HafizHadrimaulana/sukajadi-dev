@@ -33,13 +33,11 @@ class KegiatanController extends Controller
             ->join("j_satuan as c", function($join){
                 $join->on("c.id_j_satuan", "=", "a.id_j_satuan");
             })
-            // ->join("j_sopd as d", function($join){
-            //     $join->on("d.id_j_sopd", "=", "a.id_j_sopd");
-            // })
             ->select("a.*", "b.nama_j_kegiatan", "c.nama_j_satuan")
-            ->where('a.id_j_tahun', $tahun)
-            ->where('a.id_j_bulan', $bulan)
             // ->where('a.id_j_tahun', $tahun)
+            // ->when($bulan != "", function($q, $bulan){
+            //     return $q->where('a.id_j_bulan', $bulan);
+            // })
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row) use ($tahun){
@@ -163,7 +161,20 @@ class KegiatanController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = DB::table("t_kegiatan as a")
+        ->join("j_kegiatan as b", function($join){
+            $join->on("b.id_j_kegiatan", "=", "a.id_j_kegiatan");
+        })
+        ->join("j_satuan as c", function($join){
+            $join->on("c.id_j_satuan", "=", "a.id_j_satuan");
+        })
+        ->select("a.*", "b.nama_j_kegiatan", "c.nama_j_satuan")
+        ->where('a.id_t_kegiatan', '=', $id)
+        ->first();
+        
+        return view('page.admin.laporan.kegiatan.show',[
+            'data' => $data
+        ]);
     }
 
     /**
