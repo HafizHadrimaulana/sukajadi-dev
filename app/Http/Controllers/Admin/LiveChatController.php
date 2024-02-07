@@ -10,9 +10,11 @@ use DataTables;
 use Carbon\Carbon;
 use App\Models\Kegiatan;
 use Storage;
+use App\Events\ChatUpdate;
+use App\Events\SendMessage;
+
 use App\Models\Chat;
 use App\Models\Message;
-use App\Events\ChatUpdate;
 
 class LiveChatController extends Controller
 {
@@ -55,71 +57,22 @@ class LiveChatController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $rules = [
-            'tgl' => 'required',
-            'jenis_kegiatan' => 'required',
-            'volume' => 'required',
-            'satuan' => 'required',
-            'lokasi' => 'required',
-            // 'jadwal' => 'required',
-            // 'mulai' => 'required',
-            // 'selesai' => 'required',
-        ];
+        
+        $message = Message::create([
+            'chat_id' => $request->chat_id,
+            'type'    => 'text',
+            'pesan' => $request->message,
+            'is_seen' => 0,
+            'sender'  => 'admin'
+        ]);
+        event(new SendMessage($message));
 
-        $pesan = [
-            'tgl.required' => 'Tanggal Wajib Diisi!',
-            'lokasi.required' => 'Lokasi / Alamat Wajib Diisi!',
-            'jenis_kegiatan.required' => 'Jenis Kegiatan Wajib Diisi!',
-            'volume.required' => 'Volume Wajib Diisi!',
-            'satuan.required' => 'Satuan Wajib Diisi!',
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $pesan);
-        if ($validator->fails()){
-            return back()->withInput()->withErrors($validator->errors());
-        }else{
-            DB::beginTransaction();
-            try{
-                $tgl = Carbon::parse($request->tgl);
-
-                $data = new Kegiatan();
-                $data->id_j_tahun = $tgl->format('Y');
-                $data->id_j_bulan = $tgl->format('Ym');
-                $data->tanggal_t_kegiatan = $tgl->format('Y-m-d');
-                $data->id_j_kegiatan = $request->jenis_kegiatan;
-                $data->volume_t_kegiatan = $request->volume;
-                $data->id_j_satuan = $request->satuan;
-                $data->keterangan_t_kegiatan = $request->keterangan;
-                $data->lokasi_t_kegiatan = $request->lokasi;
-                $data->lat_t_kegiatan = $request->lat;
-                $data->lng_t_kegiatan = $request->lng;
-
-                if($request->foto1){
-                    $fileName = time().uniqid() . '.' . $request->foto1->extension();
-                    Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto1, $fileName);
-                    $data->foto_awal_t_kegiatan = '/uploads/kegiatan/'.$fileName;
-                }
-                if($request->foto2){
-                    $fileName = time().uniqid() . '.' . $request->foto2->extension();
-                    Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto2, $fileName);
-                    $data->foto_proses_t_kegiatan = '/uploads/kegiatan/'.$fileName;
-                }
-                if($request->foto3){
-                    $fileName = time().uniqid() . '.' . $request->foto3->extension();
-                    Storage::disk('public')->putFileAs('uploads/kegiatan', $request->foto3, $fileName);
-                    $data->foto_akhir_t_kegiatan = '/uploads/kegiatan/'.$fileName;
-                }
-                $data->save();
-
-            }catch(\QueryException $e){
-                DB::rollback();
-                dd($e);
-            }
-
-            DB::commit();
-            return redirect()->route('admin.kegiatan.index');
+        if($message->sender == 'warga'){
+            $chats = Chat::withCount('unseen_messages')->orderBy('unseen_messages_count', 'desc')->paginate(10);
+            event(new ChatUpdate($chats));
         }
+        
+        return response($message, 200);
     }
 
     /**

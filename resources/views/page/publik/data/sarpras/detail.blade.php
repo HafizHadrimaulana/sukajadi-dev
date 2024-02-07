@@ -63,6 +63,7 @@
     crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js" integrity="sha512-OFs3W4DIZ5ZkrDhBFtsCP6JXtMEDGmhl0QPlmWYBJay40TT1n3gt2Xuw8Pf/iezgW9CdabjkNChRqozl/YADmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js" integrity="sha512-Abr21JO2YqcJ03XGZRPuZSWKBhJpUAR6+2wH5zBeO4wAw4oksr8PRdF+BKIRsxvCdq+Mv4670rZ+dLnIyabbGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var map;
         var tiles;
@@ -81,7 +82,72 @@
 
                 markers = new L.MarkerClusterGroup();
                 load_content();
+
+                var geoList;
+                // $.getJSON('/js/geojson.json', function(json) {
+
+                //     var geoLayer = L.geoJson(json).addTo(map);
+
+                //     geoList = new L.Control.GeoJSONSelector(geoLayer, {
+                //         zoomToLayer: true,
+                //         listDisabled: true,
+                //         activeListFromLayer: true,
+                //         activeLayerFromList: true,
+                //         listOnlyVisibleLayers: true
+                //     }).addTo(map);
+
+                //     geoList.on('selector:change', function(e) {
+
+                //         var jsonObj = $.parseJSON( JSON.stringify(e.layers[0].feature.properties) );
+                //         var html = 'Selection:<br /><table border="1">';
+                //         $.each(jsonObj, function(key, value){
+                //                 html += '<tr>';
+                //                 html += '<td>' + key.replace(":", " ") + '</td>';
+                //                 html += '<td>' + value + '</td>';
+                //                 html += '</tr>';
+                //         });
+                //         html += '</table>';
+
+                //         $('.selection').html(html);
+                //     });
+
+                //     map.addControl(function() {
+                //         var c = new L.Control({position:'bottomright'});
+                //         c.onAdd = function(map) {
+                //                 return L.DomUtil.create('pre','selection');
+                //             };
+                //         return c;
+                //     }());
+
+                // });
+                var geojsonLayer = new L.GeoJSON.AJAX("/js/geojson.json", {
+                    style : function (feature){
+                        // console.log(feature);
+                        kel = feature.properties.id;
+                        return {
+                            fillColor: getColor(kel),
+                            fillOpacity: 0.5,
+                            color: "white",
+                            dashArray: '3',
+                            weight: 1,
+                            opacity: 0.7
+                        }
+                    }
+                }).addTo(map);
+
+                geojsonLayer.bindPopup(function (e) {
+                    return e.feature.properties.kemendagri_desa_nama;
+                });
             });
+
+            function getColor(d) {
+                return d == 31245 ? '#F38484' :
+                    d == 31246 ? '#D597F9' :
+                    d == 31244 ? '#ACC715' :
+                    d == 31243 ? '#EC9949' :
+                    d == 31242 ? '#4C51EF' :
+                    '#59FD02';
+            }
             
             function load_content()
             {

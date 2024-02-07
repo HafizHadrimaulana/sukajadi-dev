@@ -29,6 +29,7 @@
         @stack('styles')
     <!-- jQuery -->
     <script src="{{ asset('vendor/adminlte3/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="/js/app.js"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('vendor/adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->

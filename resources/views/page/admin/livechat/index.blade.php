@@ -63,28 +63,26 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="direct-chat-messages" id="messagesContainer"></div>
+                    <div class="direct-chat-messages" id="messagesContainer">
+
+                    </div>
                 </div>
                 <div class="card-footer">
-                <form action="#" method="post">
+                <form id="messageForm" method="POST">
                     <div class="input-group">
-                        <input
-                            type="text"
-                            name="message"
-                            placeholder="Type Message ..."
-                            class="form-control">
-                            <span class="input-group-append">
-                                <button type="submit" class="btn btn-success">Send</button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
+                        <input type="hidden" name="id" id="chat-id" value=""/>
+                        <input type="text" id="chat-message" name="message" placeholder="Tulis Pesan ..." class="form-control">
+                        <span class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </span>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
 
-@endsection
+@endsection 
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/8.3.0/pusher.min.js" integrity="sha512-tXL5mrkSoP49uQf2jO0LbvzMyFgki//znmq0wYXGq94gVF6TU0QlrSbwGuPpKTeN1mIjReeqKZ4/NJPjHN1d2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

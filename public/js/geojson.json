@@ -1,0 +1,200 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [107.590480237, -6.87837418199996],
+                        [107.590526477, -6.87835748299991],
+                        [107.590953296, -6.89224973199997],
+                        [107.590562498, -6.896290607],
+                        [107.582304963, -6.89229581999996],
+                        [107.581145072, -6.8921479819999],
+                        [107.581209286, -6.8808037389999],
+                        [107.590480237, -6.87837418199996]
+                    ]
+                ]
+            },
+            "properties": {
+                "id": 31245,
+                "kemendagri_provinsi_kode": "32",
+                "kemendagri_kabupaten_kode": "32.73",
+                "kemendagri_kecamatan_kode": "32.73.07",
+                "kemendagri_desa_kode": "32.73.07.1004",
+                "kemendagri_provinsi_nama": "JAWA BARAT",
+                "kemendagri_kabupaten_nama": "KOTA BANDUNG",
+                "kemendagri_kecamatan_nama": "Sukajadi",
+                "kemendagri_desa_nama": "Sukagalih",
+                "bps_provinsi_kode": "32",
+                "bps_kabupaten_kode": "3273",
+                "bps_kecamatan_kode": "3273240",
+                "bps_desa_kode": "3273240002",
+                "bps_provinsi_nama": "JAWA BARAT",
+                "bps_kabupaten_nama": "BANDUNG",
+                "bps_kecamatan_nama": "SUKAJADI",
+                "bps_desa_nama": "SUKAGALIH",
+                "latitude": "-6.886549999999943",
+                "longitude": "107.58627000000007"
+            },
+            "id": 31245
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [107.590953296, -6.89224973199997],
+                        [107.597131249, -6.89299862899994],
+                        [107.597453968, -6.90023349699992],
+                        [107.59226963, -6.89721242899998],
+                        [107.590562498, -6.896290607],
+                        [107.590953296, -6.89224973199997]
+                    ]
+                ]
+            },
+            "properties": {
+                "id": 31246,
+                "kemendagri_provinsi_kode": "32",
+                "kemendagri_kabupaten_kode": "32.73",
+                "kemendagri_kecamatan_kode": "32.73.07",
+                "kemendagri_desa_kode": "32.73.07.1005",
+                "kemendagri_provinsi_nama": "JAWA BARAT",
+                "kemendagri_kabupaten_nama": "KOTA BANDUNG",
+                "kemendagri_kecamatan_nama": "Sukajadi",
+                "kemendagri_desa_nama": "Sukabungah",
+                "bps_provinsi_kode": "32",
+                "bps_kabupaten_kode": "3273",
+                "bps_kecamatan_kode": "3273240",
+                "bps_desa_kode": "3273240003",
+                "bps_provinsi_nama": "JAWA BARAT",
+                "bps_kabupaten_nama": "BANDUNG",
+                "bps_kecamatan_nama": "SUKAJADI",
+                "bps_desa_nama": "SUKABUNGAH",
+                "latitude": "-6.893039999999928",
+                "longitude": "107.59341000000006"
+            },
+            "id": 31246
+        },
+        
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [107.581145072, -6.8921479819999],
+                        [107.576339967, -6.89074337499994],
+                        [107.576308816, -6.89073931499996],
+                        [107.571792649, -6.88373899199993],
+                        [107.581209286, -6.8808037389999],
+                        [107.581145072, -6.8921479819999]
+                    ]
+                ]
+            },
+            "properties": {
+                "id": 31244,
+                "kemendagri_provinsi_kode": "32",
+                "kemendagri_kabupaten_kode": "32.73",
+                "kemendagri_kecamatan_kode": "32.73.07",
+                "kemendagri_desa_kode": "32.73.07.1003",
+                "kemendagri_provinsi_nama": "JAWA BARAT",
+                "kemendagri_kabupaten_nama": "KOTA BANDUNG",
+                "kemendagri_kecamatan_nama": "Sukajadi",
+                "kemendagri_desa_nama": "Sukawarna",
+                "bps_provinsi_kode": "32",
+                "bps_kabupaten_kode": "3273",
+                "bps_kecamatan_kode": "3273240",
+                "bps_desa_kode": "3273240001",
+                "bps_provinsi_nama": "JAWA BARAT",
+                "bps_kabupaten_nama": "BANDUNG",
+                "bps_kecamatan_nama": "SUKAJADI",
+                "bps_desa_nama": "SUKAWARNA",
+                "latitude": "-6.887229999999931",
+                "longitude": "107.57735000000008"
+            },
+            "id": 31244
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [107.596281496, -6.87931560699996],
+                        [107.597131249, -6.89299862899994],
+                        [107.590953296, -6.89224973199997],
+                        [107.590526477, -6.87835748299991],
+                        [107.596281496, -6.87931560699996]
+                    ]
+                ]
+            },
+            "properties": {
+                "id": 31243,
+                "kemendagri_provinsi_kode": "32",
+                "kemendagri_kabupaten_kode": "32.73",
+                "kemendagri_kecamatan_kode": "32.73.07",
+                "kemendagri_desa_kode": "32.73.07.1002",
+                "kemendagri_provinsi_nama": "JAWA BARAT",
+                "kemendagri_kabupaten_nama": "KOTA BANDUNG",
+                "kemendagri_kecamatan_nama": "Sukajadi",
+                "kemendagri_desa_nama": "Cipedes",
+                "bps_provinsi_kode": "32",
+                "bps_kabupaten_kode": "3273",
+                "bps_kecamatan_kode": "3273240",
+                "bps_desa_kode": "3273240004",
+                "bps_provinsi_nama": "JAWA BARAT",
+                "bps_kabupaten_nama": "BANDUNG",
+                "bps_kecamatan_nama": "SUKAJADI",
+                "bps_desa_nama": "CIPEDES",
+                "latitude": "-6.880459999999971",
+                "longitude": "107.59450000000004"
+            },
+            "id": 31243
+        },
+        
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [107.601033471, -6.88270619500001],
+                        [107.602268283, -6.90023306599997],
+                        [107.597453968, -6.90023349699992],
+                        [107.597131249, -6.89299862899994],
+                        [107.596281496, -6.87931560699996],
+                        [107.598328293, -6.87923684999993],
+                        [107.601033471, -6.88270619500001]
+                    ]
+                ]
+            },
+            "properties": {
+                "id": 31242,
+                "kemendagri_provinsi_kode": "32",
+                "kemendagri_kabupaten_kode": "32.73",
+                "kemendagri_kecamatan_kode": "32.73.07",
+                "kemendagri_desa_kode": "32.73.07.1001",
+                "kemendagri_provinsi_nama": "JAWA BARAT",
+                "kemendagri_kabupaten_nama": "KOTA BANDUNG",
+                "kemendagri_kecamatan_nama": "Sukajadi",
+                "kemendagri_desa_nama": "Pasteur",
+                "bps_provinsi_kode": "32",
+                "bps_kabupaten_kode": "3273",
+                "bps_kecamatan_kode": "3273240",
+                "bps_desa_kode": "3273240005",
+                "bps_provinsi_nama": "JAWA BARAT",
+                "bps_kabupaten_nama": "BANDUNG",
+                "bps_kecamatan_nama": "SUKAJADI",
+                "bps_desa_nama": "PASTEUR",
+                "latitude": "-6.895919999999933",
+                "longitude": "107.59843000000006"
+            },
+            "id": 31242
+        }
+    ]
+}

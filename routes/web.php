@@ -112,7 +112,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
     Route::prefix('/livechat')->name('livechat.')->group(function () {
         Route::get('/', 'LiveChatController@index')->name('index');
         Route::get('/get-messages', 'LiveChatController@getMessages')->name('message');
-        Route::post('/store','LiveChatController@store')->name('store');
+        Route::post('/send','LiveChatController@store')->name('store');
         Route::get('/data', 'LiveChatController@data')->name('data');
         Route::get('/{id}', 'LiveChatController@show')->name('show');
         Route::get('/{id}/edit','LiveChatController@edit')->name('edit');
@@ -120,6 +120,47 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
         Route::delete('/{id}/delete','LiveChatController@destroy')->name('delete');
     });
 
+    
+    Route::namespace('Agenda')->prefix('/agenda')->name('agenda.')->group(function () {
+        
+        Route::prefix('/surat-masuk')->name('surat-masuk.')->group(function () {
+            Route::get('/', 'SuratMasukController@index')->name('index');
+            Route::get('/create', 'SuratMasukController@create')->name('create');
+            Route::post('/store','SuratMasukController@store')->name('store');
+            Route::get('/data', 'SuratMasukController@data')->name('data');
+            Route::get('/export', 'SuratMasukController@export')->name('export');
+            Route::get('/{id}', 'SuratMasukController@show')->name('show');
+            Route::get('/{id}/edit','SuratMasukController@edit')->name('edit');
+            Route::post('/{id}/update','SuratMasukController@update')->name('update');
+            Route::delete('/{id}/delete','SuratMasukController@destroy')->name('delete');
+        });
+        
+        Route::prefix('/surat-keluar')->name('surat-keluar.')->group(function () {
+            Route::get('/', 'SuratKeluarController@index')->name('index');
+            Route::get('/create', 'SuratKeluarController@create')->name('create');
+            Route::post('/store','SuratKeluarController@store')->name('store');
+            Route::get('/data', 'SuratKeluarController@data')->name('data');
+            Route::get('/export', 'SuratKeluarController@export')->name('export');
+            Route::get('/{id}', 'SuratKeluarController@show')->name('show');
+            Route::get('/{id}/edit','SuratKeluarController@edit')->name('edit');
+            Route::post('/{id}/update','SuratKeluarController@update')->name('update');
+            Route::delete('/{id}/delete','SuratKeluarController@destroy')->name('delete');
+        });
+
+        
+        Route::prefix('/surat-keputusan')->name('surat-keputusan.')->group(function () {
+            Route::get('/', 'SuratKeputusanController@index')->name('index');
+            Route::get('/create', 'SuratKeputusanController@create')->name('create');
+            Route::post('/store','SuratKeputusanController@store')->name('store');
+            Route::get('/data', 'SuratKeputusanController@data')->name('data');
+            Route::get('/export', 'SuratKeputusanController@export')->name('export');
+            Route::get('/{id}', 'SuratKeputusanController@show')->name('show');
+            Route::get('/{id}/edit','SuratKeputusanController@edit')->name('edit');
+            Route::post('/{id}/update','SuratKeputusanController@update')->name('update');
+            Route::delete('/{id}/delete','SuratKeputusanController@destroy')->name('delete');
+        });
+
+    });
 
     Route::namespace('KDA')->prefix('/kda')->name('kda.')->group(function () {
         

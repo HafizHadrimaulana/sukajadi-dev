@@ -41,54 +41,54 @@ $links = [
             // ]
         ]
     ],
-    // [
-    //     "text" => "AGENDA",
-    //     "icon" => "fa fa-thumbtack",
-    //     "is_multi" => true,
-    //     "href" => [
-    //         [
-    //             "section_text" => "Kalender",
-    //             "section_icon" => "fa fa-calendar",
-    //             "section_href" => route('kalender')
-    //         ],
-    //         [
-    //             "section_text" => "Surat Masuk",
-    //             "section_icon" => "fa fa-envelope",
-    //             "section_href" => route('suratMasuk')
-    //         ],
-    //         [
-    //             "section_text" => "Surat Keluar",
-    //             "section_icon" => "fa fa-envelope",
-    //             "section_href" => route('suratKeluar')
-    //         ],
-    //         [
-    //             "section_text" => "Surat Keputusan",
-    //             "section_icon" => "fa fa-envelope",
-    //             "section_href" => route('suratKeputusan')
-    //         ],
-    //         [
-    //             "section_text" => "Laporan Agenda",
-    //             "section_icon" => "fa fa-calendar",
-    //             "section_href" => route('cetak-laporan-agenda')
-    //         ],
-    //         [
-    //             "section_text" => "Laporan Surat Masuk",
-    //             "section_icon" => "fa fa-pdf",
-    //             "section_href" => route('cetak-laporan-surat-masuk')
-    //         ],
-    //         [
-    //             "section_text" => "Laporan Surat Keluar",
-    //             "section_icon" => "fa fa-pdf",
-    //             "section_href" => route('cetak-laporan-surat-keluar')
-    //         ],
-    //         [
-    //             "section_text" => "Laporan Surat Keputusan",
-    //             "section_icon" => "fa fa-pdf",
-    //             "section_href" => route('cetak-laporan-surat-keputusan')
-    //         ],
+    [
+        "text" => "AGENDA",
+        "icon" => "fa fa-thumbtack",
+        "is_multi" => true,
+        "href" => [
+            // [
+            //     "section_text" => "Kalender",
+            //     "section_icon" => "fa fa-calendar",
+            //     "section_href" => route('kalender')
+            // ],
+            [
+                "section_text" => "Surat Masuk",
+                "section_icon" => "fa fa-envelope",
+                "section_href" => route('admin.agenda.surat-masuk.index')
+            ],
+            [
+                "section_text" => "Surat Keluar",
+                "section_icon" => "fa fa-envelope",
+                "section_href" => route('admin.agenda.surat-keluar.index')
+            ],
+            [
+                "section_text" => "Surat Keputusan",
+                "section_icon" => "fa fa-envelope",
+                "section_href" => route('admin.agenda.surat-keputusan.index')
+            ],
+            // [
+            //     "section_text" => "Laporan Agenda",
+            //     "section_icon" => "fa fa-calendar",
+            //     "section_href" => route('cetak-laporan-agenda')
+            // ],
+            // [
+            //     "section_text" => "Laporan Surat Masuk",
+            //     "section_icon" => "fa fa-pdf",
+            //     "section_href" => route('cetak-laporan-surat-masuk')
+            // ],
+            // [
+            //     "section_text" => "Laporan Surat Keluar",
+            //     "section_icon" => "fa fa-pdf",
+            //     "section_href" => route('cetak-laporan-surat-keluar')
+            // ],
+            // [
+            //     "section_text" => "Laporan Surat Keputusan",
+            //     "section_icon" => "fa fa-pdf",
+            //     "section_href" => route('cetak-laporan-surat-keputusan')
+            // ],
             
-    //     ]
-    // ], 
+        ]
+    ], 
     [
         "text" => "DATA",
         "icon" => "fa fa-database",

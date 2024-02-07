@@ -1,5 +1,10 @@
 Pusher.logToConsole = true;
 const pusher = new Pusher('48d7eff46a84a5298751', {
+    wsHost: 'sukajadi.local',
+    wsPort: 6001,
+    wssPort: 6001,
+    disableStats: true,
+    enabledTransports: ['ws', 'wss'],
     cluster: 'ap1',
 });
 var channel = pusher.subscribe('test');
@@ -26,14 +31,15 @@ $(document).ready(function(){
             cache: false,
             success: function (response) {
                 $('#chat-message').val("");
-                console.log("sent ajax form");
-                console.log(response);
+                // console.log("sent ajax form");
+                // console.log(response);
                 $('#messagesContainer').find('.direct-chat-messages').finish().animate({
                     scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")
                 }, 250);
             }
         });
     });
+    
 
     if(ch == null){
         $('.close-button').on('click', function(){
@@ -105,7 +111,6 @@ $(document).ready(function(){
         });
     }
     else{
-        alert('sadsa');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -159,6 +164,21 @@ $(document).ready(function(){
             }, 250);
         });
     }
+});
+
+$(window).on('load', function () {
+    var checkEcho = window.Echo;
+  if (typeof checkEcho !== "undefined") {
+      window.Echo.channel('chat'+ $.cookie("ch"))
+      .listen('ChatUpdate', (e) => {
+              alert('socket Send Message Please read on Screen')  
+              $("#user_name").html(e.name);
+              $("#send_user_msg").html(e.message);
+      });
+   }else{
+        console.log('error');
+   }
+
 });
 
 function getMessageCont(msg)
