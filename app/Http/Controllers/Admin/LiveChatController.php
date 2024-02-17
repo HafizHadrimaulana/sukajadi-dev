@@ -25,8 +25,11 @@ class LiveChatController extends Controller
      */
     public function index(Request $request)
     {
-        $chats = Chat::withCount('unseen_messages')->orderBy('unseen_messages_count', 'desc')->paginate(10);
+        $chats = Chat::withCount('unseen_messages')
+        ->orderBy('unseen_messages_count', 'DESC')
+        ->paginate(4);
 
+        // return dd($chats);
         return view('page.admin.livechat.index',[
             'chats' => $chats
         ]);
@@ -81,9 +84,13 @@ class LiveChatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function data(Request $request)
     {
-        //
+        $chats = Chat::withCount('unseen_messages')
+        ->orderBy('unseen_messages_count', 'DESC')
+        ->paginate(4);
+
+        return response()->json($chats, 200);
     }
 
     /**

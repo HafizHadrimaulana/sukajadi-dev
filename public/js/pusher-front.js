@@ -1,20 +1,18 @@
 Pusher.logToConsole = true;
-const pusher = new Pusher('48d7eff46a84a5298751', {
-    wsHost: 'sukajadi.local',
-    wsPort: 6001,
-    wssPort: 6001,
-    disableStats: true,
-    enabledTransports: ['ws', 'wss'],
-    cluster: 'ap1',
+var pusher = new Pusher('e17b7d08ee03ee73f23f', {
+  cluster: 'ap1'
 });
-var channel = pusher.subscribe('test');
-    channel.bind('test', function(data) {
-      alert(JSON.stringify(data));
-    });
+var audio = new Audio('/audio/chat.mp3');
+
 $(document).ready(function(){
     var ch = $.cookie("ch");
     
 
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+    
     $("#messageForm").on('submit', function (e) {
         e.preventDefault();
         $.ajax({
@@ -139,9 +137,15 @@ $(document).ready(function(){
         });
         var channel = pusher.subscribe('chat'+ $.cookie("ch"));
         channel.bind('my-messages', function (response) {
-            console.log('Hasil Fetch');
-            // $('#messagesContainer').find('.direct-chat-messages')
-            // .append(getMessageCont(response.message));
+            if(response.message.sender == 'admin'){
+                audio.play();
+                $('#messagesContainer').find('.direct-chat-messages')
+                .append('<div class="message-wrapper"><div class="profile-picture"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="message-content"><p class="name">Admin</p><div class="message">' + response.message.pesan + '</div></div></div>');
+            }
+            else{
+                $('#messagesContainer').find('.direct-chat-messages')
+                .append('<div class="message-wrapper reverse"><div class="profile-picture"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="message-content"><p class="name">' + $.cookie('nm') + '</p><div class="message">' + response.message.pesan + '</div></div></div>');
+            }
 
             $('#messagesContainer').find('.direct-chat-messages').finish().animate({
                 scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")

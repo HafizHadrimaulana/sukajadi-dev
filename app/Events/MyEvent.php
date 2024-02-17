@@ -1,12 +1,12 @@
 <?php
-namespace App\Events;
 
+namespace App\Events;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class SendMessage implements ShouldBroadcast
+class MyEvent implements ShouldBroadcast
 {
   use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,7 +19,7 @@ class SendMessage implements ShouldBroadcast
 
   public function broadcastOn()
   {
-      return ['chat'. $this->message->chat_id];
+      return ['chat8'];
   }
 
   public function broadcastAs()

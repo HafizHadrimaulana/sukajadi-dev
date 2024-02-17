@@ -24,7 +24,7 @@ class ChatUpdate
   
     public function broadcastOn()
     {
-        return 'chats-update';
+        return ['chats-update'];
     }
   
     public function broadcastAs()

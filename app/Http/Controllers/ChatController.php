@@ -85,6 +85,7 @@ class ChatController extends Controller
         }
         $chats = Chat::withCount('unseen_messages')->orderBy('unseen_messages_count', 'desc')->paginate(10);
         event(new ChatUpdate($chats));
+        
         return response()->json($messages, 200);
     }
 
@@ -98,11 +99,12 @@ class ChatController extends Controller
             'is_seen' => 0,
             'sender'  => $request->sender
         ]);
+        // dd($message);
         event(new SendMessage($message));
 
         if($message->sender == 'warga'){
             $chats = Chat::withCount('unseen_messages')->orderBy('unseen_messages_count', 'desc')->paginate(10);
-            event(new ChatUpdate($chats));
+            event(new ChatUpdate($message));
         }
         
         return response($message, 200);

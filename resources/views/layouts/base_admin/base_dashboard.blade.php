@@ -62,6 +62,10 @@
             .select2.select2-container{    
                 width: 100% !important;
             }
+
+            .dropdown-menu-notif {
+                min-width: 18rem;
+            }
         </style>
         <!-- jQuery -->
         <script src="{{ asset('vendor/adminlte3/plugins/jquery/jquery.min.js') }}"></script>

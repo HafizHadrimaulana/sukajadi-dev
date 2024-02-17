@@ -11,7 +11,7 @@ use App\Http\Controllers\RembugController;
 use App\Http\Controllers\GisController;
 use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\SaranaPrasaranaController;
-
+use App\Events\MyEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +27,9 @@ Route::get('/', function () {
     return view('page.publik.home');
 });
 
+Route::get('/test', function () {
+    event(new MyEvent('hello world'));
+});
 Auth::routes();
 
 Route::get('/akun', [HomeController::class, 'index'])
