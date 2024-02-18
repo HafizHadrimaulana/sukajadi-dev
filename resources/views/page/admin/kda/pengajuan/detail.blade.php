@@ -26,6 +26,18 @@
 
 <section class="content">
     <div class="card card-primary card-outline" id="data-content">
+        <div class="card-header">
+            <div class="card-tools">
+                <button class="btn btn-primary" onclick="updateState('setuju')">
+                    <i class="fa fa-check"></i>
+                    Setuju
+                </button>
+                <button class="btn btn-danger" onclick="updateState('tolak')">
+                    <i class="fa fa-times"></i>
+                    Tolak
+                </button>
+            </div>
+        </div>
         <div class="card-body">
             <div class="row fs-6">
                 <div class="col-3 fw-bold">
@@ -102,5 +114,32 @@
             });
 
         });
+
+        function updateState(val){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "{{ route('admin.kda.pengajuan.state', { $data->id }) }}",
+                data: {
+                    'status': val,
+                },
+                cache: false,
+                success: function (response) {
+                    const data = response.data;
+                    if(response.fail == true){
+                        for (control in response.errors) {
+                            $('#field-' + control).addClass('is-invalid');
+                            $('#error-' + control).html(response.errors[control]);
+                        }
+                    }else{
+                        $("#field-nama").val("");
+                        $('#modal-j_sarpras').modal('hide');
+                        table.draw();
+                    }
+                }
+            });
+        }
     </script>
 @endpush

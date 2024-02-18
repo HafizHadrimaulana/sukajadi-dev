@@ -80,6 +80,17 @@
         <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+            
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/8.3.0/pusher.min.js" integrity="sha512-tXL5mrkSoP49uQf2jO0LbvzMyFgki//znmq0wYXGq94gVF6TU0QlrSbwGuPpKTeN1mIjReeqKZ4/NJPjHN1d2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{{ asset('js/jquery-cookie.min.js') }}"></script>
+        <script>
+            
+            var pusher = new Pusher('e17b7d08ee03ee73f23f', {
+                    cluster: 'ap1'
+                });
+        </script>
         @stack('scripts')
     </head>
     <body class="hold-transition sidebar-mini">
@@ -116,7 +127,37 @@
                         enabled:true
                     }
                 });
+
+                getNotif();
+                var notif_channel = pusher.subscribe('notif-update');
+                notif_channel.bind('notif', function (response) {
+                    getNotif();
+                });
             });
+
+            function getNotif()
+            {
+                
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "GET",
+                    url: "/admin/notif",
+                    cache: false,
+                    success: function (response) {
+                        // console.log(response)
+                        
+
+                        $("#notificationsDropdown").find('.badge').html(response.total);
+                        $("#notif-total").html(response.total +' Notifikasi');
+                        $("#notif-suratMasuk").html(response.surat_masuk);
+                        $("#notif-suratKeluar").html(response.surat_keluar);
+                        $("#notif-pengajuan").html(response.pengajuan);
+                        $("#notif-chat").html(response.livechat);
+                    }
+                });
+            }
         </script>
     </body>
 </html>

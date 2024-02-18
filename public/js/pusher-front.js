@@ -7,12 +7,6 @@ var audio = new Audio('/audio/chat.mp3');
 $(document).ready(function(){
     var ch = $.cookie("ch");
     
-
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
-    });
-    
     $("#messageForm").on('submit', function (e) {
         e.preventDefault();
         $.ajax({
@@ -214,4 +208,28 @@ function getMessageCont(msg)
     }
 
     return elm;
+} 
+
+function doSuggest(quest)
+{
+    // alert('asa');
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: "/chat/bot",
+        data: {
+            'ask': quest,
+            'chat_id': $.cookie("ch"),
+            'sender': 'warga'
+        },
+        cache: false,
+        success: function (response) {
+            $('#chat-message').val("");
+            $('#messagesContainer').find('.direct-chat-messages').finish().animate({
+                scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")
+            }, 250);
+        }
+    });
 }

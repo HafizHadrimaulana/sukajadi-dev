@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use App\Models\Pengajuan;
+use App\Models\Message;
 
 class DashboardController extends Controller
 {
@@ -52,5 +54,29 @@ class DashboardController extends Controller
          
          // Return view home sebagai default
          return view('home');
+     }
+
+     public function notif(Request $request)
+     {
+
+
+        $suratMasuk = 1;
+        $suratKeluar = 1;
+
+        $pengajuan = Pengajuan::where('status', 'pending')->latest()->get()->count();
+        $liveChat = Message::where('is_seen', 0)->latest()->get()->count();
+
+        $total = $suratMasuk + $suratKeluar + $pengajuan + $liveChat;
+
+        $data = Collect([
+            'surat_masuk' => 0,
+            'surat_keluar' => 0,
+            'pengajuan' => $pengajuan,
+            'livechat' => $liveChat,
+            'total' => $total
+        ]);
+
+
+        return response()->json($data);
      }
 }

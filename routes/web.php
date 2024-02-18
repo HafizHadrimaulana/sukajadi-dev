@@ -55,6 +55,7 @@ Route::prefix('/chat')->name('chat.')->group(function () {
     Route::post('/create', 'ChatController@create')->name('create');
     Route::get('/get-message', 'ChatController@message')->name('message');
     Route::post('/sent-message', 'ChatController@send')->name('send');
+    Route::post('/bot', 'ChatController@bot')->name('bot');
 });
 // Menambahkan rute untuk bagian Laporan
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -86,6 +87,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
         return redirect()->route('admin.dashboard');
     });
     Route::get('/dashboard','DashboardController@index')->name('dashboard');
+    Route::get('/notif','DashboardController@notif')->name('notif');
 
     
     Route::prefix('/kegiatan')->name('kegiatan.')->group(function () {
@@ -98,7 +100,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
         Route::post('/{id}/update','KegiatanController@update')->name('update');
         Route::delete('/{id}/delete','KegiatanController@destroy')->name('delete');
     });
-
+ 
     
     Route::prefix('/timeline')->name('timeline.')->group(function () {
         Route::get('/', 'TimeLineController@index')->name('index');
@@ -185,10 +187,16 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
             Route::post('/store','SaranaController@store')->name('store');
             Route::get('/data', 'SaranaController@data')->name('data');
             Route::get('/export', 'SaranaController@export')->name('export');
+
+            Route::post('/jenis/create', 'JenisSaranaController@store')->name('jenis.create');
+            Route::post('/jenis/{id}/update','JenisSaranaController@update')->name('jenis.update');
+            Route::delete('/jenis/{id}/delete','JenisSaranaController@destroy')->name('jenis.delete');
+
             Route::get('/{id}', 'SaranaController@show')->name('show');
             Route::get('/{id}/edit','SaranaController@edit')->name('edit');
             Route::post('/{id}/update','SaranaController@update')->name('update');
             Route::delete('/{id}/delete','SaranaController@destroy')->name('delete');
+            
         });
         
         Route::prefix('/usaha')->name('usaha.')->group(function () {
@@ -212,6 +220,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
             Route::get('/{id}', 'PengajuanController@show')->name('show');
             Route::get('/{id}/edit','PengajuanController@edit')->name('edit');
             Route::post('/{id}/update','PengajuanController@update')->name('update');
+            Route::post('/{id}/state','PengajuanController@state')->name('state');
             Route::delete('/{id}/delete','PengajuanController@destroy')->name('delete');
         });
     });
@@ -270,12 +279,29 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
             Route::get('/create', 'SaranaController@create')->name('create');
             Route::post('/store','SaranaController@store')->name('store');
             Route::get('/data', 'SaranaController@data')->name('data');
+
+            Route::post('/jenis/create', 'JenisSaranaController@store')->name('jenis.create');
+            Route::post('/jenis/{id}/update','JenisSaranaController@update')->name('jenis.update');
+            Route::delete('/jenis/{id}/delete','JenisSaranaController@destroy')->name('jenis.delete');
+
+
             Route::get('/{id}', 'SaranaController@show')->name('show');
             Route::get('/{id}/edit','SaranaController@edit')->name('edit');
             Route::post('/{id}/update','SaranaController@update')->name('update');
             Route::delete('/{id}/delete','SaranaController@destroy')->name('delete');
         });
         
+        Route::prefix('/jenis-sarana-prasarana')->name('jsarpras.')->group(function () {
+            Route::get('/', 'JenisSaranaController@index')->name('index');
+            Route::get('/create', 'JenisSaranaController@create')->name('create');
+            Route::post('/store','JenisSaranaController@store')->name('store');
+            Route::get('/data', 'JenisSaranaController@data')->name('data');
+            Route::get('/{id}', 'JenisSaranaController@show')->name('show');
+            Route::get('/{id}/edit','JenisSaranaController@edit')->name('edit');
+            Route::post('/{id}/update','JenisSaranaController@update')->name('update');
+            Route::delete('/{id}/delete','JenisSaranaController@destroy')->name('delete');
+        });
+
         Route::prefix('/posyandu')->name('posyandu.')->group(function () {
             Route::get('/', 'PosyanduController@index')->name('index');
             Route::get('/create', 'PosyanduController@create')->name('create');

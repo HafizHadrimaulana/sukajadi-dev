@@ -124,6 +124,26 @@ class LiveChatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        DB::beginTransaction();
+        try{
+
+            $data = Chat::where('id', $id)->first();
+            $data->delete();
+
+        }catch(\QueryException $e){
+            DB::rollback();
+            return response()->json([
+                'fail' => true,
+                'errors' => $e,
+                'pesan' => 'Gagal Mengubah Status Pengumuman!',
+            ]);
+        }
+
+        DB::commit();
+        return response()->json([
+            'fail' => false,
+            'pesan' => 'Status Pengumuman Berhasil Diperbaharui!',
+        ]);
     }
 }

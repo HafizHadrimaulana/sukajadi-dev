@@ -15,29 +15,41 @@
             <a class="nav-link" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning ">15</span>
+                <span class="badge badge-warning">
+
+                </span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right dropdown-menu-notif" aria-labelledby="notificationsDropdown">
-                <span class="dropdown-item dropdown-header">15 Notifikasi</span>
+                <span class="dropdown-item dropdown-header" id="notif-total"> 
+                    
+                </span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 Surat Masuk
-                    <span class="float-right text-muted text-sm">3 mins</span>
+                <a href="{{ route('admin.agenda.surat-masuk.index', ['tahun' => '2024']) }}" class="dropdown-item">
+                    <i class="fas fa-envelope mr-2"></i>Surat Masuk
+                    <span class="float-right text-muted text-sm" id="notif-suratMasuk">
+
+                    </span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 Surat Keluar
-                    <span class="float-right text-muted text-sm">12 hours</span>
+                <a href="{{ route('admin.agenda.surat-masuk.index', ['tahun' => '2024']) }}"  class="dropdown-item">
+                    <i class="fas fa-users mr-2"></i>Surat Keluar
+                    <span class="float-right text-muted text-sm"  id="notif-suratKeluar">
+
+                    </span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 Pengajuan Data
-                    <span class="float-right text-muted text-sm">12 hours</span>
+                <a href="{{ route('admin.kda.pengajuan.index', ['tahun' => '2024']) }}"  class="dropdown-item">
+                    <i class="fas fa-users mr-2"></i>Pengajuan Data
+                    <span class="float-right text-muted text-sm"  id="notif-pengajuan">
+
+                    </span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 Live Chat
-                    <span class="float-right text-muted text-sm">2 days</span>
+                <a href="{{ route('admin.livechat.index') }}"  class="dropdown-item">
+                    <i class="fas fa-comments mr-2"></i>Live Chat
+                    <span class="float-right text-muted text-sm" id="notif-chat">
+
+                    </span>
                 </a>
             </div>
         </li>

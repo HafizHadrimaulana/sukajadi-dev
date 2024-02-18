@@ -161,19 +161,19 @@
                                     </div>
                                     <div class="common-chat-body">
                                         <ul>
-                                            <li>
+                                            <li onclick="doSuggest('ktp')">
                                                 Pembuatan KTP
                                             </li>
-                                            <li>
+                                            <li onclick="doSuggest('kk')">
                                                 Pembuatan KK
                                             </li>
-                                            <li>
+                                            <li onclick="doSuggest('surat-pindah-masuk')">
                                                 Pengurusan Surat Pindah / Masuk
                                             </li>
-                                            <li>
+                                            <li onclick="doSuggest('akta-kelahiran')">
                                                 Pengurusan Akta Kelahiran
                                             </li>
-                                            <li>
+                                            <li onclick="doSuggest('pengurusan-izin-usaha')">
                                                 Pengurusan Surat Izin Usaha
                                             </li>
                                         </ul>

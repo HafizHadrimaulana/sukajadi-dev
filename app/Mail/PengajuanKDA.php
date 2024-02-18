@@ -31,7 +31,7 @@ class PengajuanKDA extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Pengajuan K D A',
+            subject: 'Pengajuan KDA',
         );
     }
 

@@ -43,7 +43,7 @@ crossorigin=""/>
 </section>
 
 <section class="content">
-    <div class="card">
+    <div class="card card-outline card-primary">
         <div class="card-body">
             <form id="form-kegiatan" method="POST" action="{{ route('admin.sarpras.store') }}" enctype="multipart/form-data">
                 @csrf

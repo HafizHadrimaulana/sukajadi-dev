@@ -23,7 +23,14 @@
 
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-success" href="{{ route('admin.sarpras.create') }}"><i class="fa fa-plus"></i> Tambah</a>
+            <a class="btn btn-primary" href="{{ route('admin.sarpras.create') }}">
+                <i class="fa fa-plus"></i>
+                 Tambah Sarana & Prasarana
+            </a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-j_sarpras">
+                <i class="fa fa-plus"></i>
+                 Tambah Jenis Sarana & Prasarana
+            </button>
         </div>
         <div class="card-body">
             <table class="table table-bordered datatable w-100">
@@ -40,6 +47,31 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="modal-j_sarpras" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="modal-form">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah Jenis Sarana & Prasarana</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="field-nama">Nama</label>
+                        <input name="hp" type="text" placeholder="Masukan Nama Jenis Sarana & Prasarana" class="form-control" id="field-nama">
+                        <div id="error-nama" class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @endsection
 
@@ -84,6 +116,35 @@
                 $('#filter-tahun').trigger('change');
                 $("#data-content").addClass('d-none');
                 table.draw();
+            });
+
+            
+            $("#modal-form").on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "{{ route('admin.sarpras.jenis.create') }}",
+                    data: {
+                        'nama': $('#field-nama').val(),
+                    },
+                    cache: false,
+                    success: function (response) {
+                        const data = response.data;
+                        if(response.fail == true){
+                            for (control in response.errors) {
+                                $('#field-' + control).addClass('is-invalid');
+                                $('#error-' + control).html(response.errors[control]);
+                            }
+                        }else{
+                            $("#field-nama").val("");
+                            $('#modal-j_sarpras').modal('hide');
+                            table.draw();
+                        }
+                    }
+                });
             });
 
         });

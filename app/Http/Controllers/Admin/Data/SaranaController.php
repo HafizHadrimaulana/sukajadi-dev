@@ -24,7 +24,7 @@ class SaranaController extends Controller
             
             
             $data = DB::table("t_data_sarpras as a")
-            ->join("j_data_sarpras as b", function($join){
+            ->leftjoin("j_data_sarpras as b", function($join){
                 $join->on("b.id_j_data_sarpras", "=", "a.id_j_data_sarpras");
             })
             ->select("a.id_j_data_sarpras", "b.nama_j_data_sarpras", DB::raw('COUNT(*) as jumlah'))

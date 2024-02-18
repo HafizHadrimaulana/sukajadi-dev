@@ -67,24 +67,25 @@ class UsahaExport implements FromCollection, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
-            '#',
-            'Nama Usaha',
-            'Pemilik Usaha',
-            'NIK Pemilik Usaha',
-            'Merk',
-            'Izin',
-            'No Izin',
-            'Tahun Berdiri',
-            'Alamat',
-            'RT',
-            'RW',
-            'Kelurahan',
-            'Keterangan',
-            'Jenis Usaha',
-            'Produk',
-            'Email',
-            'Sosmed',
-            'No. Telepon'
+            
+            // '#',
+            // 'Nama Usaha',
+            // 'Pemilik Usaha',
+            // 'NIK Pemilik Usaha',
+            // 'Merk',
+            // 'Izin',
+            // 'No Izin',
+            // 'Tahun Berdiri',
+            // 'Alamat',
+            // 'RT',
+            // 'RW',
+            // 'Kelurahan',
+            // 'Keterangan',
+            // 'Jenis Usaha',
+            // 'Produk',
+            // 'Email',
+            // 'Sosmed',
+            // 'No. Telepon'
         ];
     }
 }

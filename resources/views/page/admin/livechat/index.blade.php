@@ -35,9 +35,9 @@
                 <div class="card-body p-0" style="display: block; height: 250px; overflow: auto;">
                     <ul class="nav nav-pills flex-column" id="chat-list">
                         @foreach ($chats as $chat)
-                        <li class="nav-item" id="{{ $chat->id }}" data-sender-name="{{ $chat->name }}">
+                        <li class="nav-item" id="chat-{{ $chat->id }}">
                             <div class="row justify-content-between mx-0">
-                                <div class="col-9" onclick="fetchData(this)">
+                                <div class="col-9" onclick="fetchData(this)" id="{{ $chat->id }}" data-sender-name="{{ $chat->name }}">
                                     <a href="javascript:void(0)" class="nav-link px-0 text-black">
                                         <div class="text-sm">
                                             {{ $chat->name }}
@@ -99,13 +99,66 @@
 @endsection 
 
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/8.3.0/pusher.min.js" integrity="sha512-tXL5mrkSoP49uQf2jO0LbvzMyFgki//znmq0wYXGq94gVF6TU0QlrSbwGuPpKTeN1mIjReeqKZ4/NJPjHN1d2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('js/jquery-cookie.min.js') }}"></script>
 <script src="/js/pusher-admin.js"></script>
 <script>
     
+    function deleteChat(id)
+        {
+            Swal.fire({
+                icon : 'warning',
+                text: 'Hapus Data?',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: `Tidak, Jangan!`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/admin/livechat/"+id+"/delete",
+                        type: "DELETE",
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(data) {
+                            if(data.fail == false){
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Berhasil",
+                                    text: "Data Berhasil Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'success',
+                                    position : 'top-end'
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            }else{
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Data Gagal Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Terjadi Kesalahan Di Server!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                        }
+                    });
+                }
+            })
+        }
 
     $(document).ready(function() {
-    });
+
+});
 </script>
 @endpush
