@@ -45,6 +45,20 @@ class PegawaiController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {
+
+        $jenis = DB::table('j_data_pegawai')->select('*')->orderBy('nama_j_data_pegawai','ASC')->get();
+        $sopd = DB::table('j_sopd')->select('*')->orderBy('nama_j_sopd','ASC')->get();
+
+        return view('page.admin.kda.pegawai.create',[
+            'jenis' => $jenis,
+            'sopd' => $sopd
+        ]);
+    }
+
+    
+
     
     /**
      * Display the specified resource.
@@ -92,7 +106,58 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $rules = [
+            'nama' => 'required',
+            'jenis' => 'required',
+            'jk' => 'required',
+            'nip' => 'required',
+            'lokasi' => 'required',
+            // 'jadwal' => 'required',
+            // 'mulai' => 'required',
+            // 'selesai' => 'required',
+        ];
+
+        $pesan = [
+            'nama.required' => 'Nama Wajib Diisi!',
+            'jenis.required' => 'Jenis Wajib Diisi!',
+            'jk.required' => 'Jenis Kelamin Wajib Diisi!',
+            'nip.required' => 'NIP Wajib Diisi!',
+            'kel.required' => 'Kelurahan Wajib Diisi!',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()){
+            return back()->withInput()->withErrors($validator->errors());
+        }else{
+            DB::beginTransaction();
+            try{
+                // dd($request->all());
+                // $tgl = Carbon::parse($request->tgl);
+
+                $data = new Sarpras();
+                $data->id_j_tahun = 0;
+                $data->id_j_data_sarpras = $request->jenis;
+                $data->nama_t_data_sarpras = $request->nama;
+                $data->alamat_t_data_sarpras = $request->lokasi;
+                $data->rt_t_data_sarpras = $request->rw;
+                $data->rw_t_data_sarpras = $request->rt;
+                $data->kelurahan_t_data_sarpras = $request->kel;
+                $data->keterangan_t_data_sarpras = $request->keterangan;
+                $data->detail_t_data_sarpras = $request->detail;
+                $data->lat_t_data_sarpras = $request->lat;
+                $data->lng_t_data_sarpras = $request->lng;
+                $data->user_id = auth()->user()->id;
+                $data->save();
+
+            }catch(\QueryException $e){
+                DB::rollback();
+                dd($e);
+            }
+
+            DB::commit();
+            return redirect()->route('admin.data.sarpras.show', $request->jenis);
+        }
     }
     /**
      * Show the form for editing the specified resource.

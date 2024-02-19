@@ -6,9 +6,15 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use DB;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithCustomStartCell;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Events\BeforeSheet;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
-class PegawaiExport implements FromCollection, WithMapping, WithHeadings, WithColumnWidths
+class PegawaiExport implements FromCollection, WithMapping, WithHeadings, 
+WithHeadingRow, WithCustomStartCell, WithEvents, WithColumnWidths
 {
 
     private $jenis;
@@ -21,6 +27,11 @@ class PegawaiExport implements FromCollection, WithMapping, WithHeadings, WithCo
     }
     
 
+    public function startCell(): string
+    {
+        return 'A1';
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -30,30 +41,21 @@ class PegawaiExport implements FromCollection, WithMapping, WithHeadings, WithCo
         ->join("j_sopd as c", function($join){
             $join->on("c.id_j_sopd", "=", "a.sopd_t_data_pegawai");
         })
-        ->select("a.*", "c.nama_j_sopd")
+        ->select("c.nama_j_sopd", DB::raw("COUNT(*) as jml"))
         ->when($this->jenis != "semua", function($q, $jenis){
             return $q->where('a.id_j_data_pegawai', '=', $jenis);
         })
+        ->groupBy('c.nama_j_sopd')
         ->get();
     }
 
     public function map($data): array
     {
-        $i = 1;
+        // $i = 1;
         return [
-            $i++,
-            $data->nip_t_data_pegawai,
-            $data->nama_t_data_pegawai,
-            $data->gender_t_data_pegawai,
-            $data->ttl_t_data_pegawai,
-            $data->jabatan_t_data_pegawai,
-            $data->pangkat_t_data_pegawai,
-            $data->gol_t_data_pegawai,
-            $data->esselon_t_data_pegawai,
-            $data->pendidikan_t_data_pegawai,
-            $data->email_t_data_pegawai,
-            $data->telp_t_data_pegawai,
-            $data->jabatan_lainnya_t_data_pegawai,
+            // $i++,
+            $data->nama_j_sopd,
+            $data->jml
         ];
     }
 
@@ -61,27 +63,51 @@ class PegawaiExport implements FromCollection, WithMapping, WithHeadings, WithCo
     public function columnWidths(): array
     {
         return [
-            'A' => 55,
-            'B' => 45,            
+            'A' => 24,
+            'B' => 10,            
         ];
     }
     
     public function headings(): array
     {
         return [
-            '#',
-            'NIP',
-            'Nama',
-            'Jenis Kelamin',
-            'TTL',
-            'Jabatan',
-            'Pangkat',
-            'Golongan',
-            'Esselon',
-            'Pendidikan',
-            'Email',
-            'Telepon',
-            'Jabatan Lainnya'
+            'SOPD',
+            'Jumlah',
+        ];
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->getStyle('A1:B1')->applyFromArray([
+                    'font' => [
+                        'bold' => true,
+                        'size' => 14,
+                    ],
+                    'alignment' => [
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    ],
+                    // Add more styling options as needed
+                ]);
+
+                
+                $event->sheet->insertNewRowBefore(1, 3);
+                $event->sheet->setCellValue('A2','DATA PEGAWAI KECAMATAN SUKAJADI');
+                $event->sheet->mergeCells('A2:B2');
+
+
+                $event->sheet->getStyle('A3:B' . ($event->sheet->getHighestRow()))->applyFromArray([
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                            'color' => ['argb' => 'FF000000'],
+                        ],
+                    ],
+                ]);
+            },
+
+
         ];
     }
 }

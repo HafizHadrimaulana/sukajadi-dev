@@ -27,7 +27,10 @@
 
     <div class="card">
         <div class="card-header">
-            <button class="btn btn-success" onclick="add_data_tabel()"><i class="fa fa-plus"></i> Tambah</button>
+            <a class="btn btn-success" href="{{ route('admin.kda.usaha.create') }}">
+                <i class="fa fa-plus"></i> 
+                Tambah
+            </a>
         
             <div class="card-tools">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">

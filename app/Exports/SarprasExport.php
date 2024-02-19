@@ -6,8 +6,16 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use DB;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithCustomStartCell;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Events\BeforeSheet;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
-class SarprasExport implements FromCollection, WithMapping, WithHeadings
+class SarprasExport implements FromCollection, WithMapping, WithHeadings, 
+WithHeadingRow, WithEvents, WithColumnWidths
+
 {
 
     private $jenis;
@@ -19,7 +27,6 @@ class SarprasExport implements FromCollection, WithMapping, WithHeadings
         $this->jenis = $jenis;
     }
     
-
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -33,7 +40,6 @@ class SarprasExport implements FromCollection, WithMapping, WithHeadings
             $join->on("c.id_j_kelurahan", "=", "a.kelurahan_t_data_sarpras");
         })
         ->select("c.nama_j_kelurahan", DB::raw("COUNT(*) as jml"))
-        // ->where('a.id_j_data_sarpras', $id)
         ->when($this->jenis != "semua", function($q, $jenis){
             return $q->where('a.id_j_data_sarpras', '=', $jenis);
         })
@@ -45,32 +51,73 @@ class SarprasExport implements FromCollection, WithMapping, WithHeadings
     {
         $i = 1;
         return [
-            $i++,
+            // $i++,
             $data->nama_j_kelurahan,
             $data->jml
-            // $data->nama_t_data_sarpras,
-            // $data->nama_j_data_sarpras,
-            // $data->alamat_t_data_sarpras,
-            // $data->rt_t_data_sarpras,
-            // $data->rw_t_data_sarpras,
-            // $data->nama_j_kelurahan,
-            // $data->keterangan_t_data_sarpras,
-            // $data->detail_t_data_sarpras,
+        ];
+    }
+
+    
+    
+    public function columnWidths(): array
+    {
+        return [
+            'A' => 30,
+            'B' => 20,            
         ];
     }
     
     public function headings(): array
     {
         return [
-            '#',
+            // '#',
             'Kelurahan',
             'Jumlah',
-            // 'Alamat',
-            // 'RT',
-            // 'RW',
-            // 'Kelurahan',
-            // 'Keterangan',
-            // 'Detail',
+        ];
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+
+            AfterSheet::class => function (AfterSheet $event) {
+
+                $headingStyle = [
+                    
+                    'font' => [
+                        'bold' => true,
+                        'size' => 14,
+                    ],
+                    'alignment' => [
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    ],
+                ];
+
+
+                $event->sheet->insertNewRowBefore(1, 4);
+
+                $event->sheet->setCellValue('A2','DATA SARANA & PRASANA');
+                $event->sheet->setCellValue('A3','KECAMATAN SUKAJADI, KOTA BANDUNG');
+                
+
+                $event->sheet->mergeCells('A2:B2');
+                $event->sheet->mergeCells('A3:B3');
+
+
+                
+                $event->sheet->getStyle('A2:B3')->applyFromArray($headingStyle);
+                $event->sheet->getStyle('A5:B5')->applyFromArray($headingStyle);
+
+                $event->sheet->getStyle('A5:B' . ($event->sheet->getHighestRow()))->applyFromArray([
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                            'color' => ['argb' => 'FF000000'],
+                        ],
+                    ],
+                ]);
+            },
+
         ];
     }
 }

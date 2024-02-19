@@ -8,19 +8,23 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
 class PengajuanKDA extends Mailable
 {
     use Queueable, SerializesModels;
+    public $data;
+    public $excelFile;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data, $excelFile)
     {
-        //
+        $this->data = $data;
+        $this->excelFile = $excelFile;
     }
 
     /**
@@ -43,7 +47,10 @@ class PengajuanKDA extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'emails.pengajuan',
+            with : [
+                'data' => $this->data,
+            ]
         );
     }
 
@@ -54,6 +61,18 @@ class PengajuanKDA extends Mailable
      */
     public function attachments()
     {
-        return [];
+        if($this->data->jenis == 'Pegawai'){
+            $fileName = 'Data Pegawai.xlsx';
+        }else if($this->data->jenis == 'Usaha'){
+            $fileName = 'Data Usaha.xlsx';
+        }else{
+            $fileName = 'Data Sarana & Prasarana.xlsx';
+        }
+
+        return [
+            Attachment::fromPath($this->excelFile)
+                    ->as($fileName)
+                    ->withMime('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+        ];
     }
 }

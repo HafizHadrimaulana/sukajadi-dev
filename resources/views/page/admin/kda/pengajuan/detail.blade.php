@@ -121,7 +121,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "POST",
-                url: "{{ route('admin.kda.pengajuan.state', { $data->id }) }}",
+                url: "{{ route('admin.kda.pengajuan.state', $data->id) }}",
                 data: {
                     'status': val,
                 },

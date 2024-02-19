@@ -212,7 +212,6 @@ function getMessageCont(msg)
 
 function doSuggest(quest)
 {
-    // alert('asa');
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

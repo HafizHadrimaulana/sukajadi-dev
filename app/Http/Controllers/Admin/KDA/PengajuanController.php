@@ -7,7 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use DataTables;
+use App\Mail\PengajuanKDA;
+use App\Models\Pengajuan;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsahaExport;
+use App\Exports\PegawaiExport;
+use App\Exports\SarprasExport;
 
+
+use Mail;
 class PengajuanController extends Controller
 {
     /**
@@ -107,6 +115,41 @@ class PengajuanController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    
+    public function state(Request $request, $id)
+    {
+        // dd($request->all());
+        DB::beginTransaction();
+        try{
+
+            $data = Pengajuan::where('id', $id)->first();
+            $data->status = $request->status;
+            $data->save();
+
+            if($request->status == 'setuju'){
+                if($data->jenis == 'Pegawai'){
+                    $excelFile = Excel::download(new PegawaiExport("semua"), 'Data Pegawai.xlsx')->getFile();
+                }else if($data->jenis == 'Sarana & Prasarana'){
+                    $excelFile = Excel::download(new SarprasExport("semua"), 'Data Sarana & Prasarana.xlsx')->getFile();
+                }else{
+                    $excelFile = Excel::download(new UsahaExport("semua"), 'Data Usaha.xlsx')->getFile();
+                }
+
+                Mail::to($data->email)->send(new PengajuanKDA($data, $excelFile));
+            }
+
+        }catch(\QueryException $e){
+            DB::rollback();
+            dd($e);
+        }
+
+        // DB::commit();
+        return response()->json([
+            'fail' => false,
+            'pesan' => 'Status Pengajuan Berhasil Diperbaharui!',
+        ]);
     }
 
     /**
