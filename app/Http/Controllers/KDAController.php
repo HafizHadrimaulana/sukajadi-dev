@@ -53,6 +53,7 @@ class KDAController extends Controller
             DB::beginTransaction();
             try{
                 $data = new Pengajuan();
+                $data->nomor = $this->getNumber($request->jenis);
                 $data->id_j_tahun = $request->tahun;
                 $data->jenis = $request->jenis;
                 $data->nama = $request->nama;
@@ -68,6 +69,30 @@ class KDAController extends Controller
 
             DB::commit();
             return redirect()->route('data.kda.index');
+        }
+    }
+
+
+    private function getNumber($jenis)
+    {
+        if($jenis == 'Pegawai'){
+            $kd = 'PG';
+        }elseif($jenis == 'Usaha'){
+            $kd = 'US';
+        }else{
+            $kd = 'SP';
+        }
+
+        $q = Pengajuan::select(DB::raw('MAX(RIGHT(nomor,5)) AS kd_max'));
+        $no = 1;
+        date_default_timezone_set('Asia/Jakarta');
+
+        if($q->count() > 0){
+            foreach($q->get() as $k){
+                return $kd .'/'.sprintf("%05s", abs(((int)$k->kd_max) + 1));
+            }
+        }else{
+            return $kd.'/'. sprintf("%05s", $no);
         }
     }
 

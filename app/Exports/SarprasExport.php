@@ -32,19 +32,18 @@ WithHeadingRow, WithEvents, WithColumnWidths
     */
     public function collection()
     {
-        return DB::table("t_data_sarpras as a")
-        // ->join("j_data_sarpras as b", function($join){
-        //     $join->on("b.id_j_data_sarpras", "=", "a.id_j_data_sarpras");
-        // })
+        $data = DB::table("t_data_sarpras as a")
         ->join("j_kelurahan as c", function($join){
             $join->on("c.id_j_kelurahan", "=", "a.kelurahan_t_data_sarpras");
         })
         ->select("c.nama_j_kelurahan", DB::raw("COUNT(*) as jml"))
-        ->when($this->jenis != "semua", function($q, $jenis){
-            return $q->where('a.id_j_data_sarpras', '=', $jenis);
+        ->when($this->jenis != "semua", function($q){
+            return $q->where('a.id_j_data_sarpras', '=', $this->jenis);
         })
         ->groupBy('c.nama_j_kelurahan')
         ->get();
+        // dd($data);'
+        return $data;
     }
 
     public function map($data): array

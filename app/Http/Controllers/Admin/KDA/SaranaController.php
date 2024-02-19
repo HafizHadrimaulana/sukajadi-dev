@@ -266,6 +266,7 @@ class SaranaController extends Controller
     public function export(Request $request)
     {
         $jenis = $request->jenis;
+        // dd($jenis);
         return Excel::download(new SarprasExport($jenis), 'Data Sarana & Prasarana.xlsx');
 
     }
