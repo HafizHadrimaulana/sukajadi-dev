@@ -161,7 +161,7 @@ class SaranaController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.data.sarpras.show', $request->jenis);
+            return redirect()->route('admin.sarpras.show', $request->jenis);
         }
     }
 
