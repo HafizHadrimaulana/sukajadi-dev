@@ -27,18 +27,27 @@
 <section class="content">
     <div class="card card-primary card-outline" id="data-content">
         <div class="card-header">
+            <button class="btn btn-primary" onclick="updateState('setuju')">
+                <i class="fa fa-check"></i>
+                Setuju
+            </button>
+            <button class="btn btn-danger" onclick="updateState('tolak')">
+                <i class="fa fa-times"></i>
+                Tolak
+            </button>
             <div class="card-tools">
-                <button class="btn btn-primary" onclick="updateState('setuju')">
-                    <i class="fa fa-check"></i>
-                    Setuju
-                </button>
-                <button class="btn btn-danger" onclick="updateState('tolak')">
-                    <i class="fa fa-times"></i>
-                    Tolak
+                <a class="btn btn-success" href="{{ route('admin.kda.pengajuan.edit', $data->id) }}">
+                    <i class="fa fa-edit"></i>
+                    Ubah
+                </a>
+                <button class="btn btn-danger" onclick="hapus({{ $data->id }})">
+                    <i class="fa fa-trash"></i>
+                    Hapus
                 </button>
             </div>
         </div>
         <div class="card-body">
+            <h3 class="fs-4">{{ $data->nomor }}</h3>
             <div class="row fs-6">
                 <div class="col-3 fw-bold">
                     Nama Pengaju
@@ -160,6 +169,61 @@
                     }
                 }
             });
+        }
+        function hapus(id)
+        {
+            Swal.fire({
+                icon : 'warning',
+                text: 'Hapus Data?',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: `Tidak, Jangan!`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/admin/kda/pengajuan/"+id+"/delete",
+                        type: "DELETE",
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(data) {
+                            if(data.fail == false){
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Berhasil",
+                                    text: "Data Berhasil Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'success',
+                                    position : 'top-end'
+                                }).then((result) => {
+                                    // location.reload();
+                                    window.location.href = "{{ route('admin.kda.pengajuan.index') }}"
+                                });
+                            }else{
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Data Gagal Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Terjadi Kesalahan Di Server!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                        }
+                    });
+                }
+            })
         }
     </script>
 @endpush

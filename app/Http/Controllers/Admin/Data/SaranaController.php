@@ -72,7 +72,7 @@ class SaranaController extends Controller
                 ->addColumn('action', function($row){
                     // $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
                     $btn = '<a class="btn btn-sm btn-info mr-1" href='. route('admin.sarpras.edit', ['id' => $row->id_t_data_sarpras]) .'><i class="fa fa-edit"></i></a>';
-                    $btn .= '<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>';
+                    $btn .= '<button class="btn btn-sm btn-danger" onclick="hapus('. $row->id_t_data_sarpras .')"><i class="fa fa-trash"></i></button>';
                     return $btn; 
                 })
                 ->rawColumns(['action']) 
@@ -253,6 +253,26 @@ class SaranaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        DB::beginTransaction();
+        try{
+
+            $data = Sarpras::where('id_t_data_sarpras', $id)->first();
+            $data->delete();
+
+        }catch(\QueryException $e){
+            DB::rollback();
+            return response()->json([
+                'fail' => true,
+                'errors' => $e,
+                'pesan' => 'Gagal Menghapus Data!',
+            ]);
+        }
+
+        // DB::commit();
+        return response()->json([
+            'fail' => false,
+            'pesan' => 'Data Berhasil Dihapus!',
+        ]);
     }
 }

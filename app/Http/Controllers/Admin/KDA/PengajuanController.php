@@ -83,6 +83,16 @@ class PengajuanController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        
+        $tahun = DB::table('j_tahun')->select('*')->orderBy('id_j_tahun', 'DESC')->get();
+
+        return view('page.admin.kda.pengajuan.create',[
+            'tahun' => $tahun
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -91,7 +101,46 @@ class PengajuanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'nama' => 'required',
+            'jenis' => 'required',
+            'email' => 'required',
+            'keterangan' => 'required',
+            'tahun' => 'required',
+        ];
+
+        $pesan = [
+            'nama.required' => 'Nama Wajib Diisi!',
+            'jenis.required' => 'Jenis Data Wajib Diisi!',
+            'email.required' => 'Alamat Email Wajib Diisi!',
+            'keterangan.required' => 'Keterangan Wajib Diisi!',
+            'tahun.required' => 'Tahun Wajib Diisi!',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()){
+            return back()->withInput()->withErrors($validator->errors());
+        }else{
+            DB::beginTransaction();
+            try{
+                $data = new Pengajuan();
+                $data->nomor = $this->getNumber($request->jenis);
+                $data->id_j_tahun = $request->tahun;
+                $data->jenis = $request->jenis;
+                $data->nama = $request->nama;
+                $data->email = $request->email;
+                $data->keterangan = $request->keterangan;
+                $data->status = 'pending';
+                $data->save();
+
+            }catch(\QueryException $e){
+                DB::rollback();
+                dd($e);
+            }
+
+            DB::commit();
+            return redirect()->route('admin.kda.pengajuan.show', $data->id);
+        }
     }
 
     /**
@@ -102,7 +151,13 @@ class PengajuanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tahun = DB::table('j_tahun')->select('*')->orderBy('id_j_tahun', 'DESC')->get();
+        $data = DB::table('pengajuan')->select('*')->where('id', $id)->first();
+
+        return view('page.admin.kda.pengajuan.edit',[
+            'data' => $data,
+            'tahun' => $tahun
+        ]);
     }
 
     /**
@@ -114,7 +169,45 @@ class PengajuanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'nama' => 'required',
+            'jenis' => 'required',
+            'email' => 'required',
+            'keterangan' => 'required',
+            'tahun' => 'required',
+        ];
+
+        $pesan = [
+            'nama.required' => 'Nama Wajib Diisi!',
+            'jenis.required' => 'Jenis Data Wajib Diisi!',
+            'email.required' => 'Alamat Email Wajib Diisi!',
+            'keterangan.required' => 'Keterangan Wajib Diisi!',
+            'tahun.required' => 'Tahun Wajib Diisi!',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()){
+            return back()->withInput()->withErrors($validator->errors());
+        }else{
+            DB::beginTransaction();
+            try{
+                $data = Pengajuan::where('id', $id)->first();
+                $data->id_j_tahun = $request->tahun;
+                $data->jenis = $request->jenis;
+                $data->nama = $request->nama;
+                $data->email = $request->email;
+                $data->keterangan = $request->keterangan;
+                $data->status = 'pending';
+                $data->save();
+
+            }catch(\QueryException $e){
+                DB::rollback();
+                dd($e);
+            }
+
+            DB::commit();
+            return redirect()->route('admin.kda.pengajuan.show', $data->id);
+        }
     }
 
     
@@ -152,6 +245,31 @@ class PengajuanController extends Controller
         ]);
     }
 
+    
+
+    private function getNumber($jenis)
+    {
+        if($jenis == 'Pegawai'){
+            $kd = 'PG';
+        }elseif($jenis == 'Usaha'){
+            $kd = 'US';
+        }else{
+            $kd = 'SP';
+        }
+
+        $q = Pengajuan::select(DB::raw('MAX(RIGHT(nomor,5)) AS kd_max'));
+        $no = 1;
+        date_default_timezone_set('Asia/Jakarta');
+
+        if($q->count() > 0){
+            foreach($q->get() as $k){
+                return $kd .'/'.sprintf("%05s", abs(((int)$k->kd_max) + 1));
+            }
+        }else{
+            return $kd.'/'. sprintf("%05s", $no);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -160,6 +278,27 @@ class PengajuanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        {
+            DB::beginTransaction();
+            try{
+    
+                $data = Pengajuan::where('id', $id)->first();
+                $data->delete();
+    
+            }catch(\QueryException $e){
+                DB::rollback();
+                return response()->json([
+                    'fail' => true,
+                    'errors' => $e,
+                    'pesan' => 'Gagal Menghapus Data!',
+                ]);
+            }
+    
+            DB::commit();
+            return response()->json([
+                'fail' => false,
+                'pesan' => 'Data Berhasil Dihapus!',
+            ]);
+        }
     }
 }

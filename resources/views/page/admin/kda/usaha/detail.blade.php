@@ -32,8 +32,8 @@
             </h3>
         </div>
         <div class="card-body">
-            <table class="table table-bordered datatable w-100">
-                <thead>
+            <table class="table table-bordered datatable w-100" id="datatable">
+                {{-- <thead> --}}
                     <tr>
                         <th>NAMA USAHA</th>
                         <th>PEMILIK</th>
@@ -43,7 +43,7 @@
                         <th>TAHUN BERDIRI</th>
                         <th width="60px"></th>
                     </tr>
-                </thead>
+                {{-- </thead> --}}
                 <tbody>
                 </tbody>
             </table>
@@ -59,7 +59,7 @@
 
         $(document).ready(function() {
 
-            var table = $('.datatable').DataTable({
+            var table = $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
@@ -101,5 +101,59 @@
             });
 
         });
+        function hapus(id)
+        {
+            Swal.fire({
+                icon : 'warning',
+                text: 'Hapus Data?',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: `Tidak, Jangan!`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/admin/kda/usaha/"+id+"/delete",
+                        type: "DELETE",
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(data) {
+                            if(data.fail == false){
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Berhasil",
+                                    text: "Data Berhasil Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'success',
+                                    position : 'top-end'
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            }else{
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Data Gagal Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Terjadi Kesalahan Di Server!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                        }
+                    });
+                }
+            })
+        }
     </script>
 @endpush

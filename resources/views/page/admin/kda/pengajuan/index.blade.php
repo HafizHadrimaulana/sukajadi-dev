@@ -23,9 +23,11 @@
 
     <div class="card">
         <div class="card-header">
-            <button class="btn btn-success" onclick="add_data_tabel()"><i class="fa fa-plus"></i> Tambah</button>
+            <a class="btn btn-success" href="{{ route('admin.kda.pengajuan.create') }}">
+                <i class="fa fa-plus"></i> Tambah
+            </a>
             <div class="card-tools">
-                <button class="btn btn-success" onclick="add_data_tabel()"><i class="fa fa-print"></i> Export</button>
+                {{-- <button class="btn btn-success" onclick="add_data_tabel()"><i class="fa fa-print"></i> Export</button> --}}
             </div>
         </div>
         <div class="card-body">

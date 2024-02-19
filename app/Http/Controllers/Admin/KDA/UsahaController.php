@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use DataTables;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsahaExport;
+use App\Models\Usaha;
 class UsahaController extends Controller
 {
     /**
@@ -70,8 +71,8 @@ class UsahaController extends Controller
             return DataTables::of($data)
                 ->addColumn('action', function($row){
                     // $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
-                    $btn = '<button class="btn btn-sm btn-info mr-1"><i class="fa fa-edit"></i></button>';
-                    $btn .= '<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>';
+                    $btn = '<a class="btn btn-sm btn-info mr-1" href="'. route('admin.kda.usaha.edit', $row->id_t_data_usaha) .'"><i class="fa fa-edit"></i></a>';
+                    $btn .= '<button class="btn btn-sm btn-danger" onclick="hapus('. $row->id_t_data_usaha .')"><i class="fa fa-trash"></i></button>';
                     return $btn; 
                 })
                 ->rawColumns(['action']) 
@@ -112,20 +113,21 @@ class UsahaController extends Controller
             'nama_pemilik' => 'required',
             'jenis' => 'required',
             'merk' => 'required',
-            'nip' => 'required',
+            'nik' => 'required',
             'kelurahan' => 'required',
         ];
 
         $pesan = [
             'nama_pemilik.required' => 'Nama Pemilik Wajib Diisi!',
             'jenis.required' => 'Jenis Wajib Diisi!',
-            'nip.required' => 'NIP Wajib Diisi!',
+            'nik.required' => 'NIK Wajib Diisi!',
             'merk.required' => 'Merk/Brand Wajib Diisi!',
             'kelurahan.required' => 'Kelurahan Wajib Diisi!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $pesan);
         if ($validator->fails()){
+            dd($validator->errors());
             return back()->withInput()->withErrors($validator->errors());
         }else{
             DB::beginTransaction();
@@ -135,16 +137,26 @@ class UsahaController extends Controller
 
                 $data = new Usaha();
                 $data->id_j_tahun = 0;
-                $data->id_j_data_sarpras = $request->jenis;
-                $data->nama_t_data_sarpras = $request->nama;
-                $data->alamat_t_data_sarpras = $request->lokasi;
-                $data->rt_t_data_sarpras = $request->rw;
-                $data->rw_t_data_sarpras = $request->rt;
-                $data->kelurahan_t_data_sarpras = $request->kel;
-                $data->keterangan_t_data_sarpras = $request->keterangan;
-                $data->detail_t_data_sarpras = $request->detail;
-                $data->lat_t_data_sarpras = $request->lat;
-                $data->lng_t_data_sarpras = $request->lng;
+                $data->id_j_data_usaha = $request->jenis;
+                $data->nama_t_data_usaha = $request->nama;
+                $data->pemilik_t_data_usaha = $request->nama_pemilik;
+                $data->nik_t_data_usaha = $request->nik;
+                $data->izin_t_data_usaha = $request->izin;
+                $data->no_izin_t_data_usaha = $request->no_izin;
+                $data->tahun_berdiri_t_data_usaha = $request->tahun;
+                $data->alamat_t_data_usaha = $request->alamat;
+                $data->rt_t_data_usaha = $request->rt;
+                $data->rw_t_data_usaha = $request->rw;
+                $data->kelurahan_t_data_usaha = $request->kelurahan;
+                $data->keterangan_t_data_usaha = $request->keterangan;
+                $data->jenis_t_data_usaha = $request->jenis_usaha;
+                $data->produk_t_data_usaha = $request->produk;
+                $data->email_t_data_usaha = $request->email;
+                $data->sosmed_t_data_usaha = $request->sosmed;
+                $data->telp_t_data_usaha = $request->hp;
+
+                // $data->file1_t_data_usaha = $request->lng;
+
                 $data->user_id = auth()->user()->id;
                 $data->save();
 
@@ -154,7 +166,7 @@ class UsahaController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.data.sarpras.show', $request->jenis);
+            return redirect()->route('admin.kda.usaha.show', $request->jenis);
         }
     }
 
@@ -166,7 +178,15 @@ class UsahaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = DB::table('t_data_usaha')->select('*')->where('id_t_data_usaha', $id)->first();
+        $jenis = DB::table('j_data_usaha')->select('*')->orderBy('nama_j_data_usaha','ASC')->get();
+        $kelurahan = DB::table('j_kelurahan')->select('*')->orderBy('nama_j_kelurahan','ASC')->get();
+
+        return view('page.admin.kda.usaha.edit',[
+            'data' => $data,
+            'jenis' => $jenis,
+            'kelurahan' => $kelurahan
+        ]);
     }
 
     /**
@@ -178,7 +198,58 @@ class UsahaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'nama_pemilik' => 'required',
+            'jenis' => 'required',
+            'merk' => 'required',
+            'nik' => 'required',
+            'kelurahan' => 'required',
+        ];
+
+        $pesan = [
+            'nama_pemilik.required' => 'Nama Pemilik Wajib Diisi!',
+            'jenis.required' => 'Jenis Wajib Diisi!',
+            'nik.required' => 'NIK Wajib Diisi!',
+            'merk.required' => 'Merk/Brand Wajib Diisi!',
+            'kelurahan.required' => 'Kelurahan Wajib Diisi!',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()){
+            return back()->withInput()->withErrors($validator->errors());
+        }else{
+            DB::beginTransaction();
+            try{
+
+                $data = Usaha::where('id_t_data_usaha', $id)->first();
+                $data->id_j_tahun = 0;
+                $data->id_j_data_usaha = $request->jenis;
+                $data->nama_t_data_usaha = $request->nama;
+                $data->pemilik_t_data_usaha = $request->nama_pemilik;
+                $data->nik_t_data_usaha = $request->nik;
+                $data->izin_t_data_usaha = $request->izin;
+                $data->no_izin_t_data_usaha = $request->no_izin;
+                $data->tahun_berdiri_t_data_usaha = $request->tahun;
+                $data->alamat_t_data_usaha = $request->alamat;
+                $data->rt_t_data_usaha = $request->rt;
+                $data->rw_t_data_usaha = $request->rw;
+                $data->kelurahan_t_data_usaha = $request->kelurahan;
+                $data->keterangan_t_data_usaha = $request->keterangan;
+                $data->jenis_t_data_usaha = $request->jenis_usaha;
+                $data->produk_t_data_usaha = $request->produk;
+                $data->email_t_data_usaha = $request->email;
+                $data->sosmed_t_data_usaha = $request->sosmed;
+                $data->telp_t_data_usaha = $request->hp;
+                $data->save();
+
+            }catch(\QueryException $e){
+                DB::rollback();
+                dd($e);
+            }
+
+            DB::commit();
+            return redirect()->route('admin.kda.usaha.show', $request->jenis);
+        }
     }
 
     /**
@@ -189,7 +260,26 @@ class UsahaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try{
+
+            $data = Usaha::where('id_t_data_usaha', $id)->first();
+            $data->delete();
+
+        }catch(\QueryException $e){
+            DB::rollback();
+            return response()->json([
+                'fail' => true,
+                'errors' => $e,
+                'pesan' => 'Gagal Menghapus Data!',
+            ]);
+        }
+
+        DB::commit();
+        return response()->json([
+            'fail' => false,
+            'pesan' => 'Data Berhasil Dihapus!',
+        ]);
     }
 
     

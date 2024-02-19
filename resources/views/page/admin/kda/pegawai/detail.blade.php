@@ -35,7 +35,7 @@
             <table class="table table-bordered datatable w-100">
                 <thead>
                     <tr>
-                        <th width="20%">Nama Pegawai</th>
+                        <th width="20%">NAMA PEGAWAI</th>
                         <th>NIP</th>
                         <th>TEMPAT TANGGAL LAHIR</th>
                         <th>JABATAN</th>
@@ -47,8 +47,6 @@
                         <th>PENDIDIKAN</th>
                         <th>EMAIL</th>
                         <th>TELEPON</th>
-                        <th>JABATAN LAINNYA</th>
-                        <th>ESSELON</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -70,15 +68,15 @@
                 serverSide: true,
                 dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                 ajax: {
-                    url : "{{ route('admin.pegawai.show', $data->id_j_data_pegawai) }}",
+                    url : "{{ route('admin.kda.pegawai.show', $data->id_j_data_pegawai) }}",
                     data : function(data){
                             var tahun = $("#filter-tahun").val();
                             data.tahun = tahun;
                     }
                 },
                 scrollX:        true,
-                scrollCollapse: true,
-                fixedColumns: {leftColumns:4,rightColumns:1},
+                // scrollCollapse: true,
+                // fixedColumns: {leftColumns:4,rightColumns:1},
                 columns: [
                     {data: 'nama_t_data_pegawai', name: 'nama_t_data_pegawai'},
                     {data: 'nip_t_data_pegawai', name: 'nip_t_data_pegawai'},
@@ -92,7 +90,6 @@
                     {data: 'pendidikan_t_data_pegawai', name: 'pendidikan_t_data_pegawai'},
                     {data: 'email_t_data_pegawai', name: 'email_t_data_pegawai'},
                     {data: 'telp_t_data_pegawai', name: 'telp_t_data_pegawai'},
-                    {data: 'jabatan_lainnya_t_data_pegawai', name: 'jabatan_lainnya_t_data_pegawai'},
                     {
                         data: 'action', 
                         name: 'action', 
@@ -103,5 +100,59 @@
             });
 
         });
+        function hapus(id)
+        {
+            Swal.fire({
+                icon : 'warning',
+                text: 'Hapus Data?',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: `Tidak, Jangan!`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/admin/kda/pegawai/"+id+"/delete",
+                        type: "DELETE",
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(data) {
+                            if(data.fail == false){
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Berhasil",
+                                    text: "Data Berhasil Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'success',
+                                    position : 'top-end'
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            }else{
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Data Gagal Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Terjadi Kesalahan Di Server!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                        }
+                    });
+                }
+            })
+        }
     </script>
 @endpush
