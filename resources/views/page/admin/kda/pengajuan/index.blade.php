@@ -32,6 +32,7 @@
             <table class="table table-bordered datatable w-100">
                 <thead>
                     <tr>
+                        <th>Nomor</th>
                         <th>Nama Pengaju</th>
                         <th>Alamat Email</th>
                         <th>Jenis Data</th>
@@ -65,6 +66,7 @@
                     }
                 },
                 columns: [
+                    {data: 'nomor', name: 'nomor'},
                     {data: 'nama', name: 'nama'},
                     {data: 'email', name: 'email'},
                     {data: 'jenis', name: 'jenis'},

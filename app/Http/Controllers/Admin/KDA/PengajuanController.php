@@ -145,7 +145,7 @@ class PengajuanController extends Controller
             dd($e);
         }
 
-        // DB::commit();
+        DB::commit();
         return response()->json([
             'fail' => false,
             'pesan' => 'Status Pengajuan Berhasil Diperbaharui!',

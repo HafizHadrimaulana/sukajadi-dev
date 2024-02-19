@@ -23,12 +23,13 @@ class SaranaController extends Controller
         if ($request->ajax()) {
             
             
-            $data = DB::table("t_data_sarpras as a")
-            ->leftjoin("j_data_sarpras as b", function($join){
-                $join->on("b.id_j_data_sarpras", "=", "a.id_j_data_sarpras");
+            $data = DB::table("j_data_sarpras as a")
+            ->leftjoin("t_data_sarpras as b", function($join){
+                $join->on("a.id_j_data_sarpras", "=", "b.id_j_data_sarpras");
             })
-            ->select("a.id_j_data_sarpras", "b.nama_j_data_sarpras", DB::raw('COUNT(*) as jumlah'))
-            ->groupBy("a.id_j_data_sarpras", "b.nama_j_data_sarpras")
+            ->select("a.id_j_data_sarpras", "a.nama_j_data_sarpras", DB::raw('COUNT(*) as jumlah'))
+            // ->where('b.nama_j_sarpras !=')
+            ->groupBy("a.id_j_data_sarpras", "a.nama_j_data_sarpras")
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){

@@ -134,9 +134,29 @@
                             $('#error-' + control).html(response.errors[control]);
                         }
                     }else{
-                        $("#field-nama").val("");
-                        $('#modal-j_sarpras').modal('hide');
-                        table.draw();
+                        if(response.fail == false){
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Berhasil",
+                                    text: "Data Berhasil Diperbaharui!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'success',
+                                    position : 'top-end'
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            }else{
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Data Gagal Diperbaharui!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                            }
                     }
                 }
             });
