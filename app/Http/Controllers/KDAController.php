@@ -56,6 +56,7 @@ class KDAController extends Controller
                 $data->nomor = $this->getNumber($request->jenis);
                 $data->id_j_tahun = $request->tahun;
                 $data->jenis = $request->jenis;
+                $data->jenis_id = $request->jenis_id;
                 $data->nama = $request->nama;
                 $data->email = $request->email;
                 $data->keterangan = $request->keterangan;
@@ -102,9 +103,39 @@ class KDAController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function jenis(Request $request)
     {
-        //
+        
+        $term = trim($request->q);
+        $jenis = trim($request->jenis);
+
+        if (empty($jenis)) {
+            return \Response::json([]);
+        }
+
+
+        // $data = [];
+        $data = [['id' => 'semua', 'text' => "Semua"]];
+
+        if($jenis == 'Pegawai'){
+            $query = DB::table('j_data_pegawai')->select('*')->orderBy('nama_j_data_pegawai','ASC')->get();
+            foreach ($query as $q) {
+                $data[] = ['id' => $q->id_j_data_pegawai, 'text' => $q->nama_j_data_pegawai];
+            }
+        }else if($jenis == 'Usaha'){
+            $query = DB::table('j_data_usaha')->select('*')->orderBy('nama_j_data_usaha','ASC')->get();
+            foreach ($query as $q) {
+                $data[] = ['id' => $q->id_j_data_usaha, 'text' => $q->nama_j_data_usaha];
+            }
+        }else{
+            $query = DB::table('j_data_sarpras')->select('*')->orderBy('nama_j_data_sarpras','ASC')->get();
+            foreach ($query as $q) {
+                $data[] = ['id' => $q->id_j_data_sarpras, 'text' => $q->nama_j_data_sarpras];
+            }
+        }
+
+        return \Response::json($data);
+
     }
 
     /**

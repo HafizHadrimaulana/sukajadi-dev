@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
-    <link rel="stylesheet" href="https://unpkg.com/browse/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/browse/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css" integrity="sha512-ENrTWqddXrLJsQS2A86QmvA17PkJ0GVm1bqj5aTgpeMAfDKN2+SIOLpKG8R/6KkimnhTb+VW5qqUHB/r1zaRgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="https://unpkg.com/browse/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css" integrity="sha512-fYyZwU1wU0QWB4Yutd/Pvhy5J1oWAwFXun1pt+Bps04WSe4Aq6tyHlT4+MHSJhD8JlLfgLuC4CbCnX5KHSjyCg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
     
     .leaflet-container {
@@ -69,6 +69,7 @@
         var tiles;
         var markers;
         var markersList = [];
+        var markersMap = {};
             $(document).ready(function() {
                 map = L.map('map').setView([-6.885096440972612, 107.58568634441774], 14);
                 tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJpcHJhdGFtYSIsImEiOiJjbGZubmdib3UwbnRxM3Bya3M1NGE4OHRsIn0.oxYqbBbaBwx0dHLguu5gOA', {
@@ -84,42 +85,6 @@
                 load_content();
 
                 var geoList;
-                // $.getJSON('/js/geojson.json', function(json) {
-
-                //     var geoLayer = L.geoJson(json).addTo(map);
-
-                //     geoList = new L.Control.GeoJSONSelector(geoLayer, {
-                //         zoomToLayer: true,
-                //         listDisabled: true,
-                //         activeListFromLayer: true,
-                //         activeLayerFromList: true,
-                //         listOnlyVisibleLayers: true
-                //     }).addTo(map);
-
-                //     geoList.on('selector:change', function(e) {
-
-                //         var jsonObj = $.parseJSON( JSON.stringify(e.layers[0].feature.properties) );
-                //         var html = 'Selection:<br /><table border="1">';
-                //         $.each(jsonObj, function(key, value){
-                //                 html += '<tr>';
-                //                 html += '<td>' + key.replace(":", " ") + '</td>';
-                //                 html += '<td>' + value + '</td>';
-                //                 html += '</tr>';
-                //         });
-                //         html += '</table>';
-
-                //         $('.selection').html(html);
-                //     });
-
-                //     map.addControl(function() {
-                //         var c = new L.Control({position:'bottomright'});
-                //         c.onAdd = function(map) {
-                //                 return L.DomUtil.create('pre','selection');
-                //             };
-                //         return c;
-                //     }());
-
-                // });
                 var geojsonLayer = new L.GeoJSON.AJAX("/js/geojson.json", {
                     style : function (feature){
                         // console.log(feature);
@@ -138,6 +103,7 @@
                 geojsonLayer.bindPopup(function (e) {
                     return e.feature.properties.kemendagri_desa_nama;
                 });
+                loadMarkers();
             });
 
             function getColor(d) {
@@ -196,21 +162,7 @@
                                 </div>`;
 
                                 $('#data').append(elm);
-
-                                if(lat != '' && lng != ''){
-
-                                    var elpopup = `<h3 class="fs-5 mb-2">${ dt.nama_t_data_sarpras }</h3>`;
-                                    var popup = L.popup({
-                                        className : 'popup-map'
-                                    }).setContent(elpopup);
-                                    var m = new L.Marker([parseFloat(lat), parseFloat(lng)],{
-                                        title : dt.nama_t_data_sarpras,
-                                    }).bindPopup(popup);
-                                    markersList.push(m);
-                                    markers.addLayer(m);
-                                }
                             });
-		                    map.addLayer(markers);
                         }else{
                             $('#btn-loadMore').addClass('d-none');
                         }
@@ -221,11 +173,48 @@
                 });
             }
 
+            
+            function loadMarkers()
+            {
+                $.ajax({
+                    url: "{{ route('data.sarpras.markers', $data->id_j_data_sarpras) }}",
+                    type: "GET",
+                    dataType: "JSON",
+                    data: {
+                    },
+                    beforeSend: function(){
+
+                    },
+                    success: function(response) {
+                        $.each(response, function(k, v) {
+                            var newLatLng = new L.LatLng(v.lat_t_data_sarpras, v.lng_t_data_sarpras);
+                            var elpopup = `<h3 class="font-weight-bold h6 mb-2">${ v.nama_t_data_sarpras }</h3>
+                            <p class="my-0">${ v.alamat_t_data_sarpras }</p>
+                            `;
+                            var popup = L.popup({
+                                className : 'popup-map'
+                            }).setContent(elpopup);
+                            
+                            var m = new L.Marker(newLatLng,{
+                                title : v.nama_t_data_sarpras,
+                            }).bindPopup(popup);
+
+                            markersMap[v.id_t_data_sarpras ] = m;
+                            markersList.push(m);
+                            markers.addLayer(m);
+                        });
+                        map.addLayer(markers);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error deleting data');
+                    }
+                });
+            }
             function getDetail(id)
             {
-                // console.log(data);
                 var lat = $("#lat-"+id).val();
                 var lng = $("#lng-"+id).val();
+                var newLatLng = new L.LatLng(lat, lng);
                 if(lat == '' && lng == ''){
                     Swal.fire({
                         title: 'Error!',
@@ -236,10 +225,34 @@
                         showConfirmButton: false,
                     });
                 }else{
+                    var marker = markersMap[id];
+                    // console.log(marker);
+                    if (!marker) { return; }
 
+                    var cluster = markers.getVisibleParent(marker);
+
+                        // Is the marker really in a cluster, or visible standalone?
+                    if (cluster) {
+                        // It's in a cluster, do something about its cluster.
+                        cluster.openPopup();
+                    } else {
+                        marker.openPopup();
+                    }
+                    map.setView(newLatLng, 20);
                 }
-                console.log(lat);
-                console.log(lng);
+            }
+
+            
+            function getAddress(lat, lng){
+                fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`, {
+                headers: {
+                    'User-Agent': 'ID of your APP/service/website/etc. v0.1',
+                    'accept-language' : 'id',
+                }
+                }).then(res => res.json())
+                .then(res => {
+                    return res.display_name;
+                });
             }
         </script>
     @endpush

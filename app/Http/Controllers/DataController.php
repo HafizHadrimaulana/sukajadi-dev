@@ -99,7 +99,7 @@ class DataController extends Controller
 
     public function sarprasData($id, Request $request)
     {
-        $data = DB::table("t_data_sarpras as a")
+        $query = DB::table("t_data_sarpras as a")
         ->join("j_data_sarpras as b", function($join){
             $join->on("b.id_j_data_sarpras", "=", "a.id_j_data_sarpras");
         })
@@ -107,8 +107,40 @@ class DataController extends Controller
             $join->on("c.id_j_kelurahan", "=", "a.kelurahan_t_data_sarpras");
         })
         ->select("a.*", "b.nama_j_data_sarpras", "c.nama_j_kelurahan")
-        ->where('a.id_j_data_sarpras', $id)
-        ->paginate(20);
+        ->where('a.id_j_data_sarpras', $id);
+
+
+        if($request->page){
+            $data = $query->paginate(20);
+        }else{
+            $data = $query->get();
+        }
+
+        return response()->json($data);
+
+    }
+
+    
+    public function markers($id, Request $request)
+    {
+        $query = DB::table("t_data_sarpras as a")
+        ->join("j_data_sarpras as b", function($join){
+            $join->on("b.id_j_data_sarpras", "=", "a.id_j_data_sarpras");
+        })
+        ->join("j_kelurahan as c", function($join){
+            $join->on("c.id_j_kelurahan", "=", "a.kelurahan_t_data_sarpras");
+        })
+        ->whereNotNull('a.lat_t_data_sarpras')
+        ->whereNotNull('a.lng_t_data_sarpras')
+        ->select("a.*", "b.nama_j_data_sarpras", "c.nama_j_kelurahan")
+        ->where('a.id_j_data_sarpras', $id);
+
+
+        if($request->page){
+            $data = $query->paginate(20);
+        }else{
+            $data = $query->get();
+        }
 
         return response()->json($data);
 

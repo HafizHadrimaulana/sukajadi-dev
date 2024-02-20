@@ -52,15 +52,28 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="form-group">
-                                    <label for="field-tahun">Tahun</label>
-                                    <select class="form-control select2 {{ $errors->has('tahun') ? 'is-invalid' : '' }}" name="tahun" id="field-tahun" data-placeholder="Pilih tahun">
-                                        <option></option>
-                                        @foreach ($tahun as $t)
-                                            <option value="{{ $t->id_j_tahun }}" {{ old('tahun') == $t->id_j_tahun ? 'selected="selected"' : '' }}>{{ $t->nama_j_tahun }}</option>
-                                        @endforeach
-                                    </select>
-                                    <x-input-error :messages="$errors->get('tahun')" class="mt-2" />
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="form-group">
+                                            <label for="field-jenis_id">Kategori Jenis</label>
+                                            <select class="form-control select2-single {{ $errors->has('jenis_id') ? 'is-invalid' : '' }}" name="jenis_id" id="field-jenis_id" disabled data-placeholder="Pilih Kategori Jenis">
+                                                <option></option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('jenis_id')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="field-tahun">Tahun</label>
+                                            <select class="form-control select2 {{ $errors->has('tahun') ? 'is-invalid' : '' }}" name="tahun" id="field-tahun" data-placeholder="Pilih tahun">
+                                                <option></option>
+                                                @foreach ($tahun as $t)
+                                                    <option value="{{ $t->id_j_tahun }}" {{ old('tahun') == $t->id_j_tahun ? 'selected="selected"' : '' }}>{{ $t->nama_j_tahun }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-input-error :messages="$errors->get('tahun')" class="mt-2" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -83,41 +96,37 @@
 
         $(document).ready(function() {
 
-            var table = $('.datatable').DataTable({
-                processing: true,
-                serverSide: true,
-                dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                ajax: {
-                    url : "{{ route('data.sarpras.index') }}",
-                    data : function(data){
-                            var tahun = $("#filter-tahun").val();
-                            data.tahun = tahun;
-                    }
-                },
-                columns: [
-                    {data: 'nama_j_data_sarpras', name: 'nama_j_data_sarpras'},
-                    {data: 'jumlah', name: 'jumlah'},
-                    {
-                        data: 'action', 
-                        name: 'action', 
-                        orderable: true, 
-                        searchable: true
-                    },
-                ]
-            });
-            $("#btn-filter").on("click", function(e){ 
-                // alert('sasa');
-                $("#data-content").removeClass('d-none');
-                table.draw();
-            });
-            
+            $("#field-jenis").on("change", function(){
+                // e.preventDefault();?
+                var val = $("#field-jenis").val();
+                if(val != ""){
+                    $("#field-jenis_id").prop("disabled", false);
 
-            $("#btn-reset").on("click", function(e){ 
-                // alert('sasa');
-                $("#filter-tahun").val("");
-                $('#filter-tahun').trigger('change');
-                $("#data-content").addClass('d-none');
-                table.draw();
+                }else{
+                    $("#field-jenis_id").prop("disabled", true);
+                }
+            });
+
+            
+            $('#field-jenis_id').select2({
+                placeholder: "Kategori Jenis",
+                theme: "bootstrap",
+                ajax: {
+                    url: '/kda/jenis',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: $.trim(params.term),
+                            jenis : $("#field-jenis").val()
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
             });
 
         });

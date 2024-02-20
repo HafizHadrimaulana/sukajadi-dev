@@ -75,11 +75,13 @@ Route::name('data.')->group(function () {
         Route::get('/', 'DataController@sarpras')->name('index');
         Route::get('/{id}', 'DataController@sarprasDetail')->name('show');
         Route::get('/{id}/data', 'DataController@sarprasData')->name('data');
+        Route::get('/{id}/markers', 'DataController@markers')->name('markers');
     });
 
     Route::prefix('/kda')->name('kda.')->group(function () {
         Route::get('/', 'KDAController@index')->name('index');
         Route::post('/store', 'KDAController@store')->name('store');
+        Route::get('/jenis', 'KDAController@jenis')->name('jenis');
     });
 });
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->group(function(){

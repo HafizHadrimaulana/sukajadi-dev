@@ -223,11 +223,11 @@ class PengajuanController extends Controller
 
             if($request->status == 'setuju'){
                 if($data->jenis == 'Pegawai'){
-                    $excelFile = Excel::download(new PegawaiExport("semua"), 'Data Pegawai.xlsx')->getFile();
+                    $excelFile = Excel::download(new PegawaiExport($data->jenis_id), 'Data Pegawai.xlsx')->getFile();
                 }else if($data->jenis == 'Sarana & Prasarana'){
-                    $excelFile = Excel::download(new SarprasExport("semua"), 'Data Sarana & Prasarana.xlsx')->getFile();
+                    $excelFile = Excel::download(new SarprasExport($data->jenis_id), 'Data Sarana & Prasarana.xlsx')->getFile();
                 }else{
-                    $excelFile = Excel::download(new UsahaExport("semua"), 'Data Usaha.xlsx')->getFile();
+                    $excelFile = Excel::download(new UsahaExport($data->jenis_id), 'Data Usaha.xlsx')->getFile();
                 }
 
                 Mail::to($data->email)->send(new PengajuanKDA($data, $excelFile));
