@@ -125,7 +125,10 @@ class ChatController extends Controller
                 <li>Dokumen pendukung apabila ada perubahan data, yang meliputi akta kelahiran, ijazah, surat nikah atau akta-akta pencatatan sipil lainnya, keputusan pengadilan, surat keterangan, dan/atau surat pernyataan.</li>
                 <li>Alamat E-mail aktif</li>
             </ol>
-            Kemudian datangi kantor kantor kecamatan untuk penerbitan';
+            Kemudian datangi kantor kantor kecamatan untuk penerbitan<br>
+            <a href="'. route('pengantar.create', 'kk') .' class="btn btn-primary btn-sm mt-2">Ajukan Surat Pengantar</a>
+            '
+            ;
         }else if($request->ask == 'ktp'){
             $ask = 'Bagaimana cara pembuatan KTP?';
 
@@ -133,6 +136,7 @@ class ChatController extends Controller
                 Berikut ini adalah syarat untuk membuat KTP baru<br>
                 <ol><li>Telah berusia 17 tahun, sudah kawin, atau pernah kawin; dan</li><li>Fotokopi KK.&nbsp;</li><li>Dasar Hukum Pasal 15 Perpres 96/2018</li></ol>
                 Jika Persyaratan tersebut terpenuhi kamu bisa langsung mendatangi kantor kecamatan
+                <a href="'. route('pengantar.create', 'ktp') .' class="btn btn-primary btn-sm mt-2">Ajukan Surat Pengantar</a>
             ';
         }else if($request->ask == 'surat-pindah-masuk'){
             $ask = 'Bagaimana cara pembuatan surat pindah/masuk ?';
@@ -148,6 +152,7 @@ class ChatController extends Controller
                 <li>Ambil Surat: Setelah proses verifikasi selesai, Anda dapat mengambil surat pindah atau surat masuk Anda di kantor kecamatan tersebut.</li>
             </ul>
             Pastikan untuk menanyakan persyaratan yang spesifik dan prosedur yang berlaku di kantor kecamatan yang Anda kunjungi, karena prosesnya bisa sedikit berbeda tergantung pada daerahnya.
+            <a href="'. route('pengantar.create', 'pindah') .' class="btn btn-primary btn-sm mt-2">Ajukan Surat Pengantar</a>
             ';
         }else if($request->ask == 'akta-kelahiran'){
             $ask = 'Bagaimana cara pembuatan akta kelahiran ?';
@@ -174,6 +179,7 @@ class ChatController extends Controller
                 <li>Tunggu proses verifikasi</li>
             </ol>
             Setelah itu ambil surat izin usaha setelah disetujui.
+            <a href="'. route('pengantar.create', 'usaha') .' class="btn btn-primary btn-sm mt-2">Ajukan Surat Pengantar</a>
             ';
         }
 

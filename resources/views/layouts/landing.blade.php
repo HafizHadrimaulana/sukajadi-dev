@@ -99,9 +99,9 @@
                                 <li><a href="{{ route('data.kda.index') }}" class="dropdown-item">Pengajuan Data KDA</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('pengantar.index') }}" class="nav-link">Pengajuan Surat</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
 
@@ -184,6 +184,11 @@
                                             </li>
                                             <li onclick="doSuggest('pengurusan-izin-usaha')">
                                                 Pengurusan Surat Izin Usaha
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('pengantar.index') }}" class="link-muted text-decoration-none">
+                                                    Ajukan Surat Pengantar
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
