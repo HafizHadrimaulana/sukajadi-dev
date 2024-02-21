@@ -155,6 +155,7 @@
                         $("#notif-suratKeluar").html(response.surat_keluar);
                         $("#notif-pengajuan").html(response.pengajuan);
                         $("#notif-chat").html(response.livechat);
+                        $("#notif-surat").html(response.surat);
                     }
                 });
             }

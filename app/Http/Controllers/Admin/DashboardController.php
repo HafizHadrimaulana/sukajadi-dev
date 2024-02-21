@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use App\Models\Pengajuan;
 use App\Models\Message;
+use App\Models\Pengantar;
 
 class DashboardController extends Controller
 {
@@ -60,19 +61,21 @@ class DashboardController extends Controller
      {
 
 
-        $suratMasuk = 1;
-        $suratKeluar = 1;
+        $suratMasuk = 0;
+        $suratKeluar = 0;
 
         $pengajuan = Pengajuan::where('status', 'pending')->latest()->get()->count();
         $liveChat = Message::where('is_seen', 0)->latest()->get()->count();
+        $surat = Pengantar::where('status', 'pending')->latest()->get()->count();
 
-        $total = $suratMasuk + $suratKeluar + $pengajuan + $liveChat;
+        $total = $suratMasuk + $suratKeluar + $pengajuan + $liveChat + $surat;
 
         $data = Collect([
             'surat_masuk' => 0,
             'surat_keluar' => 0,
             'pengajuan' => $pengajuan,
             'livechat' => $liveChat,
+            'surat' => $surat,
             'total' => $total
         ]);
 

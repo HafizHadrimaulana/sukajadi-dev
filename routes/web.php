@@ -84,6 +84,13 @@ Route::name('data.')->group(function () {
         Route::get('/jenis', 'KDAController@jenis')->name('jenis');
     });
 });
+
+Route::prefix('/pengantar')->name('pengantar.')->group(function () {
+    Route::get('/', 'PengantarController@index')->name('index');
+    Route::post('/store', 'PengantarController@store')->name('store');
+    Route::get('/{jenis}', 'PengantarController@create')->name('create');
+});
+
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->group(function(){
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
@@ -101,6 +108,19 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
         Route::get('/{id}/edit','KegiatanController@edit')->name('edit');
         Route::post('/{id}/update','KegiatanController@update')->name('update');
         Route::delete('/{id}/delete','KegiatanController@destroy')->name('delete');
+    });
+
+    
+    Route::prefix('/permohonan')->name('permohonan.')->group(function () {
+        Route::get('/', 'PermohonanController@index')->name('index');
+        Route::get('/create', 'PermohonanController@create')->name('create');
+        Route::post('/store','PermohonanController@store')->name('store');
+        Route::get('/data', 'PermohonanController@data')->name('data');
+        Route::get('/{id}', 'PermohonanController@show')->name('show');
+        Route::get('/{id}/edit','PermohonanController@edit')->name('edit');
+        Route::post('/{id}/update','PermohonanController@update')->name('update');
+        Route::get('/{id}/state','PermohonanController@state')->name('state');
+        Route::delete('/{id}/delete','PermohonanController@destroy')->name('delete');
     });
  
     

@@ -50,16 +50,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="field-pangkat">Pangkat</label>
-                                    <input type="text" class="form-control {{ $errors->has('pangkat') ? 'is-invalid' : '' }}" name="pangkat" id="field-pangkat" placeholder="Masukan Pangkat">
-                                    <x-input-error :messages="$errors->get('pangkat')" class="mt-2" />
+                                    <label for="field-gol">Golongan</label>
+                                    <input type="text" class="form-control {{ $errors->has('gol') ? 'is-invalid' : '' }}" name="gol" id="field-gol" placeholder="_/_">
+                                    <x-input-error :messages="$errors->get('gol')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="field-gol">Golongan</label>
-                                    <input type="text" class="form-control {{ $errors->has('gol') ? 'is-invalid' : '' }}" name="gol" id="field-gol" placeholder="_/_">
-                                    <x-input-error :messages="$errors->get('gol')" class="mt-2" />
+                                    <label for="field-pangkat">Pangkat</label>
+                                    <input type="text" class="form-control {{ $errors->has('pangkat') ? 'is-invalid' : '' }}" name="pangkat" id="field-pangkat" placeholder="Masukan Pangkat">
+                                    <x-input-error :messages="$errors->get('pangkat')" class="mt-2" />
                                 </div>
                             </div>
                         </div>

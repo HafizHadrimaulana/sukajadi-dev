@@ -90,6 +90,12 @@ $links = [
         ]
     ], 
     [
+      "href" => route('admin.permohonan.index'),
+      "text" => "PERMOHONAN SURAT",
+      "icon" => "fas fa-envelope",
+      "is_multi" => false
+    ],
+    [
         "text" => "DATA",
         "icon" => "fa fa-database",
         "is_multi" => true,

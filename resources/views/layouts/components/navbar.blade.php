@@ -51,6 +51,13 @@
 
                     </span>
                 </a>
+                <div class="dropdown-divider"></div>
+                <a href="{{ route('admin.permohonan.index') }}"  class="dropdown-item">
+                    <i class="fas fa-comments mr-2"></i>Surat Permohonan
+                    <span class="float-right text-muted text-sm" id="notif-surat">
+
+                    </span>
+                </a>
             </div>
         </li>
 

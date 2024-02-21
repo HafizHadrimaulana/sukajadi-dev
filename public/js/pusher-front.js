@@ -23,8 +23,6 @@ $(document).ready(function(){
             cache: false,
             success: function (response) {
                 $('#chat-message').val("");
-                // console.log("sent ajax form");
-                // console.log(response);
                 $('#messagesContainer').find('.direct-chat-messages').finish().animate({
                     scrollTop: $('#messagesContainer').find('.direct-chat-messages').prop("scrollHeight")
                 }, 250);
@@ -60,8 +58,8 @@ $(document).ready(function(){
                     },
                     cache: false,
                     success: function (response) {
-                        console.log("sent ajax form");
-                        console.log(response);
+                        // console.log("sent ajax form");
+                        // console.log(response);
                         const data = response.data;
                         if(response.fail == true){
                             // if(response.errors.length){
@@ -162,6 +160,14 @@ $(document).ready(function(){
             }, 250);
         });
     }
+
+    $("#chat-logout").on("click", function(e){
+        // $.cookie.remove('ch', { path: '' });
+        // $.cookie.remove('nm', { path: '' });
+        $.removeCookie('ch', { path: '/' });
+        $.removeCookie('nm', { path: '/' });
+        location.reload();
+    });
 });
 
 $(window).on('load', function () {

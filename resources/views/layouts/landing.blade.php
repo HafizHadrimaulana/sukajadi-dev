@@ -99,6 +99,9 @@
                                 <li><a href="{{ route('data.kda.index') }}" class="dropdown-item">Pengajuan Data KDA</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pengantar.index') }}" class="nav-link">Pengajuan Surat</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -135,9 +138,12 @@
                     <div class="card-header">
                         <h3 class="card-title">Direct Chat</h3>
                         <div class="card-tools">
-                            <span title="3 New Messages" class="badge bg-primary">3</span>
+                            {{-- <span title="3 New Messages" class="badge bg-primary">3</span> --}}
                             <button type="button" class="btn btn-tool close-button">
-                                <i class="fas fa-times"></i>
+                                <i class="fa-window-minimize fas"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm btn-tool" id="chat-logout">
+                                <i class="fa-sign-out-alt fas"></i>
                             </button>
                         </div>
                     </div>
