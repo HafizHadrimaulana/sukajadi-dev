@@ -119,7 +119,7 @@
                         </div>
                         <div class="form-group">
                             <label for="field-pendidikan">Pendidikan</label>
-                            <input type="text" class="form-control {{ $errors->has('pendidikan') ? 'is-invalid' : '' }}" name="pendidikan" id="field-pendidikan" placeholder="Masukan Tempat Tanggal Lahir">
+                            <input type="text" class="form-control {{ $errors->has('pendidikan') ? 'is-invalid' : '' }}" name="pendidikan" id="field-pendidikan" placeholder="Masukan Pendidikan">
                             <x-input-error :messages="$errors->get('pendidikan')" class="mt-2" />
                         </div>
                         <div class="form-group">
