@@ -32,7 +32,7 @@ WithHeadingRow, WithEvents, WithColumnWidths
     */
     public function collection()
     {
-        return DB::table("t_data_usaha as a")
+        $query = DB::table("t_data_usaha as a")
         // ->join("j_data_usaha as b", function($join){
         //     $join->on("b.id_j_data_usaha", "=", "a.id_j_data_usaha");
         // })
@@ -45,14 +45,32 @@ WithHeadingRow, WithEvents, WithColumnWidths
         })
         ->groupBy('c.nama_j_kelurahan')
         ->get();
+
+        $data = Collect([]);
+        $total = 0;
+        foreach($query as $q){
+            $data->push([
+                 'nama' => $q->nama_j_kelurahan,
+                 'jml' => $q->jumlah
+            ]);
+
+            $total += $q->jumlah;
+        }
+
+        $data->push([
+             'nama' => 'Kecamatan Sukajadi',
+             'jml' => $total
+        ]);
+
+        return $data;
     }
 
     public function map($data): array
     {
         $i = 1;
         return [
-            $data->nama_j_kelurahan,
-            $data->jumlah,
+            $data['nama'],
+            $data['jml'],
         ];
     }
 
@@ -110,10 +128,17 @@ WithHeadingRow, WithEvents, WithColumnWidths
                     ],
                 ];
 
+                $j = DB::table("j_data_usaha as a")->where('id_j_data_usaha', $this->jenis)->first();
+
+                if($this->jenis == 'semua'){
+                    $title = 'DATA USAHA';
+                }else{
+                    $title = 'DATA USAHA '. strtoupper($j->nama_j_data_usaha);
+                }
 
                 $event->sheet->insertNewRowBefore(1, 4);
 
-                $event->sheet->setCellValue('A2','DATA USAHA');
+                $event->sheet->setCellValue('A2', $title);
                 $event->sheet->setCellValue('A3','KECAMATAN SUKAJADI, KOTA BANDUNG');
                 
 
@@ -133,6 +158,8 @@ WithHeadingRow, WithEvents, WithColumnWidths
                         ],
                     ],
                 ]);
+                
+                $event->sheet->getStyle('A'.$event->sheet->getHighestRow().':B'.$event->sheet->getHighestRow())->applyFromArray($headingStyle);
             },
 
         ];

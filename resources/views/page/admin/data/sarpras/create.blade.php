@@ -157,7 +157,12 @@ crossorigin=""></script>
         // });
         $(document).ready(function() {
             // const provider = new GeoSearch.OpenStreetMapProvider();
-            
+            $("#field-rt").keypress(function() {
+                if($(this).val().length > 3) {
+
+                }
+            });
+
             $("#field-tgl").flatpickr({
                 altInput: true,
                 altFormat: "j F Y",

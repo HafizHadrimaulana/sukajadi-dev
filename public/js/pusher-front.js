@@ -36,6 +36,14 @@ $(document).ready(function(){
             $('.chat-container').css("display","none");
             $('.chat-button').css("display","block");
         });
+
+        $("#chat-logout").on("click", function(e){
+            alert('asdas');
+            $.removeCookie('ch', { path: '/' });
+            $.removeCookie('nm', { path: '/' });
+            location.reload();
+        });
+
         $('.chat-button').on('click', function(){
             if($.cookie("ch") == null){
                 $('#messagesContainer').css("display","none");
@@ -161,13 +169,6 @@ $(document).ready(function(){
         });
     }
 
-    $("#chat-logout").on("click", function(e){
-        // $.cookie.remove('ch', { path: '' });
-        // $.cookie.remove('nm', { path: '' });
-        $.removeCookie('ch', { path: '/' });
-        $.removeCookie('nm', { path: '/' });
-        location.reload();
-    });
 });
 
 $(window).on('load', function () {

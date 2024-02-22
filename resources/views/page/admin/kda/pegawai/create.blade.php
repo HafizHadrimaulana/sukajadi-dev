@@ -51,14 +51,33 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="field-gol">Golongan</label>
-                                    <input type="text" class="form-control {{ $errors->has('gol') ? 'is-invalid' : '' }}" name="gol" id="field-gol" placeholder="_/_">
+                                    <select class="form-control select2" name="gol" id="field-gol" data-placeholder="Pilih Golongan">
+                                        <option value=""></option>
+                                        <option value="I/a" {{ old('gol') == 'I/a' ? 'selected="selected"' : '' }}>I/A</option>
+                                        <option value="I/b" {{ old('gol') == 'I/b' ? 'selected="selected"' : '' }}>I/B</option>
+                                        <option value="I/c" {{ old('gol') == 'I/c' ? 'selected="selected"' : '' }}>I/C</option>
+                                        <option value="I/d" {{ old('gol') == 'I/d' ? 'selected="selected"' : '' }}>I/D</option>
+                                        <option value="II/a" {{ old('gol') == 'II/a' ? 'selected="selected"' : '' }}>II/A</option>
+                                        <option value="II/b" {{ old('gol') == 'II/b' ? 'selected="selected"' : '' }}>II/B</option>
+                                        <option value="II/c" {{ old('gol') == 'II/c' ? 'selected="selected"' : '' }}>II/C</option>
+                                        <option value="II/d" {{ old('gol') == 'II/d' ? 'selected="selected"' : '' }}>II/D</option>
+                                        <option value="III/a" {{ old('gol') == 'III/a' ? 'selected="selected"' : '' }}>III/A</option>
+                                        <option value="III/b" {{ old('gol') == 'III/b' ? 'selected="selected"' : '' }}>III/B</option>
+                                        <option value="III/c" {{ old('gol') == 'III/c' ? 'selected="selected"' : '' }}>III/C</option>
+                                        <option value="III/D" {{ old('gol') == 'III/d' ? 'selected="selected"' : '' }}>III/D</option>
+                                        <option value="IV/a" {{ old('gol') == 'IV/a' ? 'selected="selected"' : '' }}>IV/A</option>
+                                        <option value="IV/b" {{ old('gol') == 'IV/b' ? 'selected="selected"' : '' }}>IV/B</option>
+                                        <option value="IV/c" {{ old('gol') == 'IV/c' ? 'selected="selected"' : '' }}>IV/C</option>
+                                        <option value="IV/d" {{ old('gol') == 'IV/d' ? 'selected="selected"' : '' }}>IV/D</option>
+                                        <option value="IV/e" {{ old('gol') == 'IV/e' ? 'selected="selected"' : '' }}>IV/E</option>
+                                    </select>
                                     <x-input-error :messages="$errors->get('gol')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="field-pangkat">Pangkat</label>
-                                    <input type="text" class="form-control {{ $errors->has('pangkat') ? 'is-invalid' : '' }}" name="pangkat" id="field-pangkat" placeholder="Masukan Pangkat">
+                                    <input type="text" class="form-control {{ $errors->has('pangkat') ? 'is-invalid' : '' }}" name="pangkat" id="field-pangkat" readonly placeholder="Masukan Pangkat">
                                     <x-input-error :messages="$errors->get('pangkat')" class="mt-2" />
                                 </div>
                             </div>
@@ -140,6 +159,48 @@
     <script>
 
         $(document).ready(function() {
+
+            $("#field-gol").on("change", function(e){
+                var val = $(this).val();
+                var pangkat = '';
+                if(val == 'I/a'){
+                    pangkat = 'Juru Muda';
+                }else if(val == 'I/b'){
+                    pangkat = 'Juru Muda Tingkat 1';
+                }else if(val == 'I/c'){
+                    pangkat = 'Juru';
+                }else if(val == 'I/d'){
+                    pangkat = 'Juru Tingkat 1';
+                }else if(val == 'II/a'){
+                    pangkat = 'Pengatur Muda';
+                }else if(val == 'II/b'){
+                    pangkat = 'Pengatur Muda Tingkat 1';
+                }else if(val == 'II/c'){
+                    pangkat = 'Pengatur';
+                }else if(val == 'II/d'){
+                    pangkat = 'Pengatur Tingkat 1';
+                }else if(val == 'III/a'){
+                    pangkat = 'Pengatur Muda';
+                }else if(val == 'III/b'){
+                    pangkat = 'Pengatur Muda Tingkat 1';
+                }else if(val == 'III/c'){
+                    pangkat = 'Pengatur';
+                }else if(val == 'III/d'){
+                    pangkat = 'Pengatur Tingkat 1';
+                }else if(val == 'IV/a'){
+                    pangkat = 'Pembina';
+                }else if(val == 'IV/b'){
+                    pangkat = 'Pembina Tingkat 1';
+                }else if(val == 'IV/c'){
+                    pangkat = 'Pembina Muda';
+                }else if(val == 'IV/d'){
+                    pangkat = 'Pembina Madya';
+                }else if(val == 'IV/e'){
+                    pangkat = 'Pembina Utama';
+                }
+
+                $("#field-pangkat").val(pangkat);
+            });
         });
     </script>
 @endpush

@@ -32,7 +32,7 @@ WithHeadingRow, WithEvents, WithColumnWidths
     */
     public function collection()
     {
-        $data = DB::table("t_data_sarpras as a")
+        $query = DB::table("t_data_sarpras as a")
         ->join("j_kelurahan as c", function($join){
             $join->on("c.id_j_kelurahan", "=", "a.kelurahan_t_data_sarpras");
         })
@@ -43,6 +43,23 @@ WithHeadingRow, WithEvents, WithColumnWidths
         ->groupBy('c.nama_j_kelurahan')
         ->get();
         // dd($data);'
+
+        $data = Collect([]);
+        $total = 0;
+        foreach($query as $q){
+            $data->push([
+                 'nama' => $q->nama_j_kelurahan,
+                 'jml' => $q->jml
+            ]);
+
+            $total += $q->jml;
+        }
+
+        $data->push([
+             'nama' => 'Kecamatan Sukajadi',
+             'jml' => $total
+        ]);
+
         return $data;
     }
 
@@ -50,9 +67,8 @@ WithHeadingRow, WithEvents, WithColumnWidths
     {
         $i = 1;
         return [
-            // $i++,
-            $data->nama_j_kelurahan,
-            $data->jml
+            $data['nama'],
+            $data['jml'],
         ];
     }
 
@@ -78,7 +94,6 @@ WithHeadingRow, WithEvents, WithColumnWidths
     public function registerEvents(): array
     {
         return [
-
             AfterSheet::class => function (AfterSheet $event) {
 
                 $headingStyle = [
@@ -91,18 +106,23 @@ WithHeadingRow, WithEvents, WithColumnWidths
                         'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                     ],
                 ];
+                
+                $j = DB::table("j_data_sarpras as a")->where('id_j_data_sarpras', $this->jenis)->first();
 
+                if($this->jenis == 'semua'){
+                    $title = 'DATA SARANA & PRASANA';
+                }else{
+                    $title = 'DATA SARANA & PRASANA '. strtoupper($j->nama_j_data_sarpras);
+                }
 
                 $event->sheet->insertNewRowBefore(1, 4);
 
-                $event->sheet->setCellValue('A2','DATA SARANA & PRASANA');
+                $event->sheet->setCellValue('A2', $title);
                 $event->sheet->setCellValue('A3','KECAMATAN SUKAJADI, KOTA BANDUNG');
                 
 
                 $event->sheet->mergeCells('A2:B2');
                 $event->sheet->mergeCells('A3:B3');
-
-
                 
                 $event->sheet->getStyle('A2:B3')->applyFromArray($headingStyle);
                 $event->sheet->getStyle('A5:B5')->applyFromArray($headingStyle);
@@ -115,6 +135,7 @@ WithHeadingRow, WithEvents, WithColumnWidths
                         ],
                     ],
                 ]);
+                $event->sheet->getStyle('A'.$event->sheet->getHighestRow().':B'.$event->sheet->getHighestRow())->applyFromArray($headingStyle);
             },
 
         ];

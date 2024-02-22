@@ -37,7 +37,8 @@ WithHeadingRow, WithCustomStartCell, WithEvents, WithColumnWidths
     */
     public function collection()
     {
-        return DB::table("t_data_pegawai as a")
+        $data = Collect([]);
+        return  DB::table("t_data_pegawai as a")
         ->join("j_sopd as c", function($join){
             $join->on("c.id_j_sopd", "=", "a.sopd_t_data_pegawai");
         })
@@ -47,6 +48,8 @@ WithHeadingRow, WithCustomStartCell, WithEvents, WithColumnWidths
         })
         ->groupBy('c.nama_j_sopd')
         ->get();
+
+
     }
 
     public function map($data): array
@@ -91,9 +94,16 @@ WithHeadingRow, WithCustomStartCell, WithEvents, WithColumnWidths
                     // Add more styling options as needed
                 ]);
 
+                $j = DB::table("j_data_pegawai as a")->where('id_j_data_pegawai', $this->jenis)->first();
+
+                if($this->jenis == 'semua'){
+                    $title = 'DATA PEGAWAI KECAMATAN SUKAJADI';
+                }else{
+                    $title = 'DATA PEGAWAI KECAMATAN SUKAJADI '.$j->nama_j_data_pegawai;
+                }
                 
                 $event->sheet->insertNewRowBefore(1, 3);
-                $event->sheet->setCellValue('A2','DATA PEGAWAI KECAMATAN SUKAJADI');
+                $event->sheet->setCellValue('A2', $title);
                 $event->sheet->mergeCells('A2:B2');
 
 

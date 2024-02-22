@@ -33,7 +33,7 @@
         </div>
         <div class="card-body">
             <table class="table table-bordered datatable w-100" id="datatable">
-                {{-- <thead> --}}
+                <thead>
                     <tr>
                         <th>NAMA USAHA</th>
                         <th>PEMILIK</th>
@@ -43,7 +43,7 @@
                         <th>TAHUN BERDIRI</th>
                         <th width="60px"></th>
                     </tr>
-                {{-- </thead> --}}
+                </thead>
                 <tbody>
                 </tbody>
             </table>

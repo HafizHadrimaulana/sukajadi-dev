@@ -1,34 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Gis;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class GisController extends Controller
-{
+use App\Models\User;
 
-        /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+class UserController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data=Gis::all();
-        return view("page.admin.data.sarpras.index",[
-            'data'=>$data
-        ]);
+        //
+
+        return view('page.admin.user.index');
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,7 +28,7 @@ class GisController extends Controller
      */
     public function create()
     {
-        return view("page.admin.data.sarpras.create");
+        //
     }
 
     /**
@@ -47,12 +39,7 @@ class GisController extends Controller
      */
     public function store(Request $request)
     {
-        Gis::create([
-            'nama'=>$request->nama,
-            'latitude'=>$request->latitude,
-            'longitude'=>$request->longitude,
-        ]);
-        return redirect('/dashboard/admin/sarpras');
+        //
     }
 
     /**
@@ -74,11 +61,7 @@ class GisController extends Controller
      */
     public function edit($id)
     {
-        $data=Gis::where('id', $id)->first();
-        
-        return view('page.admin.data.sarpras.update', [
-            'data'=>$data,
-        ]);
+        //
     }
 
     /**
@@ -90,13 +73,7 @@ class GisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gis::where('id', $id)->update([
-            'nama'=>$request->nama,
-            'latitude'=>$request->latitude,
-            'longitude'=>$request->longitude,
-            
-        ]);
-        return redirect('dashboard/admin/sarpras');
+        //
     }
 
     /**
@@ -107,7 +84,6 @@ class GisController extends Controller
      */
     public function destroy($id)
     {
-        Gis::destroy($id);
-        return redirect('dashboard/admin/sarpras');
+        //
     }
 }
