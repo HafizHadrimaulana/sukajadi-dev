@@ -164,28 +164,26 @@ class PermohonanController extends Controller
      */
     public function destroy($id)
     {
-        {
-            DB::beginTransaction();
-            try{
-    
-                $data = Pengajuan::where('id', $id)->first();
-                $data->delete();
-    
-            }catch(\QueryException $e){
-                DB::rollback();
-                return response()->json([
-                    'fail' => true,
-                    'errors' => $e,
-                    'pesan' => 'Gagal Menghapus Data!',
-                ]);
-            }
-    
-            DB::commit();
+        DB::beginTransaction();
+        try{
+
+            $data = Pengajuan::where('id', $id)->first();
+            $data->delete();
+
+        }catch(\QueryException $e){
+            DB::rollback();
             return response()->json([
-                'fail' => false,
-                'pesan' => 'Data Berhasil Dihapus!',
+                'fail' => true,
+                'errors' => $e,
+                'pesan' => 'Gagal Menghapus Data!',
             ]);
         }
+
+        DB::commit();
+        return response()->json([
+            'fail' => false,
+            'pesan' => 'Data Berhasil Dihapus!',
+        ]);
     }
 
     

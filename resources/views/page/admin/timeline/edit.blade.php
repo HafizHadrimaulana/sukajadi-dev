@@ -55,7 +55,7 @@ crossorigin=""/>
                     data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-status">Status</label>
                             <div class="custom-control custom-checkbox">
@@ -64,7 +64,19 @@ crossorigin=""/>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-sopd">SOPD</label>
+                            <select class="form-control select2 {{ $errors->has('sopd') ? 'is-invalid' : '' }}" name="sopd" id="field-sopd" data-placeholder="Pilih SOPD">
+                                <option></option>
+                                @foreach ($sopd as $t)
+                                    <option value="{{ $t->id_j_sopd }}" {{ old('sopd', $data->id_j_sopd) == $t->id_j_sopd ? 'selected="selected"' : '' }}>{{ $t->nama_j_sopd }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('sopd')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-tgl">Jenis Kegiatan</label>
                             <select class="form-control select2 {{ $errors->has('jenis_kegiatan') ? 'is-invalid' : '' }}" name="jenis_kegiatan" id="field-jenis_kegiatan" data-placeholder="Pilih Tahun">
@@ -170,7 +182,7 @@ crossorigin=""></script>
             });
 
 
-            var lat = $('#lat').val();
+            var lat =$('#lat').val();
             var lng = $('#lng').val();
             // alert(lat);
 
@@ -184,7 +196,7 @@ crossorigin=""></script>
                 zoomOffset: -1
             }).addTo(map);
             
-            var marker = L.marker([-6.885096440972612, 107.58568634441774], {draggable:'true'})
+            var marker = L.marker([-6.885096440972612, 107.58568634441774])
             .addTo(map);
 
             if(!lat && !lng)
@@ -202,8 +214,9 @@ crossorigin=""></script>
                     }
                 );
             }else{
-                map.panTo(new L.LatLng(lat, lng));
-                marker.setLatLng(new L.LatLng([lat,lng], {draggable:'true'}));
+                var latlng = new L.LatLng(lat, lng);
+                map.panTo(latlng);
+                marker.setLatLng(latlng);
             }
 
             marker.on('dragend', function(event){

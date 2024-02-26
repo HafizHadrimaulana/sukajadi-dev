@@ -58,7 +58,7 @@ class TimeLineController extends Controller
                     $btn .= '<div class="dropdown-menu dropdown-menu-right">';
                     $btn .= '<a class="dropdown-item" href="'. route('admin.timeline.show', $row->id) .'"><i class="fa fa-eye mr-1"></i>Detail</a>';
                     $btn .= '<a class="dropdown-item" href="'. route('admin.timeline.edit', $row->id) .'"><i class="fa fa-edit mr-1"></i>Ubah</a>';
-                    $btn .= '<a class="dropdown-item" href="#"><i class="fa fa-trash mr-1"></i>Hapus</a>';
+                    $btn .= '<a class="dropdown-item" href="#" onclick="hapus('. $row->id .')"><i class="fa fa-trash mr-1"></i>Hapus</a>';
                     $btn .= '<a class="dropdown-item open-map" href="#" data-lat="'. $row->lat_kegiatan.'" data-lng="'. $row->lng_kegiatan .'"><i class="fa fa-map mr-1"></i>Lihat Lokasi</a>';
                     $btn .= '</div>';
                     $btn .= '</div>';
@@ -93,11 +93,11 @@ class TimeLineController extends Controller
     public function create()
     {
         $jenis = DB::table('j_kegiatan')->select('*')->orderBy('nama_j_kegiatan','ASC')->get();
-        $satuan = DB::table('j_satuan')->select('*')->orderBy('nama_j_satuan','ASC')->get();
+        $sopd = DB::table('j_sopd')->select('*')->orderBy('nama_j_sopd','ASC')->get();
 
         return view('page.admin.timeline.create',[
             'jenis' => $jenis,
-            'satuan' => $satuan
+            'sopd' => $sopd
         ]);
     }
 
@@ -136,6 +136,7 @@ class TimeLineController extends Controller
                 $data->lokasi_kegiatan = $request->alamat;
                 $data->lat_kegiatan = $request->lat;
                 $data->lng_kegiatan = $request->lng;
+                $data->id_j_sopd = $request->sopd;
                 $data->status_kegiatan = ($request->status_kegiatan) ? 1  : 0;
                 $data->id_user = auth()->user()->id;
                 $data->save();
@@ -196,12 +197,12 @@ class TimeLineController extends Controller
         $data->fotoArray = json_encode($fotoArray);
 
         $jenis = DB::table('j_kegiatan')->select('*')->orderBy('nama_j_kegiatan','ASC')->get();
-        $satuan = DB::table('j_satuan')->select('*')->orderBy('nama_j_satuan','ASC')->get();
+        $sopd = DB::table('j_sopd')->select('*')->orderBy('nama_j_sopd','ASC')->get();
 
         return view('page.admin.timeline.edit',[
             'data' => $data,
             'jenis' => $jenis,
-            'satuan' => $satuan
+            'sopd' => $sopd
         ]);
     }
 
@@ -238,6 +239,7 @@ class TimeLineController extends Controller
                 $data->id_j_kegiatan = $request->jenis_kegiatan;
                 $data->nama_kegiatan = $request->keterangan;
                 $data->lokasi_kegiatan = $request->alamat;
+                $data->id_j_sopd = $request->sopd;
                 $data->lat_kegiatan = $request->lat;
                 $data->lng_kegiatan = $request->lng;
                 $data->status_kegiatan = ($request->status_kegiatan) ? 1  : 0;
@@ -254,7 +256,6 @@ class TimeLineController extends Controller
                         $foto->nama_foto = '/uploads/timeline/'.$fileName;
                         $data->foto()->save($foto);
                     }
-
                 }
 
             }catch(\QueryException $e){
@@ -275,6 +276,25 @@ class TimeLineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try{
+
+            $data = TimeLine::where('id', $id)->first();
+            $data->delete();
+
+        }catch(\QueryException $e){
+            DB::rollback();
+            return response()->json([
+                'fail' => true,
+                'errors' => $e,
+                'pesan' => 'Gagal Menghapus Data!',
+            ]);
+        }
+
+        DB::commit();
+        return response()->json([
+            'fail' => false,
+            'pesan' => 'Data Berhasil Dihapus!',
+        ]);
     }
 }

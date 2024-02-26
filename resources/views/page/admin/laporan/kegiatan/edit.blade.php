@@ -45,7 +45,7 @@ crossorigin=""/>
 <section class="content">
     <div class="card">
         <div class="card-body">
-            <form id="form-kegiatan" method="POST" action="{{ route('admin.kegiatan.store') }}" enctype="multipart/form-data">
+            <form id="form-kegiatan" method="POST" action="{{ route('admin.kegiatan.update', $data->id_t_kegiatan) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -82,7 +82,7 @@ crossorigin=""/>
                             <select class="form-control select2 {{ $errors->has('satuan') ? 'is-invalid' : '' }}" name="satuan" id="field-satuan" data-placeholder="Pilih Satuan">
                                 <option></option>
                                 @foreach ($satuan as $t)
-                                    <option value="{{ $t->id_j_satuan }}" {{ old('satuan') == $t->nama_j_satuan ? 'selected="selected"' : '' }}>{{ $t->nama_j_satuan }}</option>
+                                    <option value="{{ $t->id_j_satuan }}" {{ old('satuan', $data->id_j_satuan) == $t->id_j_satuan ? 'selected="selected"' : '' }}>{{ $t->nama_j_satuan }}</option>
                                 @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('satuan')" class="mt-2" />
@@ -96,7 +96,7 @@ crossorigin=""/>
                 </div>
                 <div class="form-group">
                     <label for="field-keterangan">Keterangan</label>
-                    <textarea class="form-control" row="4" name="keterangan" id="field-keterangan" placeholder="Masukan Keterangan"></textarea>
+                    <textarea class="form-control" row="4" name="keterangan" id="field-keterangan" placeholder="Masukan Keterangan">{{ old('keterangan', $data->keterangan_t_kegiatan) }}</textarea>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -139,13 +139,13 @@ crossorigin=""/>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lat">Latitude</label>
-                                    <input type="text" class="form-control" name="lat" id="lat" readonly placeholder="Latitude">
+                                    <input type="text" class="form-control" name="lat" id="lat" readonly placeholder="Latitude" value="{{ old('lat', $data->lat_t_kegiatan) }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lng">Longtitude</label>
-                                    <input type="text" class="form-control" name="lng" id="lng" readonly placeholder="Longtitude">
+                                    <input type="text" class="form-control" name="lng" id="lng" readonly placeholder="Longtitude" value="{{ old('lng', $data->lng_t_kegiatan) }}">
                                 </div>
                             </div>
                         </div>
@@ -207,7 +207,7 @@ crossorigin=""></script>
                 zoomOffset: -1
             }).addTo(map);
             
-            var marker = L.marker(["{{ $data->lat_t_kegiatan ?? '-6.885096440972612' }}", "{{ $data->lng_t_kegiatan ?? '107.58568634441774' }}"], {draggable:'true'})
+            var marker = L.marker([-6.885096440972612, 107.58568634441774],{ draggable:'true'})
             .addTo(map);
 
             if(!lat && !lng)
@@ -225,8 +225,10 @@ crossorigin=""></script>
                     }
                 );
             }else{
-                map.panTo(new L.LatLng(parseFloat(lat), parseFloat(lng)));
-                marker.setLatLng(new L.LatLng([parseFloat(lat), parseFloat(lng)], {draggable:'true'}));
+                var latlng = new L.LatLng(lat, lng);
+                map.panTo(latlng);
+                marker.setLatLng(latlng,{draggable:'true'});
+                getAddress(lat, lng);
             }
 
             marker.on('dragend', function(event){

@@ -10,6 +10,7 @@ class Kegiatan extends Model
     use HasFactory;
 
     protected $table = 't_kegiatan';
+    protected $primaryKey = 'id_t_kegiatan';
 
 
     

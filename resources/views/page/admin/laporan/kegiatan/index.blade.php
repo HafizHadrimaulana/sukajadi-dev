@@ -25,17 +25,17 @@
             <form id="form-filter" class="form-horizontal">
                 <div class="row">
                     <div class="col-sm-2">
-                        <x-tahun-select type="id" value="{{ request()->get('tahun') }}"></x-tahun-select>
+                        <x-tahun-select type="id" name="tahun" id="filter-tahun" value="{{ request()->get('tahun') }}"></x-tahun-select>
                         <span class="help-block"></span>
                     </div>
                     <div class="col-sm-2">
-                        <select class="form-control select2" name="filter-bulan" id="filter-bulan" data-placeholder="Pilih Bulan">
+                        <select class="form-control select2" name="bulan" id="filter-bulan" data-placeholder="Pilih Bulan">
                             <option></option>
                         </select>
                         <span class="help-block"></span>
                     </div>
                     <div class="col-sm-3">
-                        <x-sopd-select></x-sopd-select>
+                        <x-sopd-select name="sopd"></x-sopd-select>
                         <span class="help-block"></span>
                     </div>
                     <div class="col-sm-4"> 
@@ -93,7 +93,6 @@
             var tahun = $("#filter-tahun").val();
             if(tahun){
                 $('#filter-bulan').prop("disabled", false);
-                
                 $('#filter-bulan').select2({
                     ajax: {
                         url: "{{ route('json.bulan') }}" +'?tahun='+tahun,
@@ -129,6 +128,7 @@
 
             });
 
+
             var table = $('.datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -163,6 +163,11 @@
                     },
                 ]
             });
+
+            if(tahun != ''){
+                table.draw();
+            }
+
             $("#btn-filter").on("click", function(e){ 
                 // alert('sasa');
                 $("#data-content").removeClass('d-none');
@@ -182,6 +187,61 @@
                 table.draw();
             });
 
+
         });
+            function hapus(id)
+            {
+                Swal.fire({
+                    icon : 'warning',
+                    text: 'Hapus Data?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: `Tidak, Jangan!`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "/admin/kegiatan/"+id+"/delete",
+                            type: "DELETE",
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            success: function(data) {
+                                if(data.fail == false){
+                                    Swal.fire({
+                                        toast : true,
+                                        title: "Berhasil",
+                                        text: "Data Berhasil Dihapus!",
+                                        timer: 1500,
+                                        showConfirmButton: false,
+                                        icon: 'success',
+                                        position : 'top-end'
+                                    }).then((result) => {
+                                        location.reload();
+                                    });
+                                }else{
+                                    Swal.fire({
+                                        toast : true,
+                                        title: "Gagal",
+                                        text: "Data Gagal Dihapus!",
+                                        timer: 1500,
+                                        showConfirmButton: false,
+                                        icon: 'error',
+                                        position : 'top-end'
+                                    });
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                    Swal.fire({
+                                        toast : true,
+                                        title: "Gagal",
+                                        text: "Terjadi Kesalahan Di Server!",
+                                        timer: 1500,
+                                        showConfirmButton: false,
+                                        icon: 'error',
+                                        position : 'top-end'
+                                    });
+                            }
+                        });
+                    }
+                })
+            }
     </script>
 @endpush

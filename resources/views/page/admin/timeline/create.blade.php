@@ -55,7 +55,7 @@ crossorigin=""/>
                     data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-status">Status</label>
                             <div class="custom-control custom-checkbox">
@@ -64,7 +64,19 @@ crossorigin=""/>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-sopd">SOPD</label>
+                            <select class="form-control select2 {{ $errors->has('sopd') ? 'is-invalid' : '' }}" name="sopd" id="field-sopd" data-placeholder="Pilih SOPD">
+                                <option></option>
+                                @foreach ($sopd as $t)
+                                    <option value="{{ $t->id_j_sopd }}" {{ old('sopd') == $t->id_j_sopd ? 'selected="selected"' : '' }}>{{ $t->nama_j_sopd }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('sopd')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-tgl">Jenis Kegiatan</label>
                             <select class="form-control select2 {{ $errors->has('jenis_kegiatan') ? 'is-invalid' : '' }}" name="jenis_kegiatan" id="field-jenis_kegiatan" data-placeholder="Pilih Tahun">

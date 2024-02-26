@@ -51,7 +51,7 @@
                         <div class="timeline-item">
                             <span class="time"><i class="fas fa-clock"></i> {{ \Carbon\Carbon::parse($d->jam_kegiatan)->translatedFormat('H:i') }} - {{ \Carbon\Carbon::parse($d->tanggal_kegiatan)->translatedFormat('jS F Y') }}</span>
                             <h3 class="timeline-header">
-                                Kecamatan Sukajadi
+                                {{ $d->nama_j_sopd }}
                             </h3>
                             <div class="timeline-body">
                                 <div class="timeline-gallery">
