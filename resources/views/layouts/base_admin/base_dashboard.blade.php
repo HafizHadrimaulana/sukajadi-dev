@@ -66,6 +66,18 @@
             .dropdown-menu-notif {
                 min-width: 18rem;
             }
+
+            .img-preview{
+                width: 70px;
+                height: 70px;
+                overflow: hidden;
+            }
+
+            .img-preview img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         </style>
         <!-- jQuery -->
         <script src="{{ asset('vendor/adminlte3/plugins/jquery/jquery.min.js') }}"></script>
@@ -127,6 +139,8 @@
                         enabled:true
                     }
                 });
+
+                
 
                 getNotif();
                 var notif_channel = pusher.subscribe('notif-update');

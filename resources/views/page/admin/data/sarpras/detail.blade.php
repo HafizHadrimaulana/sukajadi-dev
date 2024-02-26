@@ -103,6 +103,16 @@
             });
 
         });
+        
+        function getColor(d) {
+            return d == 31245 ? '#F38484' :
+                d == 31246 ? '#D597F9' :
+                d == 31244 ? '#ACC715' :
+                d == 31243 ? '#EC9949' :
+                d == 31242 ? '#4C51EF' :
+                '#59FD02';
+        }
+        
         function hapus(id)
         {
             Swal.fire({

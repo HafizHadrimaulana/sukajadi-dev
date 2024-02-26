@@ -131,19 +131,19 @@ crossorigin=""/>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="field-foto1">Foto 0% <small class="text-danger">(.jpg|.png) Maks. 500 Kb</small></label>
-                        <img src="{{ $data->foto_awal_t_kegiatan }}" class="img-fluid"/>
+                        <img src="/storage{{ $data->foto_awal_t_kegiatan }}" class="img-fluid"/>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="field-foto2">Foto 50% <small class="text-danger">(.jpg|.png) Maks. 500 Kb</small></label>
-                        <img src="{{ $data->foto_proses_t_kegiatan }}" class="img-fluid"/>
+                        <img src="/storage{{ $data->foto_proses_t_kegiatan }}" class="img-fluid"/>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="field-foto3">Foto 100% <small class="text-danger">(.jpg|.png) Maks. 500 Kb</small></label>
-                        <img src="{{ $data->foto_akhir_t_kegiatan }}" class="img-fluid"/>
+                        <img src="/storage{{ $data->foto_akhir_t_kegiatan }}" class="img-fluid"/>
                     </div>
                 </div>
             </div>
@@ -154,10 +154,9 @@ crossorigin=""/>
 @endsection
 
 @push('scripts')
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-geosearch@3.11.0/dist/geosearch.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#field-tgl").flatpickr({
@@ -183,12 +182,39 @@ crossorigin=""></script>
                 zoomOffset: -1
             }).addTo(map);
             
+            var geoList;
+            var geojsonLayer = new L.GeoJSON.AJAX("/js/geojson.json", {
+                style : function (feature){
+                    // console.log(feature);
+                    kel = feature.properties.id;
+                    return {
+                        fillColor: getColor(kel),
+                        fillOpacity: 0.5,
+                        color: "white",
+                        dashArray: '3',
+                        weight: 1,
+                        opacity: 0.7
+                    }
+                }
+            }).addTo(map);
+
+            geojsonLayer.bindPopup(function (e) {
+                return e.feature.properties.kemendagri_desa_nama;
+            });
             var marker = L.marker(['{{ $data->lat_t_kegiatan }}', '{{ $data->lng_t_kegiatan }}'], {draggable:'false'})
             .addTo(map);
 
             getAddress('{{ $data->lat_t_kegiatan }}', '{{ $data->lng_t_kegiatan }}');
         });
 
+        function getColor(d) {
+            return d == 31245 ? '#F38484' :
+                d == 31246 ? '#D597F9' :
+                d == 31244 ? '#ACC715' :
+                d == 31243 ? '#EC9949' :
+                d == 31242 ? '#4C51EF' :
+                '#59FD02';
+        }
         function getAddress(lat, lng){
             fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`, {
             headers: {

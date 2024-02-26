@@ -23,9 +23,7 @@ use App\Events\MyEvent;
 |
 */
 
-Route::get('/', function () {
-    return view('page.publik.home');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/test', function () {
     event(new MyEvent('hello world'));

@@ -54,37 +54,11 @@
                 </a>
             </div>
             <div class="col-lg-3 col-6">
-                <a href="#">
-                <div class="small-box bg-white">
-                    <div class="inner">
-                        <h3>27.103</h3>
-                        <p>Rekap Vaksinasi</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-syringe"></i>
-                    </div>
-                </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-6">
-                <a href="#">
-                <div class="small-box bg-white">
-                    <div class="inner">
-                        <h3>77</h3>
-                        <p>Posyandu</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-hospital"></i>
-                    </div>
-                </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-6">
                 
-                <a href="#">
+                <a href="{{ route('data.penghargaan.index') }}">
                 <div class="small-box bg-white">
                     <div class="inner">
-                        <h3>Prestasi</h3>
+                        <h3>{{ $prestasi }} Prestasi</h3>
                         <p>Tahun Ini</p>
                     </div>
                     <div class="icon">
@@ -94,40 +68,14 @@
                 </a>
             </div>
             <div class="col-lg-3 col-6">
-                <a href="#">
+                <a href="{{ route('data.sarpras.index') }}">
                 <div class="small-box bg-white">
                     <div class="inner">
-                        <h3>6.201</h3>
+                        <h3>{{ $data }}</h3>
                         <p>Data</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-database"></i>
-                    </div>
-                </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-6">
-                <a href="#">
-                <div class="small-box bg-white">
-                    <div class="inner">
-                        <h3>1.192</h3>
-                        <p>Dutabulin</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-child"></i>
-                    </div>
-                </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-6">
-                <a href="#">
-                <div class="small-box bg-white">
-                    <div class="inner">
-                        <h3>816</h3>
-                        <p>Rembug Warga</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-comments"></i>
                     </div>
                 </div>
                 </a>

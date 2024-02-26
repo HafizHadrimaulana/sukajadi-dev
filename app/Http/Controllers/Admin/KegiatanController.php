@@ -45,19 +45,29 @@ class KegiatanController extends Controller
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row) use ($tahun){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.kegiatan.show', ['id' => $row->id_t_kegiatan]) .'><i class="fa fa-list"></i> Detail</a>';
+                    $btn = '<div class="dropdown">
+                    <a class="btn btn-primary btn-sm dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-list mr-1"></i> Aksi
+                    </a>';
+                  
+                    $btn .= '<div class="dropdown-menu dropdown-menu-right">';
+                    $btn .= '<a class="dropdown-item" href="'. route('admin.kegiatan.show', $row->id_t_kegiatan) .'">Detail</a>';
+                    $btn .= '<a class="dropdown-item" href="'. route('admin.kegiatan.edit', $row->id_t_kegiatan) .'">Ubah</a>';
+                    $btn .= '<a class="dropdown-item" href="#">Hapus</a>';
+                    $btn .= '</div>';
+                    $btn .= '</div>';
                     return $btn; 
                 })
                 ->addColumn('foto_awal_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_awal_t_kegiatan .'" class="circle-avatar"/>';
+                    $btn = '<div class="img-preview"><img src="/storage'. $row->foto_awal_t_kegiatan .'"/></div>';
                     return $btn; 
                 })
                 ->addColumn('foto_proses_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_proses_t_kegiatan .'" class="circle-avatar"/>';
+                    $btn = '<div class="img-preview"><img src="/storage'. $row->foto_proses_t_kegiatan .'"/></div>';
                     return $btn; 
                 })
                 ->addColumn('foto_akhir_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_akhir_t_kegiatan .'" class="circle-avatar"/>';
+                    $btn = '<div class="img-preview"><img src="/storage'. $row->foto_akhir_t_kegiatan .'"/></div>';
                     return $btn; 
                 })
                 ->rawColumns(['action', 'foto_awal_t_kegiatan', 'foto_proses_t_kegiatan', 'foto_akhir_t_kegiatan']) 
@@ -189,7 +199,24 @@ class KegiatanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = DB::table("t_kegiatan as a")
+        ->join("j_kegiatan as b", function($join){
+            $join->on("b.id_j_kegiatan", "=", "a.id_j_kegiatan");
+        })
+        ->join("j_satuan as c", function($join){
+            $join->on("c.id_j_satuan", "=", "a.id_j_satuan");
+        })
+        ->select("a.*", "b.nama_j_kegiatan", "c.nama_j_satuan")
+        ->where('a.id_t_kegiatan', '=', $id)
+        ->first();
+        
+        $jenis = DB::table('j_kegiatan')->select('*')->orderBy('nama_j_kegiatan','ASC')->get();
+        $satuan = DB::table('j_satuan')->select('*')->orderBy('nama_j_satuan','ASC')->get();
+        return view('page.admin.laporan.kegiatan.edit',[
+            'data' => $data,
+            'jenis' => $jenis,
+            'satuan' => $satuan
+        ]);
     }
 
     /**

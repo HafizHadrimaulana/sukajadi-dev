@@ -41,19 +41,30 @@ class KegiatanController extends Controller
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row) use ($tahun){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.kegiatan.show', ['id' => $row->id_t_kegiatan]) .'><i class="fa fa-list"></i> Detail</a>';
-                    return $btn; 
+                    $btn = '<div class="dropdown">
+                    <a class="btn btn-primary btn-sm dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-list mr-1"></i> Aksi
+                    </a>';
+                  
+                    $btn .= '<div class="dropdown-menu dropdown-menu-right">';
+                    $btn .= '<a class="dropdown-item" href="'. route('admin.kegiatan.show', $row->id) .'"><i class="fa fa-eye mr-1"></i>Detail</a>';
+                    $btn .= '<a class="dropdown-item" href="'. route('admin.kegiatan.edit', $row->id) .'"><i class="fa fa-edit mr-1"></i>Ubah</a>';
+                    $btn .= '<a class="dropdown-item" href="#"><i class="fa fa-trash mr-1"></i>Hapus</a>';
+                    $btn .= '</div>';
+                    $btn .= '</div>';
+
+                    return $btn;
                 })
                 ->addColumn('foto_awal_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_awal_t_kegiatan .'" class="circle-avatar"/>';
+                    $btn = '<a href="/storage'. $row->foto_awal_t_kegiatan .'" class="img-preview"><img src="/storage'. $row->foto_awal_t_kegiatan .'"/><a>';
                     return $btn; 
                 })
                 ->addColumn('foto_proses_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_proses_t_kegiatan .'" class="circle-avatar"/>';
+                    $btn = '<img src="/storage'. $row->foto_proses_t_kegiatan .'" class="circle-avatar"/>';
                     return $btn; 
                 })
                 ->addColumn('foto_akhir_t_kegiatan', function($row) use ($tahun){
-                    $btn = '<img src="'. $row->foto_akhir_t_kegiatan .'" class="circle-avatar"/>';
+                    $btn = '<img src="/storage'. $row->foto_akhir_t_kegiatan .'" class="circle-avatar"/>';
                     return $btn; 
                 })
                 ->rawColumns(['action', 'foto_awal_t_kegiatan', 'foto_proses_t_kegiatan', 'foto_akhir_t_kegiatan']) 
