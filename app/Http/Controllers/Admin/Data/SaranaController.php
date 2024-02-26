@@ -269,7 +269,7 @@ class SaranaController extends Controller
             ]);
         }
 
-        // DB::commit();
+        DB::commit();
         return response()->json([
             'fail' => false,
             'pesan' => 'Data Berhasil Dihapus!',

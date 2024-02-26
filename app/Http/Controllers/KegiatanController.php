@@ -16,7 +16,7 @@ class KegiatanController extends Controller
         ->join("j_kegiatan as b", function($join){
             $join->on("b.id_j_kegiatan", "=", "t_p_kegiatan.id_j_kegiatan");
         })
-        ->join("j_sopd as c", function($join){
+        ->leftjoin("j_sopd as c", function($join){
             $join->on("c.id_j_sopd", "=", "t_p_kegiatan.id_j_sopd");
         })
         ->select("t_p_kegiatan.*", "b.nama_j_kegiatan", "c.nama_j_sopd")
