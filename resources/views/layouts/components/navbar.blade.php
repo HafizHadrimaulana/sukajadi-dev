@@ -11,6 +11,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        @if (auth()->user()->hasRole(['superadmin','admin', 'kecamatan']))
         <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -24,6 +25,8 @@
                     
                 </span>
                 <div class="dropdown-divider"></div>
+                
+                @if (auth()->user()->hasRole(['superadmin','admin', 'kecamatan']))
                 <a href="{{ route('admin.agenda.surat-masuk.index', ['tahun' => '2024']) }}" class="dropdown-item">
                     <i class="fas fa-envelope mr-2"></i>Surat Masuk
                     <span class="float-right text-muted text-sm" id="notif-suratMasuk">
@@ -32,14 +35,16 @@
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('admin.agenda.surat-masuk.index', ['tahun' => '2024']) }}"  class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i>Surat Keluar
+                    <i class="fas fa-envelope mr-2"></i>Surat Keluar
                     <span class="float-right text-muted text-sm"  id="notif-suratKeluar">
 
                     </span>
                 </a>
+                @endif
+                @if (auth()->user()->hasRole(['superadmin','admin']))
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('admin.kda.pengajuan.index', ['tahun' => '2024']) }}"  class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i>Pengajuan Data
+                    <i class="fas fa-envelope mr-2"></i>Pengajuan Data
                     <span class="float-right text-muted text-sm"  id="notif-pengajuan">
 
                     </span>
@@ -53,13 +58,15 @@
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('admin.permohonan.index') }}"  class="dropdown-item">
-                    <i class="fas fa-comments mr-2"></i>Surat Permohonan
+                    <i class="fas fa-envelope mr-2"></i>Surat Permohonan
                     <span class="float-right text-muted text-sm" id="notif-surat">
 
                     </span>
                 </a>
+                @endif
             </div>
         </li>
+        @endif
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">

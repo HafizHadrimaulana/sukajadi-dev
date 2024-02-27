@@ -1,5 +1,5 @@
 @extends('layouts.base_admin.base_dashboard')
-@section('judul', 'Tahun')
+@section('judul', 'Pengguna')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @role('superadmin|kecamatan')
 @section('content')
@@ -9,12 +9,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Tahun</h1>
+          <h1>Pengguna</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Tahun</li>
+            <li class="breadcrumb-item active">Pengguna</li>
           </ol>
         </div>
       </div>
@@ -24,14 +24,15 @@
 
     <div class="card">
         <div class="card-header">
-            <button class="btn btn-success" onclick="add_data_tabel()"><i class="fa fa-plus"></i> Tambah</button>
+            <a class="btn btn-success" href="{{ route('admin.akun.create') }}"><i class="fa fa-plus"></i> Tambah</a>
         </div>
         <div class="card-body">
             <table class="table table-bordered datatable w-100">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>TAHUN</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Jabatan</th>
                         <th width="20%" class="text-center"></th>
                     </tr>
                 </thead>
@@ -70,11 +71,12 @@
                 serverSide: true,
                 dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                 ajax: {
-                    url : "{{ route('admin.tahun.index') }}",
+                    url : "{{ route('admin.akun.index') }}",
                 },
                 columns: [
-                    {data: 'id_j_tahun', name: 'id_j_tahun'},
-                    {data: 'nama_j_tahun', name: 'nama_j_tahun'},
+                    {data: 'name', name: 'name'},
+                    {data: 'email', name: 'email'},
+                    {data: 'role', name: 'role'},
                     {
                         data: 'action', 
                         name: 'action', 
@@ -99,5 +101,59 @@
             });
 
         });
+        function hapus(id)
+        {
+            Swal.fire({
+                icon : 'warning',
+                text: 'Hapus Data?',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: `Tidak, Jangan!`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/admin/akun/"+id+"/delete",
+                        type: "DELETE",
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success: function(data) {
+                            if(data.fail == false){
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Berhasil",
+                                    text: "Data Berhasil Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'success',
+                                    position : 'top-end'
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            }else{
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Data Gagal Dihapus!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                                Swal.fire({
+                                    toast : true,
+                                    title: "Gagal",
+                                    text: "Terjadi Kesalahan Di Server!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    icon: 'error',
+                                    position : 'top-end'
+                                });
+                        }
+                    });
+                }
+            })
+        }
     </script>
 @endpush

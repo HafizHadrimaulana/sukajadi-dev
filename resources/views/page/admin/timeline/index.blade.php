@@ -221,6 +221,7 @@
 
             var newLatLng = new L.LatLng(lat, lng);
             map.setView(newLatLng, 14);
+            map.panTo(newLatLng);
             marker.setLatLng(newLatLng);
 
             $('#modal-map').modal('show');

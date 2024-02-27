@@ -71,6 +71,7 @@
                         </div>
                     </div>
                     @endforeach
+                    {{ $data->links() }}
                 @endforeach
 
             </div>
@@ -122,7 +123,8 @@
 
                 var newLatLng = new L.LatLng(lat, lng);
                 map.setView(newLatLng, 14);
-                marker.setLatLng(newLatLng);
+                map.panTo(newLatLng);
+                marker.setLatLng(newLatLng); 
 
                 $('#modal-map').modal('show');
             });
