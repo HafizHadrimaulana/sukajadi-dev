@@ -190,11 +190,20 @@ class TimeLineController extends Controller
     {
         $data = Timeline::with('foto')->where('id', $id)->first();
         $fotoArray = [];
+        $fotoData = Collect([]);
         foreach($data->foto as $f){
-            $fotoArray[] = $f->nama_foto;
+            $fotoArray[] = '/storage'.$f->nama_foto;
+            $fotoData->push([
+                'key' => $f->id,
+                'url' => route('admin.timeline.deleteFoto'),
+                'caption' => 'test', 
+                'description' => 'testing',
+                
+            ]);
         }
         // dd($fotoArray);
         $data->fotoArray = json_encode($fotoArray);
+        $data->fotoData = json_encode($fotoData);
 
         $jenis = DB::table('j_kegiatan')->select('*')->orderBy('nama_j_kegiatan','ASC')->get();
         $sopd = DB::table('j_sopd')->select('*')->orderBy('nama_j_sopd','ASC')->get();
@@ -280,6 +289,32 @@ class TimeLineController extends Controller
         try{
 
             $data = TimeLine::where('id', $id)->first();
+            $data->delete();
+
+        }catch(\QueryException $e){
+            DB::rollback();
+            return response()->json([
+                'fail' => true,
+                'errors' => $e,
+                'pesan' => 'Gagal Menghapus Data!',
+            ]);
+        }
+
+        DB::commit();
+        return response()->json([
+            'fail' => false,
+            'pesan' => 'Data Berhasil Dihapus!',
+        ]);
+    }
+
+    
+    public function destroyFoto(Request $request)
+    {
+        // dd($request->all());
+        DB::beginTransaction();
+        try{
+
+            $data = TimeLineFoto::where('id', $request->key)->first();
             $data->delete();
 
         }catch(\QueryException $e){

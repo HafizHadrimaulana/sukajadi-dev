@@ -51,8 +51,7 @@ crossorigin=""/>
             <form id="form-timeline" method="POST" action="{{ route('admin.timeline.update', $data->id) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <input id="field-foto" name="foto[]" type="file" class="file" multiple 
-                    data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
+                    <input id="field-foto" name="foto[]" type="file" multiple>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -143,34 +142,43 @@ crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/locales/id.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script>
-    var initFoto = JSON.parse('{!! $data->fotoArray !!}');
     // var initFoto = foto.split(",");
     // console.log(foto);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         $(document).ready(function() {
-        $('#field-keterangan').summernote({
-            height: 300,
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']]
-            ],
-        });
+            var initFoto = JSON.parse('{!! $data->fotoArray !!}');
+            console.log(initFoto);
+            
+            $('#field-keterangan').summernote({
+                height: 300,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ],
+            });
 
             $("#field-foto").fileinput({
                 showCancel: false,
                 showUpload:false,
-                previewFileType:'any',
-                maxFileSize: 10000,
-                maxFileCount : 4,
+                showRemove:false,
+                uploadAsync: false,
+                minFileCount: 2,
+                maxFileCount: 5,
                 overwriteInitial: false,
                 initialPreview: initFoto,
-                initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                initialPreviewFileType: 'image', // image is the default and can be overridden in config below
+                initialPreviewAsData: true,
+                initialPreviewFileType: 'image',
+                initialPreviewConfig : JSON.parse('{!! $data->fotoData !!}'),
             });
 
             $("#field-tgl").flatpickr({

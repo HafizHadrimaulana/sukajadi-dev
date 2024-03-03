@@ -49,7 +49,7 @@
                     <div>
                         <i class="fab fa-whatsapp bg-success"></i>
                         <div class="timeline-item">
-                            <span class="time"><i class="fas fa-clock"></i> {{ \Carbon\Carbon::parse($d->jam_kegiatan)->translatedFormat('H:i') }} - {{ \Carbon\Carbon::parse($d->tanggal_kegiatan)->translatedFormat('jS F Y') }}</span>
+                            <span class="time"><i class="fas fa-clock"></i> {{ \Carbon\Carbon::parse($d->created_at)->translatedFormat('H:i') }} - {{ \Carbon\Carbon::parse($d->tanggal_kegiatan)->translatedFormat('jS F Y') }}</span>
                             <h3 class="timeline-header">
                                 {{ $d->nama_j_sopd }}
                             </h3>
@@ -71,9 +71,8 @@
                         </div>
                     </div>
                     @endforeach
-                    {{ $data->links() }}
                 @endforeach
-
+                {{ $data->links() }}
             </div>
         </div>
     </section>
@@ -101,9 +100,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js" integrity="sha512-OFs3W4DIZ5ZkrDhBFtsCP6JXtMEDGmhl0QPlmWYBJay40TT1n3gt2Xuw8Pf/iezgW9CdabjkNChRqozl/YADmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js" integrity="sha512-Abr21JO2YqcJ03XGZRPuZSWKBhJpUAR6+2wH5zBeO4wAw4oksr8PRdF+BKIRsxvCdq+Mv4670rZ+dLnIyabbGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
+            var map, tiles, maker;
             $(document).ready(function() {
-            var map = L.map('map').setView([-6.885096440972612, 107.58568634441774], 14);
-            var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJpcHJhdGFtYSIsImEiOiJjbGZubmdib3UwbnRxM3Bya3M1NGE4OHRsIn0.oxYqbBbaBwx0dHLguu5gOA', {
+            map = L.map('map').setView([-6.885096440972612, 107.58568634441774], 14);
+            tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJpcHJhdGFtYSIsImEiOiJjbGZubmdib3UwbnRxM3Bya3M1NGE4OHRsIn0.oxYqbBbaBwx0dHLguu5gOA', {
                 maxZoom: 18,
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
                     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -112,7 +112,7 @@
                 zoomOffset: -1
             }).addTo(map);
                 
-           var marker = L.marker([-6.885096440972612, 107.58568634441774], {draggable:'false'})
+           marker = L.marker([-6.885096440972612, 107.58568634441774], {draggable:'false'})
             .addTo(map);
 
 
@@ -120,13 +120,16 @@
                 e.preventDefault();
                 var lat = $(this).data('lat');
                 var lng = $(this).data('lng');
-
                 var newLatLng = new L.LatLng(lat, lng);
+                marker.setLatLng(newLatLng); 
                 map.setView(newLatLng, 14);
                 map.panTo(newLatLng);
-                marker.setLatLng(newLatLng); 
 
                 $('#modal-map').modal('show');
+            });
+
+            $('#modal-map').on('shown.bs.modal', function() {
+                map.invalidateSize();
             });
 
             $("button.close").on("click", function(e){

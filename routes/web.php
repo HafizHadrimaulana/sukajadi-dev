@@ -127,6 +127,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->
         Route::get('/create', 'TimeLineController@create')->name('create');
         Route::post('/store','TimeLineController@store')->name('store');
         Route::get('/data', 'TimeLineController@data')->name('data');
+        Route::post('/deleteFoto','TimeLineController@destroyFoto')->name('deleteFoto');
         Route::get('/{id}', 'TimeLineController@show')->name('show');
         Route::get('/{id}/edit','TimeLineController@edit')->name('edit');
         Route::post('/{id}/update','TimeLineController@update')->name('update');

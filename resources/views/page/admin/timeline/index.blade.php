@@ -38,6 +38,7 @@
 <section class="content">
 
     <div class="card" id="data-content">
+        @role(['superadmin', 'admin', 'kelurahan'])
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <a href="{{ route('admin.timeline.create') }}" class="btn btn-primary">
@@ -46,13 +47,10 @@
                 </a>
 
                 <div class="space-x-1">
-                    <button class="btn btn-info text-white">
-                        <i class="fa fa-print"></i>
-                        Export
-                    </button>
                 </div>
             </div>
         </div>
+        @endrole
         
         <div class="card-body">
             <table class="table table-bordered datatable w-100">

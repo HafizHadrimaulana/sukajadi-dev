@@ -32,7 +32,6 @@ class KegiatanController extends Controller
         $currentData = $groupedTimelines->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $paginatedTimelines = new LengthAwarePaginator($currentData, count($groupedTimelines), $perPage);
 
-        // dd($paginatedTimelines);
         return view('page.publik.kegiatan',[
             'data' => $paginatedTimelines
         ]);
