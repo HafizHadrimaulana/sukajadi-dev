@@ -53,8 +53,10 @@ class KegiatanController extends Controller
                   
                     $btn .= '<div class="dropdown-menu dropdown-menu-right">';
                     $btn .= '<a class="dropdown-item" href="'. route('admin.kegiatan.show', $row->id_t_kegiatan) .'">Detail</a>';
+                    if(auth()->user()->hasRole(['superadmin', 'admin'])){
                     $btn .= '<a class="dropdown-item" href="'. route('admin.kegiatan.edit', $row->id_t_kegiatan) .'">Ubah</a>';
                     $btn .= '<a class="dropdown-item" href="#" onclick="hapus('. $row->id_t_kegiatan .')">Hapus</a>';
+                    }
                     $btn .= '</div>';
                     $btn .= '</div>';
                     return $btn; 

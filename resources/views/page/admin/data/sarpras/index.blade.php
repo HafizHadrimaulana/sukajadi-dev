@@ -21,7 +21,8 @@
 
 <section class="content">
 
-    <div class="card">
+    <div class="card card-primary card-outline">
+        @role(['superadmin', 'admin'])
         <div class="card-header">
             <a class="btn btn-primary" href="{{ route('admin.sarpras.create') }}">
                 <i class="fa fa-plus"></i>
@@ -32,6 +33,7 @@
                  Tambah Jenis Sarana & Prasarana
             </button>
         </div>
+        @endrole
         <div class="card-body">
             <table class="table table-bordered datatable w-100">
                 <thead>

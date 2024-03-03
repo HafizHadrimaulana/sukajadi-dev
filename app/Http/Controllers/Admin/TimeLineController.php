@@ -57,8 +57,10 @@ class TimeLineController extends Controller
                   
                     $btn .= '<div class="dropdown-menu dropdown-menu-right">';
                     $btn .= '<a class="dropdown-item" href="'. route('admin.timeline.show', $row->id) .'"><i class="fa fa-eye mr-1"></i>Detail</a>';
+                    if(auth()->user()->hasRole(['superadmin', 'admin'])){
                     $btn .= '<a class="dropdown-item" href="'. route('admin.timeline.edit', $row->id) .'"><i class="fa fa-edit mr-1"></i>Ubah</a>';
                     $btn .= '<a class="dropdown-item" href="#" onclick="hapus('. $row->id .')"><i class="fa fa-trash mr-1"></i>Hapus</a>';
+                    }
                     $btn .= '<a class="dropdown-item open-map" href="#" data-lat="'. $row->lat_kegiatan.'" data-lng="'. $row->lng_kegiatan .'"><i class="fa fa-map mr-1"></i>Lihat Lokasi</a>';
                     $btn .= '</div>';
                     $btn .= '</div>';

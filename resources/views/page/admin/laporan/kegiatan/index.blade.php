@@ -47,7 +47,8 @@
         </div>
     </div>
 
-    <div class="card d-none" id="data-content">
+    <div class="card card-primary card-outline d-none" id="data-content">
+        @role(['superadmin', 'admin'])
         <div class="card-header">
             <div class="d-flex">
                 <div class="space-x">
@@ -58,6 +59,7 @@
                 </div>
             </div>
         </div>
+        @endrole
         <div class="card-body">
             <table class="table table-bordered datatable w-100">
                 <thead>
