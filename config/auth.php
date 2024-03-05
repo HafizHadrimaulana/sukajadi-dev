@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'warga' => [
+            'driver' => 'session',
+            'provider' => 'warga',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'warga' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Warga::class,
         ],
 
         // 'users' => [
@@ -89,6 +97,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        
+        'warga' => [
+            'provider' => 'warga',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

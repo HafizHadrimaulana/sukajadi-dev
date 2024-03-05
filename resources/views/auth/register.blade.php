@@ -1,4 +1,6 @@
-@extends('layouts.base_admin.base_auth')@section('judul', 'Halaman Registrasi') @section('content')
+@extends('layouts.base_admin.base_auth')
+@section('judul', 'Halaman Registrasi')
+@section('content')
 <div class="register-box">
     <div class="register-logo">
         <a href="#">

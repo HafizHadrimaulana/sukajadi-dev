@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -38,13 +38,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function index()
+    
+    public function showLoginForm()
     {
-        return view('page.publik.auth.login');
-    }
-
-    public function login(Request $request)
-    {
-        
+        return view('page.admin.auth.login');
     }
 }

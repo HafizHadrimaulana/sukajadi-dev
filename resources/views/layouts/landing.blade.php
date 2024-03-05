@@ -105,14 +105,17 @@
                     </ul>
                 </div>
 
-                <div class="float-right order-3">
+                <div class="float-right order-3 d-flex">
                     <button class="navbar-toggler order-1" type="button" data-toggle="collapse"
                         data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('login') }}" class="btn btn-primary btn-sm mr-3">
                         Login
+                    </a>
+                    <a href="{{ route('register') }}" class="btn btn-block btn-outline-primary btn-sm">
+                        Daftar
                     </a>
                 </div>
             </div>
