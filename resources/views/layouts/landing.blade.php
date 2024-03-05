@@ -111,12 +111,35 @@
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    @if(auth()->guard('warga')->check())
+                    <div class="dropdown">
+                        <a  href="" class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                            {{ auth()->guard('warga')->user()->nama }}
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                <i class="fa fa-user"></i>
+                                Profil
+                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}" 
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <i class="fas fa-power-off"></i>
+                                <span>Keluar</span>
+                            </a>
+                        </div>
+                      </div>
+                    @else
                     <a href="{{ route('login') }}" class="btn btn-primary btn-sm mr-3">
                         Login
                     </a>
                     <a href="{{ route('register') }}" class="btn btn-block btn-outline-primary btn-sm">
                         Daftar
                     </a>
+                    @endif
+
                 </div>
             </div>
         </nav>
@@ -139,18 +162,19 @@
             <div class="chat-container" style="display: none">
                 <div class="card card-primary card-outline direct-chat direct-chat-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Direct Chat</h3>
+                        <h3 class="card-title">Live Chat</h3>
                         <div class="card-tools">
                             {{-- <span title="3 New Messages" class="badge bg-primary">3</span> --}}
                             <button type="button" class="btn btn-tool close-button">
                                 <i class="fa-window-minimize fas"></i>
                             </button>
-                            <button type="button" class="btn btn-danger btn-sm btn-tool" id="chat-logout">
+                            {{-- <button type="button" class="btn btn-danger btn-sm btn-tool" id="chat-logout">
                                 <i class="fa-sign-out-alt fas"></i>
-                            </button>
+                            </button> --}}
                         </div>
                     </div>
-                    <div id="messagesContainer" style="display: none">
+                    @if (auth()->guard('warga')->check())
+                    <div id="messagesContainer">
                         <div class="card-body">
                             <div class="direct-chat-messages">
                                 <div class="message-wrapper mb-3">
@@ -212,27 +236,17 @@
                         </div>
                     </div>
                     <div id="chatContactContainer" class="card-body py-3 px-2" style="display:none">
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="chat-name">Nama</label>
-                                <input name="name" type="text" placeholder="John Doe" class="form-control" id="chat-name">
-                                <div id="error-name" class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="chat-email">Email</label>
-                                <input name="email" type="text" placeholder="email@gmail.com" class="form-control" id="chat-email">
-                                <div id="error-email" class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="chat-hp">No Handphone</label>
-                                <input name="hp" type="text" placeholder="+62" class="form-control" id="chat-hp">
-                                <div id="error-hp" class="invalid-feedback"></div>
-                            </div>
-                            <button class="btn btn-primary w-100" type="submit">
-                                Submit
-                            </button>
-                        </form>
+                        <h1 class="h3 fw-bold">Hai 👋</h1>
+                        <h1 class="h3 fw-bold">Ada yang bisa kami bantu?</h1>
+                        <button type="button" id="chat-start" class="btn btn-primary btn-block">Kirim Kami Pesan</button>
                     </div>
+                    @else
+                        <div class="card-body py-3 px-2">
+                            <p class="text-center">Silahkan login atau daftar untuk melakukan chat</p>
+                            <a class="btn btn-primary btn-block" href="{{ route('login') }}">Login</a>
+                            <a class="btn btn-outline-primary btn-block" href="{{ route('register') }}">Daftar</a>
+                        </div>
+                    @endif
                 </div>
             </div>
             {{-- CHAT HTML SNIPPET END --}}

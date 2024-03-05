@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'role.superadmin.kecamatan' => \App\Http\Middleware\EnsureRoleIsSuperadminOrKecamatan::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'checkrolebyid' => \App\Http\Middleware\CheckRoleById::class,
+        'guard.verified' => \App\Http\Middleware\EnsureCustomGuardIsVerified::class,
     ];
 }

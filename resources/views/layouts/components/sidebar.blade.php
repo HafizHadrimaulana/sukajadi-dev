@@ -68,6 +68,11 @@ $links = [
         "is_multi" => true,
         "href" => [
             [
+                "section_text" => "Warga",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('admin.warga.index')
+            ],
+            [
                 "section_text" => "Mitra",
                 "section_icon" => "far fa-circle",
                 "section_href" => route('admin.mitra.index')

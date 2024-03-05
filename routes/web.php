@@ -23,29 +23,54 @@ use App\Events\MyEvent;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/test', function () {
-    event(new MyEvent('hello world'));
-});
-
-Route::get('/akun', [HomeController::class, 'index'])
-      ->middleware('role:superadmin|kecamatan') // Menggunakan nama role
-      ->name('home');
-
-// Route::group(['prefix' => 'dashboard/admin'], function () {
-//     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-    Route::group(['prefix' => 'profile'], function () {
-        Route::get('/', [HomeController::class, 'profile'])->name('profile');
-        Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');
+Route::middleware('guest')->group(function(){
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/kegiatan','KegiatanController@index')->name('kegiatan');
+    Route::name('data.')->group(function () {
+    
+        Route::prefix('/penghargaan')->name('penghargaan.')->group(function () {
+            Route::get('/', 'DataController@penghargaan')->name('index');
+            Route::get('/{tahun}', 'DataController@penghargaanDetail')->name('show');
+        });
+    
+        Route::prefix('/sarpras')->name('sarpras.')->group(function () {
+            Route::get('/', 'DataController@sarpras')->name('index');
+            Route::get('/{id}', 'DataController@sarprasDetail')->name('show');
+            Route::get('/{id}/data', 'DataController@sarprasData')->name('data');
+            Route::get('/{id}/markers', 'DataController@markers')->name('markers');
+        });
+    
+        Route::prefix('/kda')->name('kda.')->group(function () {
+            Route::get('/', 'KDAController@index')->name('index');
+            Route::post('/store', 'KDAController@store')->name('store');
+            Route::get('/jenis', 'KDAController@jenis')->name('jenis');
+        });
     });
+    
+    Route::prefix('/pengantar')->name('pengantar.')->group(function () {
+        Route::get('/', 'PengantarController@index')->name('index');
+        Route::post('/store', 'PengantarController@store')->name('store');
+        Route::get('/{jenis}', 'PengantarController@create')->name('create');
+    });
+    
+    Route::namespace('Auth')->group(function () {
+        Route::get('/login','LoginController@index')->name('login');
+        Route::post('/login','LoginController@login');
+        
+        Route::get('/register','RegisterController@index')->name('register');
+        Route::post('/register','RegisterController@register');
+    
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
+    });
+
+});
 
 Route::prefix('/json')->name('json.')->group(function () {
     Route::get('/bulan', 'JsonController@bulan')->name('bulan');
     Route::get('/sopd', 'JsonController@sopd')->name('sopd');
 });
-
 
 Route::prefix('/chat')->name('chat.')->group(function () {
     Route::get('/', 'ChatController@index')->name('index');
@@ -54,48 +79,18 @@ Route::prefix('/chat')->name('chat.')->group(function () {
     Route::post('/sent-message', 'ChatController@send')->name('send');
     Route::post('/bot', 'ChatController@bot')->name('bot');
 });
-// Menambahkan rute untuk bagian Laporan
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
-
-Route::get('/kegiatan','KegiatanController@index')->name('kegiatan');
-
-Route::name('data.')->group(function () {
-
-    Route::prefix('/penghargaan')->name('penghargaan.')->group(function () {
-        Route::get('/', 'DataController@penghargaan')->name('index');
-        Route::get('/{tahun}', 'DataController@penghargaanDetail')->name('show');
-    });
-
-    Route::prefix('/sarpras')->name('sarpras.')->group(function () {
-        Route::get('/', 'DataController@sarpras')->name('index');
-        Route::get('/{id}', 'DataController@sarprasDetail')->name('show');
-        Route::get('/{id}/data', 'DataController@sarprasData')->name('data');
-        Route::get('/{id}/markers', 'DataController@markers')->name('markers');
-    });
-
-    Route::prefix('/kda')->name('kda.')->group(function () {
-        Route::get('/', 'KDAController@index')->name('index');
-        Route::post('/store', 'KDAController@store')->name('store');
-        Route::get('/jenis', 'KDAController@jenis')->name('jenis');
-    });
-});
-
-Route::prefix('/pengantar')->name('pengantar.')->group(function () {
-    Route::get('/', 'PengantarController@index')->name('index');
-    Route::post('/store', 'PengantarController@store')->name('store');
-    Route::get('/{jenis}', 'PengantarController@create')->name('create');
-});
-
-Route::namespace('Auth')->group(function () {
-    Route::get('/login','LoginController@index')->name('login');
-    Route::post('/login','LoginController@login');
+Route::middleware('guard.verified:warga,verification.notice')->group(function(){
+    Route::post('/logout','Auth\LoginController@logout')->name('logout');
     
-    Route::get('/register','RegisterController@index')->name('register');
-    Route::post('/register','RegisterController@register');
+    Route::prefix('/profil')->name('profile.')->group(function () {
+        Route::get('/', 'UserController@index')->name('index');
+        Route::post('/create', 'UserController@create')->name('create');
+        Route::get('/get-message', 'UserController@message')->name('message');
+        Route::post('/sent-message', 'UserController@send')->name('send');
+        Route::post('/bot', 'UserController@bot')->name('bot');
+    });
 });
-
 
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
     Auth::routes();
@@ -106,6 +101,13 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
         Route::get('/dashboard','DashboardController@index')->name('dashboard');
         Route::get('/notif','DashboardController@notif')->name('notif');
 
+        Route::prefix('/profil')->name('profile.')->group(function () {
+            Route::get('/', 'UserController@index')->name('index');
+            Route::post('/create', 'UserController@create')->name('create');
+            Route::get('/get-message', 'UserController@message')->name('message');
+            Route::post('/sent-message', 'UserController@send')->name('send');
+            Route::post('/bot', 'UserController@bot')->name('bot');
+        });
         
         Route::prefix('/kegiatan')->name('kegiatan.')->group(function () {
             Route::get('/', 'KegiatanController@index')->name('index');
@@ -258,6 +260,17 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
         
         Route::namespace('Data')->group(function(){
             
+            Route::prefix('/warga')->name('warga.')->group(function () {
+                Route::get('/', 'WargaController@index')->name('index');
+                Route::get('/create', 'WargaController@create')->name('create');
+                Route::post('/store','WargaController@store')->name('store');
+                Route::get('/data', 'WargaController@data')->name('data');
+                Route::get('/{id}', 'WargaController@show')->name('show');
+                Route::get('/{id}/edit','WargaController@edit')->name('edit');
+                Route::post('/{id}/update','WargaController@update')->name('update');
+                Route::delete('/{id}/delete','WargaController@destroy')->name('delete');
+            });
+
             Route::prefix('/mitra')->name('mitra.')->group(function () {
                 Route::get('/', 'MitraController@index')->name('index');
                 Route::get('/create', 'MitraController@create')->name('create');

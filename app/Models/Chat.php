@@ -14,6 +14,10 @@ class Chat extends Model
     protected $fillable = ['name', 'email', 'unseen_messages', 'last_sender'];
 
 
+    public function warga(){
+        return $this->belongsTo(Warga::class, 'warga_id');
+    }
+
     public function messages(){
         return $this->hasMany(Message::class);
     }

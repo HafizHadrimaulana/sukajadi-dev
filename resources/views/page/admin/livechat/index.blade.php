@@ -37,11 +37,11 @@
                         @foreach ($chats as $chat)
                         <li class="nav-item" id="chat-{{ $chat->id }}">
                             <div class="row justify-content-between mx-0">
-                                <div class="col-9" onclick="fetchData(this)" id="{{ $chat->id }}" data-sender-name="{{ $chat->name }}">
+                                <div class="col-9" onclick="fetchData(this)" id="{{ $chat->id }}" data-sender-name="{{ $chat->warga->nama }}">
                                     <a href="javascript:void(0)" class="nav-link px-0 text-black">
                                         <div class="text-sm">
-                                            {{ $chat->name }}
-                                            <div>({{ $chat->email }})</div>
+                                            {{ $chat->warga->nama }}
+                                            <div>({{ $chat->warga->email }})</div>
                                         </div>
                                     </a>
                                 </div>

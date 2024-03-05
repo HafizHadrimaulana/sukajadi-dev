@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
@@ -26,7 +27,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -35,8 +36,35 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:warga');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+    public function show(Request $request)
+    {
+        
+        if ($request->user('warga')->hasVerifiedEmail()) {
+            return redirect()->route('home');
+        }
+        return view('page.publik.auth.verify');
+    }
+
+    
+    public function verify(Request $request)
+    {
+        if ($request->route('id') != $request->user('warga')->getKey()) {
+            //id value doesn't match.
+            return redirect()
+                ->route('verification.notice')->with('error','Invalid user!');
+        }
+
+        if ($request->user('warga')->hasVerifiedEmail()) {
+            return redirect()->route('home');
+        }
+
+        $request->user('warga')->markEmailAsVerified();
+
+        return redirect()->route('home')->with('status','Thank you for verifying your email!');
     }
 }

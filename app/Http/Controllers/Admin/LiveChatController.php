@@ -25,7 +25,7 @@ class LiveChatController extends Controller
      */
     public function index(Request $request)
     {
-        $chats = Chat::withCount('unseen_messages')
+        $chats = Chat::with('warga')->withCount('unseen_messages')
         ->orderBy('unseen_messages_count', 'DESC')
         ->paginate(4);
 

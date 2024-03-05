@@ -25,6 +25,7 @@
 </section>
 
 <section class="content">
+    <input type="hidden" id="field-role" value="{{ auth()->user()->hasRole(['superadmin', 'admin']) }}">
     <div class="card card-primary card-outline" id="data-content">
         <div class="card-header">
             <h3 class="card-title">
@@ -42,7 +43,9 @@
                         <th>KELURAHAN</th>
                         <th>KETERANGAN</th>
                         <th>DETAIL</th>
+                        @role(['superadmin', 'admin'])
                         <th width="60px"></th>
+                        @endrole
                     </tr>
                 </thead>
                 <tbody>
@@ -55,11 +58,28 @@
 @endsection
 
 @push('scripts')
+
     <script>
         
 
         $(document).ready(function() {
-
+            var columns = [
+                    {data: 'nama_t_data_sarpras', name: 'nama_t_data_sarpras'},
+                    {data: 'alamat_t_data_sarpras', name: 'alamat_t_data_sarpras'},
+                    {data: 'rt_t_data_sarpras', name: 'rt_t_data_sarpras'},
+                    {data: 'rw_t_data_sarpras', name: 'rw_t_data_sarpras'},
+                    {data: 'nama_j_kelurahan', name: 'nama_j_kelurahan'},
+                    {data: 'keterangan_t_data_sarpras', name: 'keterangan_t_data_sarpras'},
+                    {data: 'detail_t_data_sarpras', name: 'detail_t_data_sarpras'},
+            ];
+            if($("#field-role").val()){
+                columns.push({
+                    data: 'action', 
+                    name: 'action', 
+                    orderable: true, 
+                    searchable: true
+                });
+            }
             var table = $('.datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -71,21 +91,7 @@
                             data.tahun = tahun;
                     }
                 },
-                columns: [
-                    {data: 'nama_t_data_sarpras', name: 'nama_t_data_sarpras'},
-                    {data: 'alamat_t_data_sarpras', name: 'alamat_t_data_sarpras'},
-                    {data: 'rt_t_data_sarpras', name: 'rt_t_data_sarpras'},
-                    {data: 'rw_t_data_sarpras', name: 'rw_t_data_sarpras'},
-                    {data: 'nama_j_kelurahan', name: 'nama_j_kelurahan'},
-                    {data: 'keterangan_t_data_sarpras', name: 'keterangan_t_data_sarpras'},
-                    {data: 'detail_t_data_sarpras', name: 'detail_t_data_sarpras'},
-                    {
-                        data: 'action', 
-                        name: 'action', 
-                        orderable: true, 
-                        searchable: true
-                    },
-                ]
+                columns: columns,
             });
             $("#btn-filter").on("click", function(e){ 
                 // alert('sasa');

@@ -99,13 +99,13 @@ crossorigin=""/>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lat">Latitude</label>
-                                    <input type="text" class="form-control" name="lat" id="lat" readonly placeholder="Latitude">
+                                    <input type="text" class="form-control" name="lat" id="lat" value="-6.887827731261517" readonly placeholder="Latitude">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lng">Longtitude</label>
-                                    <input type="text" class="form-control" name="lng" id="lng" readonly placeholder="Longtitude">
+                                    <input type="text" class="form-control" name="lng" id="lng" value="107.59125658595599" readonly placeholder="Longtitude">
                                 </div>
                             </div>
                         </div>
@@ -142,6 +142,7 @@ crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/locales/id.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
 <script>
         $(document).ready(function() {
         $('#field-keterangan').summernote({
@@ -178,7 +179,7 @@ crossorigin=""></script>
             var lng = $('#lng').val();
             // alert(lat);
 
-            var map = L.map('map').setView([-6.885096440972612, 107.58568634441774], 14);
+            var map = L.map('map').setView([-6.887827731261517, 107.59125658595599], 14);
             var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJpcHJhdGFtYSIsImEiOiJjbGZubmdib3UwbnRxM3Bya3M1NGE4OHRsIn0.oxYqbBbaBwx0dHLguu5gOA', {
                 maxZoom: 18,
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -187,38 +188,55 @@ crossorigin=""></script>
                 tileSize: 512,
                 zoomOffset: -1
             }).addTo(map);
+
+            var geojsonLayer = new L.GeoJSON.AJAX("/js/kecamatan.json", {
+                style : function (feature){
+                    kel = feature.properties.id;
+                    return {
+                        fillColor: '#e0a800',
+                        fillOpacity: 0.5,
+                        color: "white",
+                        dashArray: '3',
+                        weight: 1,
+                        opacity: 0.7
+                    }
+                }
+            }).addTo(map);
             
-            var marker = L.marker([-6.885096440972612, 107.58568634441774], {draggable:'true'})
+            var marker = L.marker([-6.887827731261517, 107.59125658595599], {draggable:'true'})
             .addTo(map);
 
-            if(!lat && !lng)
-            {
-                navigator.geolocation.getCurrentPosition(
-                    function (position) {
-                        $("#lat").val(position.coords.latitude);
-                        $("#lng").val(position.coords.longitude);
-                        map.panTo(new L.LatLng(parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)));
-                        marker.setLatLng(new L.LatLng(position.coords.latitude, position.coords.longitude),{draggable:'true'});
-                        getAddress(parseFloat(position.coords.latitude), parseFloat(position.coords.longitude));
-                    },
-                    function errorCallback(error) {
-                        console.log(error)
-                    }
-                );
-            }else{
-                map.panTo(new L.LatLng(parseFloat(lat), parseFloat(lng)));
-                marker.setLatLng(new L.LatLng([parseFloat(lat), parseFloat(lng)], {draggable:'true'}));
+            if(lat && lng)
+            { 
+                var latlng = new L.LatLng(lat, lng);
+                map.panTo(latlng);
+                marker.setLatLng(latlng);
             }
 
             marker.on('dragend', function(event){
                 var marker = event.target;
                 var position = marker.getLatLng();
-                marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
-                map.panTo(new L.LatLng(position.lat, position.lng));
-                getAddress(position.lat, position.lng);
-                $("#lat").val(position.lat);
-                $("#lng").val(position.lng);
+                if (!geojsonLayer.getBounds().contains(position)) {
+                    Swal.fire({
+                        icon : 'error',
+                        text: 'Titik Koordinat Hanya Boleh Di Wilayah Kecamatan Sukajadi?',
+                        showCancelButton: false,
+                        showConfirmButton : false,
+                    });
+
+                    map.panTo(new L.LatLng(-6.887827731261517, 107.59125658595599));
+                    marker.setLatLng(new L.LatLng(-6.887827731261517, 107.59125658595599),{draggable:'true'});
+                    getAddress(-6.887827731261517, 107.59125658595599);
+                }else{
+                    // alert('sa');
+                    marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+                    map.panTo(new L.LatLng(position.lat, position.lng));
+                    getAddress(position.lat, position.lng);
+                    $("#lat").val(position.lat);
+                    $("#lng").val(position.lng);
+                }
             });
+
             
             const provider = new GeoSearch.OpenStreetMapProvider({
                 params: {
@@ -227,7 +245,6 @@ crossorigin=""></script>
                 },
             });
 
-            console.log(provider);
             map.addControl(
                 new GeoSearch.GeoSearchControl({
                     position: 'topright',

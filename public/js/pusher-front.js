@@ -51,34 +51,20 @@ $(document).ready(function(){
                 $('#chatContactContainer').css("display","block");
                 $('.chat-button').css("display","none");
                 $('.chat-container').css("display","flex");
-                $("#contactForm").on('submit', function (e) {
-                e.preventDefault();
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: "POST",
-                    url: "/chat/create",
-                    data: {
-                        'name': $('#chat-name').val(),
-                        'email': $('#chat-email').val(),
-                        'hp': $('#chat-hp').val(),
-                    },
-                    cache: false,
-                    success: function (response) {
-                        // console.log("sent ajax form");
-                        // console.log(response);
-                        const data = response.data;
-                        if(response.fail == true){
-                            // if(response.errors.length){
-                                for (control in response.errors) {
-                                    $('#chat-' + control).addClass('is-invalid');
-                                    $('#error-' + control).html(response.errors[control]);
-                                }
-                            // }
-                        }else{
+                $("#chat-start").on('click', function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: "POST",
+                        url: "/chat/create",
+                        data: {},
+                        cache: false,
+                        success: function (response) {
+                            const data = response;
                             $.cookie("ch", data.id, { expires : 1 });
-                            $.cookie("nm", data.name, { expires : 1 });
+                            $.cookie("nm", data.nama, { expires : 1 });
                             var channel = pusher.subscribe('chat'+data.id);
                             channel.bind('my-messages', function (data) {
                                 $('#messagesContainer').find('.direct-chat-messages')
@@ -95,9 +81,8 @@ $(document).ready(function(){
                             $('.chat-button').css("display","none");
                             $('.chat-container').css("display","flex");
                         }
-                    }
+                    });
                 });
-            });
             }
             else{
                 $('#chatContactContainer').css("display","none");

@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\WargaEmailVerificationNotification;
 
-class Admin extends Authenticatable implements MustVerifyEmail
+class Warga extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     
@@ -15,6 +16,8 @@ class Admin extends Authenticatable implements MustVerifyEmail
       return 'warga';
     }
 
+    protected $table = 'warga';
+    protected $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
      *
@@ -50,7 +53,7 @@ class Admin extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new AdminEmailVerificationNotification);
+        $this->notify(new WargaEmailVerificationNotification);
     }
 
     

@@ -16,63 +16,31 @@ class ChatController extends Controller
 
     public function create(Request $request)
     {
-        $rules = [
-            'name' => 'required',
-            'email' => 'required|email',
-            'hp' => 'required',
-        ];
+        DB::beginTransaction();
+        try{
+            $user = auth()->guard('warga')->user();
+            $data = new Chat();
+            $data->warga_id = $user->id;
+            $data->unseen_messages = 0;
+            $data->last_sender = 'warga';
+            $data->save();
 
-        $pesan = [
-            'name.required' => 'Nama Wajib Diisi!',
-            'email.required' => 'Email Wajib Diisi!',
-            'email.email' => 'Format Email Salah!',
-            'hp.required' => 'No HP Wajib Diisi!',
-        ];
+            $resp = Collect([
+                'id' => $data->id,
+                'nama' => $user->nama,
+                'unseen_messages' => 0,
+                'last_sender' => 'warga'
+            ]);
 
-        $validator = Validator::make($request->all(), $rules, $pesan);
-        if ($validator->fails()){
+        }catch(\QueryException $e){
+            DB::rollback();
             return response()->json([
                 'fail' => true,
-                'errors' => $validator->errors()
+                'msg' => $e,
             ]);
-        }else{
-
-            DB::beginTransaction();
-            try{
-                $data = new Chat();
-                $data->name = $request->name;
-                $data->email = $request->email;
-                $data->hp = $request->hp;
-                $data->unseen_messages = 0;
-                $data->last_sender = 'warga';
-                $data->save();
-
-            }catch(\QueryException $e){
-                DB::rollback();
-                return response()->json([
-                    'fail' => true,
-                    'msg' => $e,
-                ]);
-            }
-            DB::commit();
-            return response()->json([
-                'fail' => false,
-                'data' => $data,
-            ], 200);
         }
-        // dd($request->all());
-
-        
-        // $chat = Chat::create([
-        //     'name'              => $request->name,
-        //     'email'             => $request->email,
-        //     'unseen_messages'   => 0,
-        //     'last_sender'       => 'customer'
-        // ]);
-        // return response()->json([
-        //     'data' => $chat,
-        //     'fail' => false,
-        // ], 200);
+        DB::commit();
+        return response()->json($resp, 200);
     }
 
     public function message(Request $request)

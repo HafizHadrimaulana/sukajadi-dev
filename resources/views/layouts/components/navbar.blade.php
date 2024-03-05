@@ -100,12 +100,12 @@
 
                 <!-- Menu Footer-->
                 <li class="user-footer bg-dark ">
-                    <a href="{{ route('profile') }}"
+                    <a href="{{ route('admin.profile.index') }}"
                         class="btn btn-default btn-flat bg-secondary float-left">Profile</a>
-                    <a class="btn btn-default btn-flat bg-red float-right" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a class="btn btn-default btn-flat bg-red float-right" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                         <i class="fas fa-power-off"></i>
