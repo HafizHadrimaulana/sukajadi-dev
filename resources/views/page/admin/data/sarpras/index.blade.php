@@ -24,7 +24,7 @@
     <div class="card card-primary card-outline">
         @role(['superadmin', 'admin'])
         <div class="card-header">
-            <a class="btn btn-primary" href="{{ route('admin.sarpras.create') }}">
+            <a class="btn btn-primary" href="{{ route('admin.data.sarpras.create') }}">
                 <i class="fa fa-plus"></i>
                  Tambah Sarana & Prasarana
             </a>
@@ -88,7 +88,7 @@
                 serverSide: true,
                 dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                 ajax: {
-                    url : "{{ route('admin.sarpras.index') }}",
+                    url : "{{ route('admin.data.sarpras.index') }}",
                     data : function(data){
                             var tahun = $("#filter-tahun").val();
                             data.tahun = tahun;
@@ -128,7 +128,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: "POST",
-                    url: "{{ route('admin.sarpras.jenis.create') }}",
+                    url: "{{ route('admin.data.sarpras.jenis.create') }}",
                     data: {
                         'nama': $('#field-nama').val(),
                     },

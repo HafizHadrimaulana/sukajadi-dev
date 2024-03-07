@@ -31,7 +31,7 @@ class UnggulanController extends Controller
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.unggulan.show', ['id' => $row->id_j_data_unggulan]) .'><i class="fa fa-list"></i> Detail</a>';
+                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.data.unggulan.show', ['id' => $row->id_j_data_unggulan]) .'><i class="fa fa-list"></i> Detail</a>';
                     return $btn; 
                 })
                 ->rawColumns(['action']) 

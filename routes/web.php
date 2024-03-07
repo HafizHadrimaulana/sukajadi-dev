@@ -258,7 +258,7 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
             });
         });
         
-        Route::namespace('Data')->group(function(){
+        Route::namespace('Data')->name('data.')->group(function(){
             
             Route::prefix('/warga')->name('warga.')->group(function () {
                 Route::get('/', 'WargaController@index')->name('index');

@@ -50,32 +50,14 @@ class WargaController extends Controller
      */
     public function show($id, Request $request)
     {
-        $jenis = DB::table('j_data_pegawai')->select('*')->orderBy('nama_j_data_pegawai','ASC')->get();
+        $data = DB::table("warga as a")
+        ->join("j_kelurahan as b", function($join){
+            $join->on("b.id_j_kelurahan", "=", "a.kelurahan_id");
+        })
+        ->select("a.*", "b.nama_j_kelurahan as kelurahan")
+        ->where('a.id', $id)->first();
 
-        if ($request->ajax()) {
-            
-            $data = DB::table("t_data_pegawai as a")
-            ->join("j_sopd as c", function($join){
-                $join->on("c.id_j_sopd", "=", "a.sopd_t_data_pegawai");
-            })
-            ->select("a.*", "c.nama_j_sopd")
-            ->where('a.id_j_data_pegawai', $id)
-            ->get();
-            return DataTables::of($data)
-                ->addColumn('action', function($row){
-                    // $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
-                    $btn = '<button class="btn btn-sm btn-info mr-1"><i class="fa fa-edit"></i></button>';
-                    $btn .= '<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>';
-                    return $btn; 
-                })
-                ->rawColumns(['action']) 
-                ->make(true);
-        }
-
-        $data = DB::table('j_data_pegawai')->select('*')->where('id_j_data_pegawai', $id)->first();
-
-        return view('page.admin.data.pegawai.detail',[
-            'jenis' => $jenis,
+        return view('page.admin.data.warga.detail',[
             'data' => $data
         ]);
     }

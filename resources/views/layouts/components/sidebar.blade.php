@@ -70,76 +70,83 @@ $links = [
             [
                 "section_text" => "Warga",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.warga.index')
+                "section_href" => route('admin.data.warga.index')
             ],
             [
                 "section_text" => "Mitra",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.mitra.index')
+                "section_href" => route('admin.data.mitra.index')
             ],
             [
                 "section_text" => "Media Sosial",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.medsos.index')
+                "section_href" => route('admin.data.medsos.index')
             ],
             [
                 "section_text" => "Pegawai",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.pegawai.index')
+                "section_href" => route('admin.data.pegawai.index')
             ],
             [
                 "section_text" => "Penghargaan",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.penghargaan.index')
+                "section_href" => route('admin.data.penghargaan.index')
             ],
             [
                 "section_text" => "Sarana dan Prasarana",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.sarpras.index')
+                "section_href" => route('admin.data.sarpras.index')
             ],
             [
                 "section_text" => "Usaha",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.usaha.index')
+                "section_href" => route('admin.data.usaha.index')
             ],
             [
                 "section_text" => "Unggulan",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.unggulan.index')
+                "section_href" => route('admin.data.unggulan.index')
             ],
             [
                 "section_text" => "PKL",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('admin.pkl.index')
+                "section_href" => route('admin.data.pkl.index')
             ]
         ]
     ],
+    // [
+    //     "text" => "DATA KDA",
+    //     "icon" => "fa fa-list-alt",
+    //     "is_multi" => true,
+    //     "href" => [
+    //         [
+    //             "section_text" => "Pegawai",
+    //             "section_icon" => "fas fa-circle",
+    //             "section_href" => route('admin.kda.pegawai.index')
+    //         ],
+    //         [
+    //             "section_text" => "Sarana & Prasarana",
+    //             "section_icon" => "fas fa-circle",
+    //             "section_href" => route('admin.kda.sarpras.index')
+    //         ],
+    //         [
+    //             "section_text" => "Usaha",
+    //             "section_icon" => "fas fa-circle",
+    //             "section_href" => route('admin.kda.usaha.index')
+    //         ],
+    //         [
+    //             "section_text" => "Pengajuan",
+    //             "section_icon" => "fas fa-circle",
+    //             "section_href" => route('admin.kda.pengajuan.index')
+    //         ],
+    //     ]
+    // ],
     [
-        "text" => "DATA KDA",
-        "icon" => "fa fa-list-alt",
-        "is_multi" => true,
-        "href" => [
-            [
-                "section_text" => "Pegawai",
-                "section_icon" => "fas fa-circle",
-                "section_href" => route('admin.kda.pegawai.index')
-            ],
-            [
-                "section_text" => "Sarana & Prasarana",
-                "section_icon" => "fas fa-circle",
-                "section_href" => route('admin.kda.sarpras.index')
-            ],
-            [
-                "section_text" => "Usaha",
-                "section_icon" => "fas fa-circle",
-                "section_href" => route('admin.kda.usaha.index')
-            ],
-            [
-                "section_text" => "Pengajuan",
-                "section_icon" => "fas fa-circle",
-                "section_href" => route('admin.kda.pengajuan.index')
-            ],
-        ]
+      "href" => route('admin.kda.pengajuan.index'),
+      "text" => "PENGAJUAN KDA",
+      "icon" => "fas fa-envelope",
+        "roles" => ['superadmin', 'admin'],
+      "is_multi" => false
     ],
     [
         "text" => "PENGATURAN",

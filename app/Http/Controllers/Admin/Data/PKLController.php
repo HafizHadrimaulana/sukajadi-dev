@@ -31,7 +31,7 @@ class PKLController extends Controller
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.pkl.show', ['id' => $row->kelurahan_t_data_pkl]) .'><i class="fa fa-list"></i> Detail</a>';
+                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.data.pkl.show', ['id' => $row->kelurahan_t_data_pkl]) .'><i class="fa fa-list"></i> Detail</a>';
                     return $btn; 
                 })
                 ->rawColumns(['action']) 

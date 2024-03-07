@@ -62,7 +62,7 @@
                 serverSide: true,
                 dom : "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                 ajax: {
-                    url : "{{ route('admin.medsos.show', $data->id_j_data_medsos) }}",
+                    url : "{{ route('admin.data.medsos.show', $data->id_j_data_medsos) }}",
                     data : function(data){
                             var tahun = $("#filter-tahun").val();
                             data.tahun = tahun;

@@ -34,7 +34,7 @@ class MedsosController extends Controller
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.medsos.show', ['id' => $row->id_j_data_medsos]) .'><i class="fa fa-list"></i> Detail</a>';
+                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.data.medsos.show', ['id' => $row->id_j_data_medsos]) .'><i class="fa fa-list"></i> Detail</a>';
                     return $btn; 
                 })
                 ->rawColumns(['action']) 

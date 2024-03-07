@@ -36,7 +36,7 @@ class MitraController extends Controller
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row) use ($tahun){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
+                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.data.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
                     return $btn; 
                 })
                 ->rawColumns(['action']) 
@@ -70,7 +70,7 @@ class MitraController extends Controller
             ->get();
             return DataTables::of($data)
                 // ->addColumn('action', function($row) use ($tahun){
-                //     $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
+                //     $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.data.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
                 //     return $btn; 
                 // })
                 // ->rawColumns(['action']) 

@@ -45,7 +45,7 @@ crossorigin=""/>
 <section class="content">
     <div class="card">
         <div class="card-body">
-            <form id="form-kegiatan" method="POST" action="{{ route('admin.sarpras.update', $data->id_t_data_sarpras) }}" enctype="multipart/form-data">
+            <form id="form-kegiatan" method="POST" action="{{ route('admin.data.sarpras.update', $data->id_t_data_sarpras) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">

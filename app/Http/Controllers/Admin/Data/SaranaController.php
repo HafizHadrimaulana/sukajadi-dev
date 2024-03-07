@@ -33,7 +33,7 @@ class SaranaController extends Controller
             ->get();
             return DataTables::of($data)
                 ->addColumn('action', function($row){
-                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.sarpras.show', ['id' => $row->id_j_data_sarpras]) .'><i class="fa fa-list"></i> Detail</a>';
+                    $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.data.sarpras.show', ['id' => $row->id_j_data_sarpras]) .'><i class="fa fa-list"></i> Detail</a>';
                     return $btn; 
                 })
                 ->rawColumns(['action']) 
@@ -71,7 +71,7 @@ class SaranaController extends Controller
             return DataTables::of($data)
                 ->addColumn('action', function($row){
                     // $btn = '<a class="btn btn-primary btn-sm" href='. route('admin.mitra.show', ['id' => $row->id_j_data_mitra, 'tahun' => $tahun]) .'><i class="fa fa-list"></i> Detail</a>';
-                    $btn = '<a class="btn btn-sm btn-info mr-1" href='. route('admin.sarpras.edit', ['id' => $row->id_t_data_sarpras]) .'><i class="fa fa-edit"></i></a>';
+                    $btn = '<a class="btn btn-sm btn-info mr-1" href='. route('admin.data.sarpras.edit', ['id' => $row->id_t_data_sarpras]) .'><i class="fa fa-edit"></i></a>';
                     $btn .= '<button class="btn btn-sm btn-danger" onclick="hapus('. $row->id_t_data_sarpras .')"><i class="fa fa-trash"></i></button>';
                     return $btn; 
                 })
@@ -162,7 +162,7 @@ class SaranaController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.sarpras.show', $request->jenis);
+            return redirect()->route('admin.data.sarpras.show', $request->jenis);
         }
     }
 
@@ -241,7 +241,7 @@ class SaranaController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.sarpras.show', $request->jenis);
+            return redirect()->route('admin.data.sarpras.show', $request->jenis);
         }
     }
 
